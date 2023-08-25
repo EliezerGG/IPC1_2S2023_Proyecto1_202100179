@@ -2,7 +2,7 @@ package igu;
 
 import javax.swing.JOptionPane;
 import proyecto1courses.Controladora;
-import static proyecto1courses.Controladora.profesores;
+//import static proyecto1courses.Controladora.profesores;
 import proyecto1courses.Professor;
 import igu.Administracion.*;
 import static igu.Administracion.modelo;

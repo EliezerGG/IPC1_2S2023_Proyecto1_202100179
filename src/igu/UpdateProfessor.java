@@ -2,7 +2,7 @@ package igu;
 
 import static igu.Administracion.index;
 import static igu.Administracion.modelo;
-import static proyecto1courses.Controladora.profesores;
+//import static proyecto1courses.Controladora.profesores;
 import static proyecto1courses.Controladora.profesoresArray;
 import proyecto1courses.Professor;
 
@@ -252,7 +252,7 @@ public class UpdateProfessor extends javax.swing.JFrame {
             modelo.removeRow(0);
         }
         
-        for (Professor profesor: profesores) {
+        for (Professor profesor: profesoresArray) {
             if (profesor != null) {
                 Object a[]= new Object[5];
                 a[0] = profesor.getCode();

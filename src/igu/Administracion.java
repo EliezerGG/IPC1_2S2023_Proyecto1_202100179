@@ -5,7 +5,7 @@ import static igu.UpdateProfessor.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import proyecto1courses.Controladora;
-import static proyecto1courses.Controladora.profesores;
+
 import proyecto1courses.Professor;
 
 public class Administracion extends javax.swing.JFrame {
