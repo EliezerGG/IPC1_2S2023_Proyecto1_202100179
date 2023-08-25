@@ -1,10 +1,18 @@
 package igu;
 
+import com.csvreader.CsvReader;
 import static igu.UpdateProfessor.txtCodeUpdateProf;
 import static igu.UpdateProfessor.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import proyecto1courses.Controladora;
+import static proyecto1courses.Controladora.profesoresArray;
 
 import proyecto1courses.Professor;
 
@@ -400,8 +408,64 @@ public class Administracion extends javax.swing.JFrame {
 
     private void btnCargaMasivaProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargaMasivaProfActionPerformed
         // TODO add your handling code here:
+        JFileChooser javaChooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos csv", "csv");
+        
+        javaChooser.setFileFilter(filter);
+        int select = javaChooser.showOpenDialog(this);
+        
+        javaChooser.setMultiSelectionEnabled(false);
+        
+        if (select == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = javaChooser.getSelectedFile();
+            
+           loadFile(selectedFile);
+        }
+      
     }//GEN-LAST:event_btnCargaMasivaProfActionPerformed
 
+    public void loadFile(File archivo){
+        
+        FileReader fr = null;
+        BufferedReader br = null;
+        
+        try {
+            fr = new FileReader(archivo);
+            br = new BufferedReader(fr);
+            
+            String line;
+            
+            while((line = br.readLine()) != null){
+                String [] arreglo = line.split(",");
+                if (arreglo.length >=4) {
+                    control.addProfessor(arreglo[0], arreglo[1], arreglo[2], arreglo[3], "1234", arreglo[4]);
+                }
+            }
+            loadTable();
+        } catch (Exception e) {
+        }
+    }
+  
+     public void loadTable(){
+        while (modelo.getRowCount() > 0) { 
+            modelo.removeRow(0);
+        }
+        
+        for (Professor profesor: profesoresArray) {
+            if (profesor != null) {
+                Object a[]= new Object[5];
+                a[0] = profesor.getCode();
+                a[1] = profesor.getName();
+                a[2] = profesor.getLastName();
+                a[3] = profesor.getEmail();
+                a[4] = profesor.getGender();
+
+                modelo.addRow(a);
+            }
+        }
+    
+    }
+    
     private void btnDeleteProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteProfActionPerformed
         // TODO add your handling code here:
         int selectedRowProfessor = tblProfesores.getSelectedRow();
