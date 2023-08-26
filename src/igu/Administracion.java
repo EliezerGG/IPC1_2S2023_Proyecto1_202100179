@@ -1,12 +1,23 @@
 package igu;
 
-import com.csvreader.CsvReader;
+
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.element.Cell;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+ ///// Librerias pdf///////
+
 import static igu.UpdateProfessor.txtCodeUpdateProf;
-import static igu.UpdateProfessor.*;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.io.IOException;
+
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -49,7 +60,7 @@ public class Administracion extends javax.swing.JFrame {
         btnCreateProfesor = new javax.swing.JButton();
         btnCargaMasivaProf = new javax.swing.JButton();
         btnDeleteProf = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnExportPDF = new javax.swing.JButton();
         btnUpdateProf = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblProfesores = new javax.swing.JTable();
@@ -107,12 +118,12 @@ public class Administracion extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setBackground(new java.awt.Color(23, 107, 135));
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Exportar Listado a PDF");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnExportPDF.setBackground(new java.awt.Color(23, 107, 135));
+        btnExportPDF.setForeground(new java.awt.Color(255, 255, 255));
+        btnExportPDF.setText("Exportar Listado a PDF");
+        btnExportPDF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnExportPDFActionPerformed(evt);
             }
         });
 
@@ -159,7 +170,7 @@ public class Administracion extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnCargaMasivaProf, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnDeleteProf, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnExportPDF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27))
         );
         jPanel1Layout.setVerticalGroup(
@@ -178,7 +189,7 @@ public class Administracion extends javax.swing.JFrame {
                             .addComponent(btnDeleteProf, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnUpdateProf, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnExportPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(91, Short.MAX_VALUE))
         );
@@ -481,9 +492,46 @@ public class Administracion extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnDeleteProfActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnExportPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportPDFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+        
+        try {
+           File file = new File("Profesores.pdf");
+           PdfWriter pdfWriter = new PdfWriter(file);
+           
+           PdfDocument pdfDocument = new PdfDocument(pdfWriter);
+           
+           Document document = new Document(pdfDocument);
+           
+            Table table = new Table(5);  // 5 columnas para code, name, lastName, email y gender
+            table.addCell("Code");
+            table.addCell("Name");
+            table.addCell("Last Name");
+            table.addCell("Email");
+            table.addCell("Gender");
+
+           for (Professor profesor: profesoresArray){
+                table.addCell(profesor.getCode());
+                table.addCell(profesor.getName());
+                table.addCell(profesor.getLastName());
+                table.addCell(profesor.getEmail());
+                table.addCell(profesor.getGender());
+           }
+          
+          document.add(table);
+          document.close();
+          
+          pdfWriter.close();
+          
+            System.out.println("PDF Creado");
+            
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        } catch(IOException ex){
+            System.out.println(ex.getMessage());
+        }
+        
+    }//GEN-LAST:event_btnExportPDFActionPerformed
 
     private void btnUpdateProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateProfActionPerformed
         // TODO add your handling code here:
@@ -573,6 +621,7 @@ public class Administracion extends javax.swing.JFrame {
     private javax.swing.JButton btnCargaMasivaProf;
     private javax.swing.JButton btnCreateProfesor;
     private javax.swing.JButton btnDeleteProf;
+    private javax.swing.JButton btnExportPDF;
     private javax.swing.JButton btnUpdateProf;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
@@ -580,7 +629,6 @@ public class Administracion extends javax.swing.JFrame {
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton22;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

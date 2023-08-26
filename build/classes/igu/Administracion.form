@@ -83,7 +83,7 @@
                                   <Component id="btnDeleteProf" alignment="1" min="-2" pref="107" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="jButton5" alignment="1" min="-2" pref="232" max="-2" attributes="0"/>
+                          <Component id="btnExportPDF" alignment="1" min="-2" pref="232" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="27" pref="27" max="-2" attributes="0"/>
                   </Group>
@@ -107,7 +107,7 @@
                                   <Component id="btnUpdateProf" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jButton5" min="-2" pref="46" max="-2" attributes="0"/>
+                              <Component id="btnExportPDF" min="-2" pref="46" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane4" alignment="0" min="-2" pref="335" max="-2" attributes="0"/>
                       </Group>
@@ -170,7 +170,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteProfActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton5">
+            <Component class="javax.swing.JButton" name="btnExportPDF">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="87" green="6b" red="17" type="rgb"/>
@@ -181,7 +181,7 @@
                 <Property name="text" type="java.lang.String" value="Exportar Listado a PDF"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExportPDFActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnUpdateProf">
