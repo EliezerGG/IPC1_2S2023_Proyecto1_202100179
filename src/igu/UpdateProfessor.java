@@ -229,12 +229,6 @@ public class UpdateProfessor extends javax.swing.JFrame {
         String password = txtPassword.getText();
         String gender = cboGender.getSelectedItem().toString();
         
-//        profesores[index].setName(name);
-//        profesores[index].setLastName(lastName);
-//        profesores[index].setEmail(email);
-//        profesores[index].setPassWord(password);
-//        profesores[index].setGender(gender);
-        
         profesoresArray.get(index).setName(name);
         profesoresArray.get(index).setLastName(lastName);
         profesoresArray.get(index).setEmail(email);

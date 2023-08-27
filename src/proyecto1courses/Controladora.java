@@ -4,10 +4,8 @@ import java.util.ArrayList;
 
 public class Controladora {
     
-      
-  
-    
     public static ArrayList<Professor> profesoresArray = new ArrayList<>();
+    public static ArrayList<Course> cursosArray = new ArrayList<>();
     
     static int indexProfessor = 0;
 
@@ -33,6 +31,11 @@ public class Controladora {
   
     }
     
+    public void deleteCourse(int indexDelete){
+        
+        cursosArray.remove(indexDelete);
+    }
+    
     public String getProfessorCode(int indexUpdate){
         
         String code = profesoresArray.get(indexUpdate).getCode();
@@ -40,4 +43,20 @@ public class Controladora {
         return code;
     }
     
+    public void addCourse(String code, String name, int credit, Professor profesor){
+        Course curso = new Course();
+        
+        curso.setCodeCourse(code);
+        curso.setNameCourse(name);
+        curso.setCredits(credit);
+        curso.setProfesor(profesor);
+        
+        cursosArray.add(curso);
+        
+    }
+    
+    public String getCourseCode(int indexUpdate){
+        String code = cursosArray.get(indexUpdate).getCodeCourse();
+        return code;
+    }
 }

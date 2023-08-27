@@ -7,6 +7,7 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.element.Cell;
+import static igu.UpdateCourse.txtCodigoCourse;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -29,7 +30,9 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
 import proyecto1courses.Controladora;
+import static proyecto1courses.Controladora.cursosArray;
 import static proyecto1courses.Controladora.profesoresArray;
+import proyecto1courses.Course;
 
 import proyecto1courses.Professor;
 
@@ -37,9 +40,13 @@ public class Administracion extends javax.swing.JFrame {
     
     Controladora control = new Controladora();
     public static int index;
+    int countMale= 0;
+    int countFemale= 0;
     
 
   static DefaultTableModel modelo = new DefaultTableModel();
+  static DefaultTableModel modeloCourse = new DefaultTableModel();
+  
     public Administracion() {
         initComponents();
         this.setTitle("Administracion");
@@ -50,6 +57,13 @@ public class Administracion extends javax.swing.JFrame {
         modelo.addColumn("Apellido");
         modelo.addColumn("Correo");
         modelo.addColumn("Genero");
+        
+        //Course//
+        modeloCourse.addColumn("Codigo");
+        modeloCourse.addColumn("Nombre");
+        modeloCourse.addColumn("Creditos");
+        modeloCourse.addColumn("Alumnos");
+        modeloCourse.addColumn("Profesor");
         refreshTable();
         
         
@@ -71,16 +85,15 @@ public class Administracion extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         tblProfesores = new javax.swing.JTable();
         panelGrafico = new javax.swing.JPanel();
-        Graficar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jButton18 = new javax.swing.JButton();
-        jButton19 = new javax.swing.JButton();
-        jButton20 = new javax.swing.JButton();
-        jButton21 = new javax.swing.JButton();
-        jButton22 = new javax.swing.JButton();
+        btnAddCourse = new javax.swing.JButton();
+        btnUpdateCourse = new javax.swing.JButton();
+        btnDeleteCourse = new javax.swing.JButton();
+        btnCargaMasivaCursos = new javax.swing.JButton();
+        btnExportCoursePDF = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tblCursos = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -102,6 +115,11 @@ public class Administracion extends javax.swing.JFrame {
         btnCreateProfesor.setBackground(new java.awt.Color(23, 107, 135));
         btnCreateProfesor.setForeground(new java.awt.Color(255, 255, 255));
         btnCreateProfesor.setText("Crear");
+        btnCreateProfesor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCreateProfesorMouseExited(evt);
+            }
+        });
         btnCreateProfesor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreateProfesorActionPerformed(evt);
@@ -157,27 +175,18 @@ public class Administracion extends javax.swing.JFrame {
         ));
         jScrollPane4.setViewportView(tblProfesores);
 
-        panelGrafico.setBackground(new java.awt.Color(204, 204, 255));
+        panelGrafico.setBackground(new java.awt.Color(218, 255, 251));
 
         javax.swing.GroupLayout panelGraficoLayout = new javax.swing.GroupLayout(panelGrafico);
         panelGrafico.setLayout(panelGraficoLayout);
         panelGraficoLayout.setHorizontalGroup(
             panelGraficoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 322, Short.MAX_VALUE)
+            .addGap(0, 334, Short.MAX_VALUE)
         );
         panelGraficoLayout.setVerticalGroup(
             panelGraficoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 309, Short.MAX_VALUE)
+            .addGap(0, 315, Short.MAX_VALUE)
         );
-
-        Graficar.setBackground(new java.awt.Color(23, 107, 135));
-        Graficar.setForeground(new java.awt.Color(255, 255, 255));
-        Graficar.setText("Graficar");
-        Graficar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GraficarActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -191,7 +200,7 @@ public class Administracion extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,11 +216,7 @@ public class Administracion extends javax.swing.JFrame {
                                 .addGap(59, 59, 59))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(panelGrafico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29))))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Graficar)
-                .addGap(126, 126, 126))
+                                .addGap(18, 18, 18))))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,11 +236,9 @@ public class Administracion extends javax.swing.JFrame {
                             .addComponent(btnUpdateProf, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnExportPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
+                        .addGap(18, 18, 18)
                         .addComponent(panelGrafico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(Graficar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Profesores", jPanel1);
@@ -246,66 +249,63 @@ public class Administracion extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Listado Oficial");
 
-        jTable2.setBackground(new java.awt.Color(218, 255, 251));
-        jTable2.setForeground(new java.awt.Color(0, 0, 0));
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        btnAddCourse.setBackground(new java.awt.Color(23, 107, 135));
+        btnAddCourse.setForeground(new java.awt.Color(255, 255, 255));
+        btnAddCourse.setText("Crear");
+        btnAddCourse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddCourseActionPerformed(evt);
+            }
+        });
+
+        btnUpdateCourse.setBackground(new java.awt.Color(23, 107, 135));
+        btnUpdateCourse.setForeground(new java.awt.Color(255, 255, 255));
+        btnUpdateCourse.setText("Actualizar");
+        btnUpdateCourse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateCourseActionPerformed(evt);
+            }
+        });
+
+        btnDeleteCourse.setBackground(new java.awt.Color(23, 107, 135));
+        btnDeleteCourse.setForeground(new java.awt.Color(255, 255, 255));
+        btnDeleteCourse.setText("Eliminar");
+        btnDeleteCourse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteCourseActionPerformed(evt);
+            }
+        });
+
+        btnCargaMasivaCursos.setBackground(new java.awt.Color(23, 107, 135));
+        btnCargaMasivaCursos.setForeground(new java.awt.Color(255, 255, 255));
+        btnCargaMasivaCursos.setText("Carga Masiva");
+        btnCargaMasivaCursos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCargaMasivaCursosActionPerformed(evt);
+            }
+        });
+
+        btnExportCoursePDF.setBackground(new java.awt.Color(23, 107, 135));
+        btnExportCoursePDF.setForeground(new java.awt.Color(255, 255, 255));
+        btnExportCoursePDF.setText("Exportar Listado a PDF");
+        btnExportCoursePDF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportCoursePDFActionPerformed(evt);
+            }
+        });
+
+        tblCursos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Código", "Nombre", "Credito", "Cant. Alumnos", "Profesor"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable2.setGridColor(new java.awt.Color(51, 51, 51));
-        jScrollPane2.setViewportView(jTable2);
-
-        jButton18.setBackground(new java.awt.Color(23, 107, 135));
-        jButton18.setForeground(new java.awt.Color(255, 255, 255));
-        jButton18.setText("Crear");
-        jButton18.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton18ActionPerformed(evt);
-            }
-        });
-
-        jButton19.setBackground(new java.awt.Color(23, 107, 135));
-        jButton19.setForeground(new java.awt.Color(255, 255, 255));
-        jButton19.setText("Actualizar");
-        jButton19.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton19ActionPerformed(evt);
-            }
-        });
-
-        jButton20.setBackground(new java.awt.Color(23, 107, 135));
-        jButton20.setForeground(new java.awt.Color(255, 255, 255));
-        jButton20.setText("Eliminar");
-        jButton20.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton20ActionPerformed(evt);
-            }
-        });
-
-        jButton21.setBackground(new java.awt.Color(23, 107, 135));
-        jButton21.setForeground(new java.awt.Color(255, 255, 255));
-        jButton21.setText("Carga Masiva");
-        jButton21.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton21ActionPerformed(evt);
-            }
-        });
-
-        jButton22.setBackground(new java.awt.Color(23, 107, 135));
-        jButton22.setForeground(new java.awt.Color(255, 255, 255));
-        jButton22.setText("Exportar Listado a PDF");
-        jButton22.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton22ActionPerformed(evt);
-            }
-        });
+        jScrollPane5.setViewportView(tblCursos);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -313,46 +313,45 @@ public class Administracion extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(48, 48, 48)
-                .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 189, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jButton21)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jButton22, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(27, 27, 27))
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(72, 72, 72)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(btnUpdateCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btnDeleteCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(btnAddCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btnCargaMasivaCursos)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(btnExportCoursePDF, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jLabel4))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jLabel4)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnAddCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCargaMasivaCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnDeleteCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnUpdateCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton22)))
-                .addContainerGap(218, Short.MAX_VALUE))
+                        .addComponent(btnExportCoursePDF))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(176, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Cursos", jPanel2);
@@ -408,7 +407,7 @@ public class Administracion extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 223, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 215, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -426,7 +425,7 @@ public class Administracion extends javax.swing.JFrame {
                         .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
                         .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(218, Short.MAX_VALUE))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Alumnos", jPanel3);
@@ -439,7 +438,7 @@ public class Administracion extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
 
         pack();
@@ -449,7 +448,7 @@ public class Administracion extends javax.swing.JFrame {
     public void refreshTable(){
       
         tblProfesores.setModel(modelo);
-        
+        tblCursos.setModel(modeloCourse);
     
     }
     
@@ -458,6 +457,7 @@ public class Administracion extends javax.swing.JFrame {
         AddProfessor addProf = new AddProfessor();
         addProf.setVisible(true);
         addProf.setLocationRelativeTo(null);
+        showGraphicPie();
 
     }//GEN-LAST:event_btnCreateProfesorActionPerformed
 
@@ -475,8 +475,11 @@ public class Administracion extends javax.swing.JFrame {
             File selectedFile = javaChooser.getSelectedFile();
             
            loadFile(selectedFile);
+           showGraphicPie();
+        
         }
       
+        
     }//GEN-LAST:event_btnCargaMasivaProfActionPerformed
 
     public void loadFile(File archivo){
@@ -528,6 +531,8 @@ public class Administracion extends javax.swing.JFrame {
         if (selectedRowProfessor != -1) {
             modelo.removeRow(selectedRowProfessor);
             control.deleteProfessor(selectedRowProfessor);
+            showGraphicPie();
+        
             
         }else{
             JOptionPane.showMessageDialog(null, "Seleccione una fila");
@@ -590,7 +595,7 @@ public class Administracion extends javax.swing.JFrame {
             updateProf.setLocationRelativeTo(null);
            
             index =selectedRowProfessor;
-            
+            showGraphicPie();
         }else{
         JOptionPane.showMessageDialog(null, "Seleccione una fila");}
         
@@ -605,35 +610,174 @@ public class Administracion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton17ActionPerformed
 
-    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+    private void btnAddCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCourseActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton18ActionPerformed
+       AddCourse windowCourse = new AddCourse();
+       
+       windowCourse.setVisible(true);
+       windowCourse.setLocationRelativeTo(null);
+        
+        
+        
+    }//GEN-LAST:event_btnAddCourseActionPerformed
 
-    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+    private void btnUpdateCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateCourseActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton19ActionPerformed
+          
+           UpdateCourse updateCourse = new UpdateCourse();
+        
+        int selectedRowCourse = tblCursos.getSelectedRow();
+       
+        
+        if (selectedRowCourse != -1) {
+            txtCodigoCourse.setText(control.getCourseCode(selectedRowCourse));
+            updateCourse.setVisible(true);
+            updateCourse.setLocationRelativeTo(null);
+           
+            index =selectedRowCourse;
+            
+        }else{
+        JOptionPane.showMessageDialog(null, "Seleccione una fila");}
+        
+        
+        
+        
+    }//GEN-LAST:event_btnUpdateCourseActionPerformed
 
-    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
+    private void btnDeleteCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCourseActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton20ActionPerformed
+        int selectedRowCourse = tblCursos.getSelectedRow();
+        
+        if (selectedRowCourse != -1) {
+            modeloCourse.removeRow(selectedRowCourse);
+            control.deleteCourse(selectedRowCourse);
+           
+        
+        }else{
+            JOptionPane.showMessageDialog(null, "Seleccione una fila");
+        }
+        
+        
+        
+    }//GEN-LAST:event_btnDeleteCourseActionPerformed
 
-    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
+    private void btnCargaMasivaCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargaMasivaCursosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton21ActionPerformed
+        JFileChooser javaChooserCurso = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos csv", "csv");
+        
+        javaChooserCurso.setFileFilter(filter);
+        int select = javaChooserCurso.showOpenDialog(this);
+        
+        javaChooserCurso.setMultiSelectionEnabled(false);
+        
+        if (select == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = javaChooserCurso.getSelectedFile();
+            
+           loadFileCursos(selectedFile);
+          
+        }
+        
+        
+        
+    }//GEN-LAST:event_btnCargaMasivaCursosActionPerformed
 
-    private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton22ActionPerformed
+    public void loadFileCursos(File archivo){
+        
+        FileReader fr = null;
+        BufferedReader br = null;
+        
+        try {
+            fr = new FileReader(archivo);
+            br = new BufferedReader(fr);
+            
+            String line;
+            
+            while((line = br.readLine()) != null){
+                String [] arreglo = line.split(",");
+                if (arreglo.length >=3) {
+                    control.addCourse(arreglo[0], 
+                            arreglo[1],
+                      Integer.parseInt(arreglo[2]) ,
+                     profesoresArray.get(Integer.parseInt(arreglo[3])));
+                    
+                }
+            }
+            loadTableCursos();
+        } catch (Exception e) {
+        }
+    }
+    
+     public void loadTableCursos(){
+        while (modeloCourse.getRowCount() > 0) { 
+            modeloCourse.removeRow(0);
+        }
+        
+        for (Course curso: cursosArray) {
+            if (curso != null) {
+                Object a[]= new Object[5];
+                a[0] = curso.getCodeCourse();
+                a[1] = curso.getNameCourse();
+                a[2] = curso.getCredits();
+                a[3] = curso.getStudentsArray().size();
+                a[4] = curso.getProfesor().getName() + " " + curso.getProfesor().getLastName();
 
-    private void GraficarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GraficarActionPerformed
+                modeloCourse.addRow(a);
+            }
+        }
+    
+    }
+    private void btnExportCoursePDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportCoursePDFActionPerformed
         // TODO add your handling code here:
+         try {
+           File file = new File("Cursos.pdf");
+           PdfWriter pdfWriter = new PdfWriter(file);
+           
+           PdfDocument pdfDocument = new PdfDocument(pdfWriter);
+           
+           Document document = new Document(pdfDocument);
+           
+            Table table = new Table(5);  // 5 columnas para code, name, lastName, email y gender
+            table.addCell("Code");
+            table.addCell("Name");
+            table.addCell("Creditos");
+            table.addCell("Cant.Alumnos");
+            table.addCell("Profesor");
+
+           for (Course curso: cursosArray){
+                table.addCell(curso.getCodeCourse());
+                table.addCell(curso.getNameCourse());
+                table.addCell(String.valueOf(curso.getCredits()));
+                table.addCell(String.valueOf(curso.getStudentsArray().size()));
+                table.addCell(curso.getProfesor().getName() + " " + curso.getProfesor().getLastName());
+           }
+          
+          document.add(table);
+          document.close();
+          
+          pdfWriter.close();
+          
+            System.out.println("PDF Creado");
+            
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        } catch(IOException ex){
+            System.out.println(ex.getMessage());
+        }
+    }//GEN-LAST:event_btnExportCoursePDFActionPerformed
+
+    private void btnCreateProfesorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCreateProfesorMouseExited
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnCreateProfesorMouseExited
+
+    public void showGraphicPie(){
         panelGrafico.removeAll();
         panelGrafico.revalidate();
         
         DefaultPieDataset datos = new DefaultPieDataset();
         
-        int countMale= 0;
-        int countFemale= 0;
+        
         
         for(Professor profesor: profesoresArray){
             if (profesor.getGender().equals("Masculino")) {
@@ -663,9 +807,8 @@ public class Administracion extends javax.swing.JFrame {
         
         pack();
         repaint();
-        
-    }//GEN-LAST:event_GraficarActionPerformed
-
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -703,18 +846,17 @@ public class Administracion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Graficar;
+    private javax.swing.JButton btnAddCourse;
+    private javax.swing.JButton btnCargaMasivaCursos;
     private javax.swing.JButton btnCargaMasivaProf;
     private javax.swing.JButton btnCreateProfesor;
+    private javax.swing.JButton btnDeleteCourse;
     private javax.swing.JButton btnDeleteProf;
+    private javax.swing.JButton btnExportCoursePDF;
     private javax.swing.JButton btnExportPDF;
+    private javax.swing.JButton btnUpdateCourse;
     private javax.swing.JButton btnUpdateProf;
     private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton18;
-    private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton20;
-    private javax.swing.JButton jButton21;
-    private javax.swing.JButton jButton22;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -722,13 +864,13 @@ public class Administracion extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JPanel panelGrafico;
+    public static javax.swing.JTable tblCursos;
     public static javax.swing.JTable tblProfesores;
     // End of variables declaration//GEN-END:variables
 }

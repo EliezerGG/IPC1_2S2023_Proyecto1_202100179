@@ -1,13 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package igu;
 
-/**
- *
- * @author magdi
- */
+import static igu.Administracion.index;
+import static igu.Administracion.modeloCourse;
+import static proyecto1courses.Controladora.cursosArray;
+import static proyecto1courses.Controladora.profesoresArray;
+import proyecto1courses.Course;
+import proyecto1courses.Professor;
+
+
 public class UpdateCourse extends javax.swing.JFrame {
 
     /**
@@ -32,11 +33,12 @@ public class UpdateCourse extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        txtCodigoCourse = new javax.swing.JTextField();
+        txtNameCourse = new javax.swing.JTextField();
+        txtCredit = new javax.swing.JTextField();
+        btnUpdateCourse = new javax.swing.JButton();
+        cmbProfesor = new javax.swing.JComboBox<>();
+        btnShowProf = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,52 +58,51 @@ public class UpdateCourse extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Apellido:");
+        jLabel6.setText("Creditos:");
 
         jLabel7.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Correo:");
+        jLabel7.setText("Profesor:");
 
-        jTextField5.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField5.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jTextField5.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        txtCodigoCourse.setEditable(false);
+        txtCodigoCourse.setBackground(new java.awt.Color(255, 255, 255));
+        txtCodigoCourse.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        txtCodigoCourse.setForeground(new java.awt.Color(0, 0, 0));
+        txtCodigoCourse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                txtCodigoCourseActionPerformed(evt);
             }
         });
 
-        jTextField7.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField7.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jTextField7.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+        txtNameCourse.setBackground(new java.awt.Color(255, 255, 255));
+        txtNameCourse.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        txtNameCourse.setForeground(new java.awt.Color(0, 0, 0));
+        txtNameCourse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
+                txtNameCourseActionPerformed(evt);
             }
         });
 
-        jTextField8.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField8.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jTextField8.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+        txtCredit.setBackground(new java.awt.Color(255, 255, 255));
+        txtCredit.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        txtCredit.setForeground(new java.awt.Color(0, 0, 0));
+        txtCredit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
+                txtCreditActionPerformed(evt);
             }
         });
 
-        jTextField9.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField9.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jTextField9.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdateCourse.setText("Actualizar");
+        btnUpdateCourse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
+                btnUpdateCourseActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Actualizar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnShowProf.setText("Update");
+        btnShowProf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnShowProfActionPerformed(evt);
             }
         });
 
@@ -121,12 +122,15 @@ public class UpdateCourse extends javax.swing.JFrame {
                             .addComponent(jLabel7))
                         .addGap(39, 39, 39)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField8)
-                            .addComponent(jTextField9)
-                            .addComponent(jTextField7))))
-                .addContainerGap(108, Short.MAX_VALUE))
+                            .addComponent(btnUpdateCourse, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                            .addComponent(txtCodigoCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNameCourse)
+                            .addComponent(txtCredit)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(cmbProfesor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnShowProf)))))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,23 +139,25 @@ public class UpdateCourse extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCodigoCourse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtNameCourse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
                 .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                    .addComponent(txtCredit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cmbProfesor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnShowProf)))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addComponent(btnUpdateCourse)
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -168,25 +174,66 @@ public class UpdateCourse extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void txtCodigoCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoCourseActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_txtCodigoCourseActionPerformed
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void txtNameCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameCourseActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_txtNameCourseActionPerformed
 
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+    private void txtCreditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCreditActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
+    }//GEN-LAST:event_txtCreditActionPerformed
 
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+    private void btnUpdateCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateCourseActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9ActionPerformed
+        String name = txtNameCourse.getText();
+        int credit = Integer.valueOf(txtCredit.getText());
+        int indexProfesor = cmbProfesor.getSelectedIndex();
+        Professor profesor = profesoresArray.get(indexProfesor);
+          
+        cursosArray.get(index).setNameCourse(name);
+        cursosArray.get(index).setCredits(credit);
+        cursosArray.get(index).setProfesor(profesor);
+        
+       
+        
+        
+        refreshTable();
+        dispose();
+        
+        
+        
+    }//GEN-LAST:event_btnUpdateCourseActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+     public void refreshTable(){
+        while (modeloCourse.getRowCount() > 0) { 
+            modeloCourse.removeRow(0);
+        }
+        
+        for (Course curso: cursosArray) {
+            if (curso != null) {
+                Object a[]= new Object[5];
+                a[0] = curso.getCodeCourse();
+                a[1] = curso.getNameCourse();
+                a[2] = curso.getCredits();
+                a[3] = curso.getStudentsArray().size();
+                a[4] = curso.getProfesor().getName() + " " + curso.getProfesor().getLastName();
+
+                modeloCourse.addRow(a);
+            }
+        }
+    
+    }
+    private void btnShowProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowProfActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+
+        for(Professor profesor: profesoresArray){
+            cmbProfesor.addItem(profesor.getName() + " " +profesor.getLastName());
+        }
+
+    }//GEN-LAST:event_btnShowProfActionPerformed
 
     /**
      * @param args the command line arguments
@@ -225,16 +272,17 @@ public class UpdateCourse extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnShowProf;
+    private javax.swing.JButton btnUpdateCourse;
+    private javax.swing.JComboBox<String> cmbProfesor;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    public static javax.swing.JTextField txtCodigoCourse;
+    private javax.swing.JTextField txtCredit;
+    private javax.swing.JTextField txtNameCourse;
     // End of variables declaration//GEN-END:variables
 }

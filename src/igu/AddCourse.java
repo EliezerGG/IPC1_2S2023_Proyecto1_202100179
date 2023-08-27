@@ -1,11 +1,17 @@
 package igu;
 
+import static igu.Administracion.modeloCourse;
+import javax.swing.JOptionPane;
+import proyecto1courses.Controladora;
+import static proyecto1courses.Controladora.cursosArray;
+import static proyecto1courses.Controladora.profesoresArray;
+import proyecto1courses.Course;
+import proyecto1courses.Professor;
+
 
 public class AddCourse extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AddCourse
-     */
+   Controladora control = new Controladora();
     public AddCourse() {
         initComponents();
     }
@@ -25,11 +31,12 @@ public class AddCourse extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        txtCodeCourse = new javax.swing.JTextField();
+        txtNameCourse = new javax.swing.JTextField();
+        txtCreditCourse = new javax.swing.JTextField();
+        btnAddCourse = new javax.swing.JButton();
+        cmbProfesor = new javax.swing.JComboBox<>();
+        btnShowProf = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -37,7 +44,7 @@ public class AddCourse extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Agregar nuevo Profesor");
+        jLabel3.setText("Agregar nuevo curso");
 
         jLabel4.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -49,49 +56,52 @@ public class AddCourse extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Apellido:");
+        jLabel6.setText("Creditos:");
 
         jLabel7.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Correo:");
+        jLabel7.setText("Profesor:");
 
-        jTextField5.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField5.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jTextField5.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        txtCodeCourse.setBackground(new java.awt.Color(255, 255, 255));
+        txtCodeCourse.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        txtCodeCourse.setForeground(new java.awt.Color(0, 0, 0));
+        txtCodeCourse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                txtCodeCourseActionPerformed(evt);
             }
         });
 
-        jTextField7.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField7.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jTextField7.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+        txtNameCourse.setBackground(new java.awt.Color(255, 255, 255));
+        txtNameCourse.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        txtNameCourse.setForeground(new java.awt.Color(0, 0, 0));
+        txtNameCourse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
+                txtNameCourseActionPerformed(evt);
             }
         });
 
-        jTextField8.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField8.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jTextField8.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+        txtCreditCourse.setBackground(new java.awt.Color(255, 255, 255));
+        txtCreditCourse.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        txtCreditCourse.setForeground(new java.awt.Color(0, 0, 0));
+        txtCreditCourse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
+                txtCreditCourseActionPerformed(evt);
             }
         });
 
-        jTextField9.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField9.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jTextField9.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+        btnAddCourse.setText("Agregar");
+        btnAddCourse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
+                btnAddCourseActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Agregar");
+        btnShowProf.setText("Update");
+        btnShowProf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnShowProfActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -109,12 +119,14 @@ public class AddCourse extends javax.swing.JFrame {
                             .addComponent(jLabel7))
                         .addGap(39, 39, 39)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField8)
-                            .addComponent(jTextField9)
-                            .addComponent(jTextField7))))
-                .addContainerGap(115, Short.MAX_VALUE))
+                            .addComponent(btnAddCourse, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                            .addComponent(txtCodeCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNameCourse)
+                            .addComponent(txtCreditCourse)
+                            .addComponent(cmbProfesor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnShowProf)))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,23 +135,24 @@ public class AddCourse extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCodeCourse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtNameCourse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
                 .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                    .addComponent(txtCreditCourse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbProfesor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnShowProf))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(123, Short.MAX_VALUE))
+                .addComponent(btnAddCourse)
+                .addContainerGap(119, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -156,22 +169,70 @@ public class AddCourse extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void txtCodeCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodeCourseActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_txtCodeCourseActionPerformed
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void txtNameCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameCourseActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_txtNameCourseActionPerformed
 
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+    private void txtCreditCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCreditCourseActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
+    }//GEN-LAST:event_txtCreditCourseActionPerformed
 
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+    private void btnAddCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCourseActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9ActionPerformed
+       
+        
+        try {
+            String code = txtCodeCourse.getText();
+            String name = txtNameCourse.getText();
+            int credit = Integer.valueOf(txtCreditCourse.getText());
+            
+            int indexProfesor = cmbProfesor.getSelectedIndex();
+            
+            Professor profesor = profesoresArray.get(indexProfesor);
+            
+            control.addCourse(code, name, credit, profesor);
+            
+            refreshTable();
+            dispose();
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al agregar Curso");
+        }
+    }//GEN-LAST:event_btnAddCourseActionPerformed
 
+    private void btnShowProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowProfActionPerformed
+        // TODO add your handling code here:
+        
+        for(Professor profesor: profesoresArray){
+            cmbProfesor.addItem(profesor.getName() + " " +profesor.getLastName());
+        }
+        
+    }//GEN-LAST:event_btnShowProfActionPerformed
+
+    
+    public void refreshTable(){
+        while (modeloCourse.getRowCount() > 0) { 
+            modeloCourse.removeRow(0);
+        }
+        
+        for (Course curso: cursosArray) {
+            if (curso != null) {
+                Object a[]= new Object[5];
+                a[0] = curso.getCodeCourse();
+                a[1] = curso.getNameCourse();
+                a[2] = curso.getCredits();
+                a[3] = curso.getStudentsArray().size();
+                a[4] = curso.getProfesor().getName() + " " + curso.getProfesor().getLastName();
+
+                modeloCourse.addRow(a);
+            }
+        }
+    
+    }
     /**
      * @param args the command line arguments
      */
@@ -209,16 +270,17 @@ public class AddCourse extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnAddCourse;
+    private javax.swing.JButton btnShowProf;
+    private javax.swing.JComboBox<String> cmbProfesor;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField txtCodeCourse;
+    private javax.swing.JTextField txtCreditCourse;
+    private javax.swing.JTextField txtNameCourse;
     // End of variables declaration//GEN-END:variables
 }
