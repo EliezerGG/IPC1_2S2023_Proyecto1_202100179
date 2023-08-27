@@ -6,6 +6,7 @@ public class Controladora {
     
     public static ArrayList<Professor> profesoresArray = new ArrayList<>();
     public static ArrayList<Course> cursosArray = new ArrayList<>();
+    public static ArrayList<Student> estudiantesArray = new ArrayList<>();
     
     static int indexProfessor = 0;
 
@@ -58,5 +59,23 @@ public class Controladora {
     public String getCourseCode(int indexUpdate){
         String code = cursosArray.get(indexUpdate).getCodeCourse();
         return code;
+    }
+    
+    public void addStudent(String code, String name, String lastName, String email, String gender){
+        Student estudiante = new Student();
+        
+        estudiante.setCodeStudet(code);
+        estudiante.setNameStudet(name);
+        estudiante.setLastNameStudent(lastName);
+        estudiante.setEmailStudent(email);
+        estudiante.setGender(gender);
+        
+        estudiantesArray.add(estudiante);
+    }
+    
+    public void deleteStudent(int indexStudent){
+        
+        estudiantesArray.remove(indexStudent);
+                
     }
 }

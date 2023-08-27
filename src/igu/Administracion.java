@@ -31,10 +31,12 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
 import proyecto1courses.Controladora;
 import static proyecto1courses.Controladora.cursosArray;
+import static proyecto1courses.Controladora.estudiantesArray;
 import static proyecto1courses.Controladora.profesoresArray;
 import proyecto1courses.Course;
 
 import proyecto1courses.Professor;
+import proyecto1courses.Student;
 
 public class Administracion extends javax.swing.JFrame {
     
@@ -46,6 +48,7 @@ public class Administracion extends javax.swing.JFrame {
 
   static DefaultTableModel modelo = new DefaultTableModel();
   static DefaultTableModel modeloCourse = new DefaultTableModel();
+  static DefaultTableModel modeloStudent = new DefaultTableModel();
   
     public Administracion() {
         initComponents();
@@ -58,12 +61,17 @@ public class Administracion extends javax.swing.JFrame {
         modelo.addColumn("Correo");
         modelo.addColumn("Genero");
         
-        //Course//
         modeloCourse.addColumn("Codigo");
         modeloCourse.addColumn("Nombre");
         modeloCourse.addColumn("Creditos");
         modeloCourse.addColumn("Alumnos");
         modeloCourse.addColumn("Profesor");
+        
+        modeloStudent.addColumn("Codigo");
+        modeloStudent.addColumn("Nombre");
+        modeloStudent.addColumn("Apellido");
+        modeloStudent.addColumn("Correo");
+        modeloStudent.addColumn("Genero");
         refreshTable();
         
         
@@ -85,6 +93,7 @@ public class Administracion extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         tblProfesores = new javax.swing.JTable();
         panelGrafico = new javax.swing.JPanel();
+        btnShowGraph = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         btnAddCourse = new javax.swing.JButton();
@@ -96,10 +105,10 @@ public class Administracion extends javax.swing.JFrame {
         tblCursos = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
-        jButton9 = new javax.swing.JButton();
-        jButton17 = new javax.swing.JButton();
+        btnCargaMasivaStudent = new javax.swing.JButton();
+        btnExportStudentPDF = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblStudent = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -188,6 +197,13 @@ public class Administracion extends javax.swing.JFrame {
             .addGap(0, 315, Short.MAX_VALUE)
         );
 
+        btnShowGraph.setText("Show Graph");
+        btnShowGraph.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnShowGraphActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -199,8 +215,14 @@ public class Administracion extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 29, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnShowGraph)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -225,7 +247,6 @@ public class Administracion extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnCreateProfesor, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -237,8 +258,13 @@ public class Administracion extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnExportPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(panelGrafico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(panelGrafico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnShowGraph)
+                        .addGap(20, 20, 20))))
         );
 
         jTabbedPane1.addTab("Profesores", jPanel1);
@@ -362,39 +388,36 @@ public class Administracion extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Listado Oficial");
 
-        jTable3.setBackground(new java.awt.Color(218, 255, 251));
-        jTable3.setForeground(new java.awt.Color(0, 0, 0));
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        btnCargaMasivaStudent.setBackground(new java.awt.Color(23, 107, 135));
+        btnCargaMasivaStudent.setForeground(new java.awt.Color(255, 255, 255));
+        btnCargaMasivaStudent.setText("Carga Masiva");
+        btnCargaMasivaStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCargaMasivaStudentActionPerformed(evt);
+            }
+        });
+
+        btnExportStudentPDF.setBackground(new java.awt.Color(23, 107, 135));
+        btnExportStudentPDF.setForeground(new java.awt.Color(255, 255, 255));
+        btnExportStudentPDF.setText("Exportar Listado a PDF");
+        btnExportStudentPDF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportStudentPDFActionPerformed(evt);
+            }
+        });
+
+        tblStudent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Código", "Nombre", "Apellido", "Correo", "Genero"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable3.setGridColor(new java.awt.Color(51, 51, 51));
-        jScrollPane3.setViewportView(jTable3);
-
-        jButton9.setBackground(new java.awt.Color(23, 107, 135));
-        jButton9.setForeground(new java.awt.Color(255, 255, 255));
-        jButton9.setText("Carga Masiva");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
-            }
-        });
-
-        jButton17.setBackground(new java.awt.Color(23, 107, 135));
-        jButton17.setForeground(new java.awt.Color(255, 255, 255));
-        jButton17.setText("Exportar Listado a PDF");
-        jButton17.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton17ActionPerformed(evt);
-            }
-        });
+        jScrollPane1.setViewportView(tblStudent);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -402,16 +425,17 @@ public class Administracion extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(48, 48, 48)
-                .addComponent(jLabel5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 215, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnCargaMasivaStudent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnExportStudentPDF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(61, 61, 61))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -420,12 +444,12 @@ public class Administracion extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(106, Short.MAX_VALUE))
+                        .addComponent(btnCargaMasivaStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnExportStudentPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Alumnos", jPanel3);
@@ -449,7 +473,7 @@ public class Administracion extends javax.swing.JFrame {
       
         tblProfesores.setModel(modelo);
         tblCursos.setModel(modeloCourse);
-    
+        tblStudent.setModel(modeloStudent);
     }
     
     private void btnCreateProfesorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateProfesorActionPerformed
@@ -475,7 +499,6 @@ public class Administracion extends javax.swing.JFrame {
             File selectedFile = javaChooser.getSelectedFile();
             
            loadFile(selectedFile);
-           showGraphicPie();
         
         }
       
@@ -531,9 +554,7 @@ public class Administracion extends javax.swing.JFrame {
         if (selectedRowProfessor != -1) {
             modelo.removeRow(selectedRowProfessor);
             control.deleteProfessor(selectedRowProfessor);
-            showGraphicPie();
-        
-            
+                    
         }else{
             JOptionPane.showMessageDialog(null, "Seleccione una fila");
         }
@@ -573,6 +594,7 @@ public class Administracion extends javax.swing.JFrame {
           pdfWriter.close();
           
             System.out.println("PDF Creado");
+            JOptionPane.showMessageDialog(null, "PDF Creado");
             
         } catch (FileNotFoundException ex) {
             System.out.println(ex.getMessage());
@@ -595,20 +617,111 @@ public class Administracion extends javax.swing.JFrame {
             updateProf.setLocationRelativeTo(null);
            
             index =selectedRowProfessor;
-            showGraphicPie();
+            
         }else{
         JOptionPane.showMessageDialog(null, "Seleccione una fila");}
         
         
     }//GEN-LAST:event_btnUpdateProfActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void btnCargaMasivaStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargaMasivaStudentActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9ActionPerformed
+         JFileChooser javaChooserStudent = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos csv", "csv");
+        
+        javaChooserStudent.setFileFilter(filter);
+        int select = javaChooserStudent.showOpenDialog(this);
+        
+        javaChooserStudent.setMultiSelectionEnabled(false);
+        
+        if (select == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = javaChooserStudent.getSelectedFile();
+            
+           loadFileEstudiante(selectedFile);
+          
+        } 
+    }//GEN-LAST:event_btnCargaMasivaStudentActionPerformed
 
-    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+    public void loadFileEstudiante(File archivo){
+        
+        FileReader fr = null;
+        BufferedReader br = null;
+        
+        try {
+            fr = new FileReader(archivo);
+            br = new BufferedReader(fr);
+            
+            String line;
+            
+            while((line = br.readLine()) != null){
+                String [] arreglo = line.split(",");
+                if (arreglo.length >=5) {
+                    control.addStudent(arreglo[0], arreglo[1], arreglo[2], arreglo[3], arreglo[4]);                   
+                }
+            }
+            loadTableEstudiante();
+        } catch (Exception e) {
+        }
+    }
+    
+    public void loadTableEstudiante(){
+        while (modeloStudent.getRowCount() > 0) { 
+            modeloStudent.removeRow(0);
+        }
+        
+        for (Student estudiante: estudiantesArray) {
+            if (estudiante != null) {
+                Object a[]= new Object[5];
+                a[0] = estudiante.getCodeStudet();
+                a[1] = estudiante.getNameStudet();
+                a[2] = estudiante.getLastNameStudent();
+                a[3] = estudiante.getEmailStudent();
+                a[4] = estudiante.getGender();
+
+                modeloStudent.addRow(a);
+            }
+        }    
+    }
+    private void btnExportStudentPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportStudentPDFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton17ActionPerformed
+        try {
+           File file = new File("Estudiantes.pdf");
+           PdfWriter pdfWriter = new PdfWriter(file);
+           
+           PdfDocument pdfDocument = new PdfDocument(pdfWriter);
+           
+           Document document = new Document(pdfDocument);
+           
+            Table table = new Table(5);  // 5 columnas para code, name, lastName, email y gender
+            table.addCell("Codigo");
+            table.addCell("Nombre");
+            table.addCell("Apellido");
+            table.addCell("Correro");
+            table.addCell("Genero");
+
+           for (Student estudiante: estudiantesArray){
+                table.addCell(estudiante.getCodeStudet());
+                table.addCell(estudiante.getNameStudet());
+                table.addCell(estudiante.getLastNameStudent());
+                table.addCell(estudiante.getEmailStudent());
+                table.addCell(estudiante.getGender());
+           }
+          
+          document.add(table);
+          document.close();
+          
+          pdfWriter.close();
+          
+            System.out.println("PDF Creado");
+            JOptionPane.showMessageDialog(null, "PDF Creado");
+            
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        } catch(IOException ex){
+            System.out.println(ex.getMessage());
+        }
+  
+    }//GEN-LAST:event_btnExportStudentPDFActionPerformed
 
     private void btnAddCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCourseActionPerformed
         // TODO add your handling code here:
@@ -677,9 +790,7 @@ public class Administracion extends javax.swing.JFrame {
            loadFileCursos(selectedFile);
           
         }
-        
-        
-        
+      
     }//GEN-LAST:event_btnCargaMasivaCursosActionPerformed
 
     public void loadFileCursos(File archivo){
@@ -724,8 +835,7 @@ public class Administracion extends javax.swing.JFrame {
 
                 modeloCourse.addRow(a);
             }
-        }
-    
+        }    
     }
     private void btnExportCoursePDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportCoursePDFActionPerformed
         // TODO add your handling code here:
@@ -758,6 +868,7 @@ public class Administracion extends javax.swing.JFrame {
           pdfWriter.close();
           
             System.out.println("PDF Creado");
+            JOptionPane.showMessageDialog(null, "PDF Creado");
             
         } catch (FileNotFoundException ex) {
             System.out.println(ex.getMessage());
@@ -771,6 +882,11 @@ public class Administracion extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnCreateProfesorMouseExited
 
+    private void btnShowGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowGraphActionPerformed
+        // TODO add your handling code here:
+        showGraphicPie();
+    }//GEN-LAST:event_btnShowGraphActionPerformed
+
     public void showGraphicPie(){
         panelGrafico.removeAll();
         panelGrafico.revalidate();
@@ -780,9 +896,9 @@ public class Administracion extends javax.swing.JFrame {
         
         
         for(Professor profesor: profesoresArray){
-            if (profesor.getGender().equals("Masculino")) {
+            if (profesor.getGender().equals("Masculino") || profesor.getGender().equals("m")) {
                 countMale++;
-            }else if(profesor.getGender().equals("Femenino")){
+            }else if(profesor.getGender().equals("Femenino") || profesor.getGender().equals("f")){
                 countFemale++;
             }
         }
@@ -849,28 +965,29 @@ public class Administracion extends javax.swing.JFrame {
     private javax.swing.JButton btnAddCourse;
     private javax.swing.JButton btnCargaMasivaCursos;
     private javax.swing.JButton btnCargaMasivaProf;
+    private javax.swing.JButton btnCargaMasivaStudent;
     private javax.swing.JButton btnCreateProfesor;
     private javax.swing.JButton btnDeleteCourse;
     private javax.swing.JButton btnDeleteProf;
     private javax.swing.JButton btnExportCoursePDF;
     private javax.swing.JButton btnExportPDF;
+    private javax.swing.JButton btnExportStudentPDF;
+    private javax.swing.JButton btnShowGraph;
     private javax.swing.JButton btnUpdateCourse;
     private javax.swing.JButton btnUpdateProf;
-    private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable3;
     private javax.swing.JPanel panelGrafico;
     public static javax.swing.JTable tblCursos;
     public static javax.swing.JTable tblProfesores;
+    public static javax.swing.JTable tblStudent;
     // End of variables declaration//GEN-END:variables
 }
