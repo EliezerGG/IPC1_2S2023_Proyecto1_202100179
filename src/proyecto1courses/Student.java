@@ -6,16 +6,18 @@ public class Student {
     private String nameStudet;
     private String lastNameStudent;
     private String emailStudent;
+    private String passwordStudent;
     private String gender;
 
     public Student(){}
     
-    public Student(String codeStudet, String nameStudet, String lastNameStudent, String emailStudent, String gender) {
+    public Student(String codeStudet, String nameStudet, String lastNameStudent, String emailStudent, String gender, String password) {
         this.codeStudet = codeStudet;
         this.nameStudet = nameStudet;
         this.lastNameStudent = lastNameStudent;
         this.emailStudent = emailStudent;
         this.gender = gender;
+        this.passwordStudent = password;
     }
 
     public String getCodeStudet() {
@@ -56,6 +58,14 @@ public class Student {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getPasswordStudent() {
+        return passwordStudent;
+    }
+
+    public void setPasswordStudent(String passwordStudent) {
+        this.passwordStudent = passwordStudent;
     }
     
     

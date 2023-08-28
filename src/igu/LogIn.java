@@ -1,6 +1,10 @@
 package igu;
 
 import javax.swing.JOptionPane;
+import static proyecto1courses.Controladora.estudiantesArray;
+import static proyecto1courses.Controladora.profesoresArray;
+import proyecto1courses.Professor;
+import proyecto1courses.Student;
 
 public class LogIn extends javax.swing.JFrame {
     
@@ -125,14 +129,43 @@ public class LogIn extends javax.swing.JFrame {
         // TODO add your handling code here:
       
         Administracion adminWindow = new Administracion();
-        String passWord = new String(txtPassWord.getPassword());
+        MenuProfesor profesorWindow = new MenuProfesor();
         
-        if (txtCode.getText().equalsIgnoreCase(admin) && passWord.equalsIgnoreCase(admin)) {
+        String codigo = txtCode.getText();
+        String password = new String(txtPassWord.getPassword());
+        boolean isStudentOnArray = false;
+        boolean isProfessorOnArray = false;
+      
+         for(Student estudiante : estudiantesArray){
+            if(estudiante.getCodeStudet().equals(codigo) && estudiante.getPasswordStudent().equals(password)){
+                isStudentOnArray = true;
+            }
+        }
+         
+        for(Professor profesor: profesoresArray){
+            if(profesor.getCode().equals(codigo) && profesor.getPassWord().equals(password)){
+                isProfessorOnArray = true;
+            }
+        }
+         
+        if (txtCode.getText().equalsIgnoreCase(admin) && password.equalsIgnoreCase(admin)) {
             adminWindow.setVisible(true);
             adminWindow.setLocationRelativeTo(null);
+            dispose();
+        }else if(isProfessorOnArray){
+            profesorWindow.setVisible(true);
+            profesorWindow.setLocationRelativeTo(null);
+            
         }else{
             JOptionPane.showMessageDialog(null, "Ingresar datos correctos");
         }
+        
+        
+        
+        
+       
+        
+        
         
         
         

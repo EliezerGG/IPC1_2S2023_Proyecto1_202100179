@@ -94,6 +94,7 @@ public class Administracion extends javax.swing.JFrame {
         tblProfesores = new javax.swing.JTable();
         panelGrafico = new javax.swing.JPanel();
         btnShowGraph = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         btnAddCourse = new javax.swing.JButton();
@@ -121,7 +122,7 @@ public class Administracion extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Listado Oficial");
 
-        btnCreateProfesor.setBackground(new java.awt.Color(23, 107, 135));
+        btnCreateProfesor.setBackground(new java.awt.Color(0, 28, 48));
         btnCreateProfesor.setForeground(new java.awt.Color(255, 255, 255));
         btnCreateProfesor.setText("Crear");
         btnCreateProfesor.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -135,7 +136,7 @@ public class Administracion extends javax.swing.JFrame {
             }
         });
 
-        btnCargaMasivaProf.setBackground(new java.awt.Color(23, 107, 135));
+        btnCargaMasivaProf.setBackground(new java.awt.Color(0, 28, 48));
         btnCargaMasivaProf.setForeground(new java.awt.Color(255, 255, 255));
         btnCargaMasivaProf.setText("Carga Masiva");
         btnCargaMasivaProf.addActionListener(new java.awt.event.ActionListener() {
@@ -144,7 +145,7 @@ public class Administracion extends javax.swing.JFrame {
             }
         });
 
-        btnDeleteProf.setBackground(new java.awt.Color(23, 107, 135));
+        btnDeleteProf.setBackground(new java.awt.Color(0, 28, 48));
         btnDeleteProf.setForeground(new java.awt.Color(255, 255, 255));
         btnDeleteProf.setText("Eliminar");
         btnDeleteProf.addActionListener(new java.awt.event.ActionListener() {
@@ -153,7 +154,7 @@ public class Administracion extends javax.swing.JFrame {
             }
         });
 
-        btnExportPDF.setBackground(new java.awt.Color(23, 107, 135));
+        btnExportPDF.setBackground(new java.awt.Color(0, 28, 48));
         btnExportPDF.setForeground(new java.awt.Color(255, 255, 255));
         btnExportPDF.setText("Exportar Listado a PDF");
         btnExportPDF.addActionListener(new java.awt.event.ActionListener() {
@@ -162,7 +163,7 @@ public class Administracion extends javax.swing.JFrame {
             }
         });
 
-        btnUpdateProf.setBackground(new java.awt.Color(23, 107, 135));
+        btnUpdateProf.setBackground(new java.awt.Color(0, 28, 48));
         btnUpdateProf.setForeground(new java.awt.Color(255, 255, 255));
         btnUpdateProf.setText("Actualizar");
         btnUpdateProf.addActionListener(new java.awt.event.ActionListener() {
@@ -197,10 +198,19 @@ public class Administracion extends javax.swing.JFrame {
             .addGap(0, 315, Short.MAX_VALUE)
         );
 
+        btnShowGraph.setBackground(new java.awt.Color(23, 107, 135));
         btnShowGraph.setText("Show Graph");
         btnShowGraph.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnShowGraphActionPerformed(evt);
+            }
+        });
+
+        btnSalir.setBackground(new java.awt.Color(23, 107, 135));
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
             }
         });
 
@@ -221,7 +231,9 @@ public class Administracion extends javax.swing.JFrame {
                                 .addGap(0, 29, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnShowGraph)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnShowGraph, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -258,13 +270,14 @@ public class Administracion extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnExportPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(panelGrafico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(panelGrafico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnShowGraph)
-                        .addGap(20, 20, 20))))
+                        .addGap(66, 66, 66)
+                        .addComponent(btnShowGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnSalir)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Profesores", jPanel1);
@@ -275,7 +288,7 @@ public class Administracion extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Listado Oficial");
 
-        btnAddCourse.setBackground(new java.awt.Color(23, 107, 135));
+        btnAddCourse.setBackground(new java.awt.Color(0, 28, 48));
         btnAddCourse.setForeground(new java.awt.Color(255, 255, 255));
         btnAddCourse.setText("Crear");
         btnAddCourse.addActionListener(new java.awt.event.ActionListener() {
@@ -284,7 +297,7 @@ public class Administracion extends javax.swing.JFrame {
             }
         });
 
-        btnUpdateCourse.setBackground(new java.awt.Color(23, 107, 135));
+        btnUpdateCourse.setBackground(new java.awt.Color(0, 28, 48));
         btnUpdateCourse.setForeground(new java.awt.Color(255, 255, 255));
         btnUpdateCourse.setText("Actualizar");
         btnUpdateCourse.addActionListener(new java.awt.event.ActionListener() {
@@ -293,7 +306,7 @@ public class Administracion extends javax.swing.JFrame {
             }
         });
 
-        btnDeleteCourse.setBackground(new java.awt.Color(23, 107, 135));
+        btnDeleteCourse.setBackground(new java.awt.Color(0, 28, 48));
         btnDeleteCourse.setForeground(new java.awt.Color(255, 255, 255));
         btnDeleteCourse.setText("Eliminar");
         btnDeleteCourse.addActionListener(new java.awt.event.ActionListener() {
@@ -302,7 +315,7 @@ public class Administracion extends javax.swing.JFrame {
             }
         });
 
-        btnCargaMasivaCursos.setBackground(new java.awt.Color(23, 107, 135));
+        btnCargaMasivaCursos.setBackground(new java.awt.Color(0, 28, 48));
         btnCargaMasivaCursos.setForeground(new java.awt.Color(255, 255, 255));
         btnCargaMasivaCursos.setText("Carga Masiva");
         btnCargaMasivaCursos.addActionListener(new java.awt.event.ActionListener() {
@@ -311,7 +324,7 @@ public class Administracion extends javax.swing.JFrame {
             }
         });
 
-        btnExportCoursePDF.setBackground(new java.awt.Color(23, 107, 135));
+        btnExportCoursePDF.setBackground(new java.awt.Color(0, 28, 48));
         btnExportCoursePDF.setForeground(new java.awt.Color(255, 255, 255));
         btnExportCoursePDF.setText("Exportar Listado a PDF");
         btnExportCoursePDF.addActionListener(new java.awt.event.ActionListener() {
@@ -343,19 +356,16 @@ public class Administracion extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(72, 72, 72)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(btnUpdateCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(btnDeleteCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(btnAddCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(btnCargaMasivaCursos)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(btnExportCoursePDF, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(btnUpdateCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnDeleteCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(btnAddCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnCargaMasivaCursos))
+                            .addComponent(btnExportCoursePDF, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jLabel4))
                 .addContainerGap(89, Short.MAX_VALUE))
         );
@@ -375,7 +385,7 @@ public class Administracion extends javax.swing.JFrame {
                             .addComponent(btnDeleteCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnUpdateCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnExportCoursePDF))
+                        .addComponent(btnExportCoursePDF, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(176, Short.MAX_VALUE))
         );
@@ -388,7 +398,7 @@ public class Administracion extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Listado Oficial");
 
-        btnCargaMasivaStudent.setBackground(new java.awt.Color(23, 107, 135));
+        btnCargaMasivaStudent.setBackground(new java.awt.Color(0, 28, 48));
         btnCargaMasivaStudent.setForeground(new java.awt.Color(255, 255, 255));
         btnCargaMasivaStudent.setText("Carga Masiva");
         btnCargaMasivaStudent.addActionListener(new java.awt.event.ActionListener() {
@@ -397,7 +407,7 @@ public class Administracion extends javax.swing.JFrame {
             }
         });
 
-        btnExportStudentPDF.setBackground(new java.awt.Color(23, 107, 135));
+        btnExportStudentPDF.setBackground(new java.awt.Color(0, 28, 48));
         btnExportStudentPDF.setForeground(new java.awt.Color(255, 255, 255));
         btnExportStudentPDF.setText("Exportar Listado a PDF");
         btnExportStudentPDF.addActionListener(new java.awt.event.ActionListener() {
@@ -447,7 +457,7 @@ public class Administracion extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(btnCargaMasivaStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnExportStudentPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnExportStudentPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(84, Short.MAX_VALUE))
         );
@@ -656,7 +666,7 @@ public class Administracion extends javax.swing.JFrame {
             while((line = br.readLine()) != null){
                 String [] arreglo = line.split(",");
                 if (arreglo.length >=5) {
-                    control.addStudent(arreglo[0], arreglo[1], arreglo[2], arreglo[3], arreglo[4]);                   
+                    control.addStudent(arreglo[0], arreglo[1], arreglo[2], arreglo[3], arreglo[4],"1234");                   
                 }
             }
             loadTableEstudiante();
@@ -887,6 +897,15 @@ public class Administracion extends javax.swing.JFrame {
         showGraphicPie();
     }//GEN-LAST:event_btnShowGraphActionPerformed
 
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        LogIn logInWindow = new LogIn();
+        logInWindow.setVisible(true);
+        logInWindow.setLocationRelativeTo(null);
+                
+    }//GEN-LAST:event_btnSalirActionPerformed
+
     public void showGraphicPie(){
         panelGrafico.removeAll();
         panelGrafico.revalidate();
@@ -972,6 +991,7 @@ public class Administracion extends javax.swing.JFrame {
     private javax.swing.JButton btnExportCoursePDF;
     private javax.swing.JButton btnExportPDF;
     private javax.swing.JButton btnExportStudentPDF;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnShowGraph;
     private javax.swing.JButton btnUpdateCourse;
     private javax.swing.JButton btnUpdateProf;

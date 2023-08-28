@@ -61,7 +61,7 @@ public class Controladora {
         return code;
     }
     
-    public void addStudent(String code, String name, String lastName, String email, String gender){
+    public void addStudent(String code, String name, String lastName, String email, String gender, String password){
         Student estudiante = new Student();
         
         estudiante.setCodeStudet(code);
@@ -69,6 +69,7 @@ public class Controladora {
         estudiante.setLastNameStudent(lastName);
         estudiante.setEmailStudent(email);
         estudiante.setGender(gender);
+        estudiante.setPasswordStudent(password);
         
         estudiantesArray.add(estudiante);
     }
