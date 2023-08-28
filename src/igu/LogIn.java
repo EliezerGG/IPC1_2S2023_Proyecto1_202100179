@@ -1,5 +1,6 @@
 package igu;
 
+import static igu.MenuProfesor.labelSaludar;
 import javax.swing.JOptionPane;
 import static proyecto1courses.Controladora.estudiantesArray;
 import static proyecto1courses.Controladora.profesoresArray;
@@ -9,7 +10,7 @@ import proyecto1courses.Student;
 public class LogIn extends javax.swing.JFrame {
     
     String admin = "admin";
-    
+    String nameProfessor = null;
 
 
     public LogIn() {
@@ -135,6 +136,7 @@ public class LogIn extends javax.swing.JFrame {
         String password = new String(txtPassWord.getPassword());
         boolean isStudentOnArray = false;
         boolean isProfessorOnArray = false;
+        
       
          for(Student estudiante : estudiantesArray){
             if(estudiante.getCodeStudet().equals(codigo) && estudiante.getPasswordStudent().equals(password)){
@@ -145,6 +147,7 @@ public class LogIn extends javax.swing.JFrame {
         for(Professor profesor: profesoresArray){
             if(profesor.getCode().equals(codigo) && profesor.getPassWord().equals(password)){
                 isProfessorOnArray = true;
+                nameProfessor = profesor.getName() +" " + profesor.getLastName();
             }
         }
          
@@ -156,21 +159,18 @@ public class LogIn extends javax.swing.JFrame {
             profesorWindow.setVisible(true);
             profesorWindow.setLocationRelativeTo(null);
             
+            saludarProfesor(nameProfessor);
+            
         }else{
             JOptionPane.showMessageDialog(null, "Ingresar datos correctos");
         }
-        
-        
-        
-        
-       
-        
-        
-        
-        
-        
+ 
     }//GEN-LAST:event_btnLogInActionPerformed
 
+    public void saludarProfesor(String name){
+        labelSaludar.setText("Welcome Professor"+name);
+    }
+    
     private void txtPassWordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassWordActionPerformed
         // TODO add your handling code here:
         

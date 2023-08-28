@@ -8,7 +8,7 @@ public class Controladora {
     public static ArrayList<Course> cursosArray = new ArrayList<>();
     public static ArrayList<Student> estudiantesArray = new ArrayList<>();
     
-    static int indexProfessor = 0;
+
 
     public void addProfessor(String code, String name, String lastName, String email, String passWord, String gender) {
         
@@ -24,6 +24,13 @@ public class Controladora {
         profesoresArray.add(profesor);
         
         
+    }
+    
+    public void addCourseToProfessor(int indexProfesor, int indexCourse){
+        profesoresArray.get(indexProfesor).addCoursetoProf(cursosArray.get(indexCourse));
+        System.out.println("Se ha agregado curso");
+        System.out.println( profesoresArray.get(indexProfesor).getName() + " " +
+                profesoresArray.get(indexProfesor).getCursosProfArray().get(indexCourse).getNameCourse());
     }
     
     public void deleteProfessor(int indexDelete){

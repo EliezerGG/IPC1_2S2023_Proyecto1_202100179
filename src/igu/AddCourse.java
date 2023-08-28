@@ -189,12 +189,21 @@ public class AddCourse extends javax.swing.JFrame {
             String code = txtCodeCourse.getText();
             String name = txtNameCourse.getText();
             int credit = Integer.valueOf(txtCreditCourse.getText());
+            Course cursoAssign = null;
             
             int indexProfesor = cmbProfesor.getSelectedIndex();
             
             Professor profesor = profesoresArray.get(indexProfesor);
             
             control.addCourse(code, name, credit, profesor);
+            
+                       
+            for(Course curso: cursosArray){
+                if(curso.getProfesor() == profesoresArray.get(indexProfesor)){
+                    cursoAssign = curso;
+                }
+            }
+            profesoresArray.get(indexProfesor).addCoursetoProf(cursoAssign);
             
             refreshTable();
             dispose();
@@ -203,7 +212,7 @@ public class AddCourse extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error al agregar Curso");
         }
     }//GEN-LAST:event_btnAddCourseActionPerformed
-
+    
     private void btnShowProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowProfActionPerformed
         // TODO add your handling code here:
         

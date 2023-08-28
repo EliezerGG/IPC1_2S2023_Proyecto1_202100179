@@ -11,6 +11,7 @@ public class Professor {
     private String passWord;
     private String gender; 
     private ArrayList<Course> cursosProfArray = new ArrayList<>();
+    
     public Professor(){};
 
     public Professor(String code, String name, String lastName, String email, String passWord, String gender) {
@@ -83,6 +84,13 @@ public class Professor {
         this.cursosProfArray = cursosProfArray;
     }
     
-    
+    public void addCoursetoProf(Course curso){
+        cursosProfArray.add(curso);
+        System.out.println("Curso agregado al array list cuyo nombre es " + curso.getNameCourse());
+        System.out.println("Listado de cursos" + cursosProfArray + cursosProfArray.size());
+    }
+    public void deleteCourseToProf(Course curso){
+        cursosProfArray.remove(curso);
+    }
     
 }

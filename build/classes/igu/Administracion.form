@@ -73,7 +73,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Component id="jScrollPane4" min="-2" pref="430" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="29" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="80" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -85,28 +85,21 @@
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
+                                  <Component id="panelGrafico" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="btnCreateProfesor" alignment="0" min="-2" pref="107" max="-2" attributes="0"/>
-                                                  <Component id="btnUpdateProf" alignment="0" min="-2" pref="107" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="btnCargaMasivaProf" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="btnDeleteProf" alignment="1" min="-2" pref="107" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                          <Component id="btnExportPDF" min="-2" pref="232" max="-2" attributes="0"/>
+                                          <Component id="btnUpdateProf" min="-2" pref="107" max="-2" attributes="0"/>
+                                          <Component id="btnCreateProfesor" alignment="1" min="-2" pref="107" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="btnCargaMasivaProf" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="btnDeleteProf" alignment="1" min="-2" pref="107" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="panelGrafico" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="btnExportPDF" min="-2" pref="232" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -115,11 +108,19 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jScrollPane4" min="-2" pref="335" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+                              <Component id="btnShowGraph" min="-2" pref="32" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btnSalir" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="btnCreateProfesor" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                                   <Component id="btnCargaMasivaProf" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
@@ -131,18 +132,11 @@
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="btnExportPDF" min="-2" pref="46" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                               <Component id="panelGrafico" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jScrollPane4" min="-2" pref="335" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
-                              <Component id="btnShowGraph" min="-2" pref="32" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="btnSalir" min="-2" max="-2" attributes="0"/>
-                          </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="17" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -319,8 +313,9 @@
                       <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="jScrollPane5" min="-2" pref="430" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                              <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="btnUpdateCourse" min="-2" pref="107" max="-2" attributes="0"/>
@@ -337,7 +332,7 @@
                           </Group>
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="89" max="32767" attributes="0"/>
+                      <EmptySpace pref="140" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -361,9 +356,9 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="btnExportCoursePDF" min="-2" pref="50" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jScrollPane5" alignment="0" min="-2" pref="335" max="-2" attributes="0"/>
+                          <Component id="jScrollPane2" alignment="0" min="-2" pref="410" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="176" max="32767" attributes="0"/>
+                      <EmptySpace pref="112" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -450,7 +445,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExportCoursePDFActionPerformed"/>
               </Events>
             </Component>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane5">
+            <Container class="javax.swing.JScrollPane" name="jScrollPane2">
               <AuxValues>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
               </AuxValues>
@@ -501,13 +496,30 @@
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="77" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="btnCargaMasivaStudent" alignment="1" min="-2" pref="232" max="-2" attributes="0"/>
-                                  <Component id="btnExportStudentPDF" alignment="1" min="-2" pref="232" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace pref="73" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <Component id="btnShowGraphicAlumnos" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="btnCargaMasivaStudent" alignment="1" min="-2" pref="232" max="-2" attributes="0"/>
+                                          <Component id="btnExportStudentPDF" alignment="1" min="-2" pref="232" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="panelGraficoStudent" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
@@ -524,10 +536,16 @@
                               <Component id="btnCargaMasivaStudent" min="-2" pref="45" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnExportStudentPDF" min="-2" pref="50" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="panelGraficoStudent" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnShowGraphicAlumnos" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace pref="84" max="32767" attributes="0"/>
+                      <EmptySpace pref="45" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -596,6 +614,40 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Container class="javax.swing.JPanel" name="panelGraficoStudent">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="fb" green="ff" red="da" type="rgb"/>
+                </Property>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <EmptySpace min="0" pref="334" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <EmptySpace min="0" pref="315" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+            </Container>
+            <Component class="javax.swing.JButton" name="btnShowGraphicAlumnos">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="87" green="6b" red="17" type="rgb"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Show Graph"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnShowGraphicAlumnosActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
       </SubComponents>
