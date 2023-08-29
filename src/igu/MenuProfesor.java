@@ -1,20 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package igu;
 
-/**
- *
- * @author magdi
- */
+import static igu.LogIn.profesorLogged;
+
+
 public class MenuProfesor extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MenuProfesor
-     */
+    
     public MenuProfesor() {
         initComponents();
+        
+    
     }
 
     /**
@@ -30,6 +26,15 @@ public class MenuProfesor extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         labelSaludar = new javax.swing.JLabel();
+        btnCourse1 = new javax.swing.JButton();
+        txtCantStudent1 = new javax.swing.JTextField();
+        btnCourse2 = new javax.swing.JButton();
+        txtCantStudent2 = new javax.swing.JTextField();
+        btnCourse3 = new javax.swing.JButton();
+        txtCantStudent3 = new javax.swing.JTextField();
+        btnCourse4 = new javax.swing.JButton();
+        txtCantStudent4 = new javax.swing.JTextField();
+        btnRefresh = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,18 +50,106 @@ public class MenuProfesor extends javax.swing.JFrame {
         labelSaludar.setForeground(new java.awt.Color(255, 255, 255));
         labelSaludar.setText("insertar nombre profesor");
 
+        btnCourse1.setBackground(new java.awt.Color(23, 107, 135));
+        btnCourse1.setForeground(new java.awt.Color(255, 255, 255));
+        btnCourse1.setText("Curso 1");
+        btnCourse1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCourse1ActionPerformed(evt);
+            }
+        });
+
+        txtCantStudent1.setBackground(new java.awt.Color(100, 204, 197));
+        txtCantStudent1.setForeground(new java.awt.Color(0, 0, 0));
+        txtCantStudent1.setText("Cant. Students");
+        txtCantStudent1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCantStudent1ActionPerformed(evt);
+            }
+        });
+
+        btnCourse2.setBackground(new java.awt.Color(23, 107, 135));
+        btnCourse2.setForeground(new java.awt.Color(255, 255, 255));
+        btnCourse2.setText("Curso 2");
+
+        txtCantStudent2.setBackground(new java.awt.Color(100, 204, 197));
+        txtCantStudent2.setForeground(new java.awt.Color(0, 0, 0));
+        txtCantStudent2.setText("Cant. Students");
+        txtCantStudent2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCantStudent2ActionPerformed(evt);
+            }
+        });
+
+        btnCourse3.setBackground(new java.awt.Color(23, 107, 135));
+        btnCourse3.setForeground(new java.awt.Color(255, 255, 255));
+        btnCourse3.setText("Curso 3");
+
+        txtCantStudent3.setBackground(new java.awt.Color(100, 204, 197));
+        txtCantStudent3.setForeground(new java.awt.Color(0, 0, 0));
+        txtCantStudent3.setText("Cant. Students");
+        txtCantStudent3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCantStudent3ActionPerformed(evt);
+            }
+        });
+
+        btnCourse4.setBackground(new java.awt.Color(23, 107, 135));
+        btnCourse4.setForeground(new java.awt.Color(255, 255, 255));
+        btnCourse4.setText("Curso 4");
+
+        txtCantStudent4.setBackground(new java.awt.Color(100, 204, 197));
+        txtCantStudent4.setForeground(new java.awt.Color(0, 0, 0));
+        txtCantStudent4.setText("Cant. Students");
+        txtCantStudent4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCantStudent4ActionPerformed(evt);
+            }
+        });
+
+        btnRefresh.setText("Refrescar");
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(64, 64, 64)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(labelSaludar)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(40, 40, 40))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(btnRefresh)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(labelSaludar)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton3))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(txtCantStudent3, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(btnCourse3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(txtCantStudent1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                                        .addComponent(btnCourse1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(txtCantStudent2, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(btnCourse2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(txtCantStudent4, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(btnCourse4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(80, 80, 80))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -66,8 +159,30 @@ public class MenuProfesor extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(jButton3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(labelSaludar)
-                .addContainerGap(329, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(labelSaludar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCourse1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCantStudent1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(btnCourse2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCantStudent2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(43, 43, 43)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(btnCourse3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCantStudent3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(btnCourse4, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCantStudent4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addComponent(btnRefresh)
+                .addGap(29, 29, 29))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -83,6 +198,37 @@ public class MenuProfesor extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtCantStudent1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantStudent1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCantStudent1ActionPerformed
+
+    private void txtCantStudent2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantStudent2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCantStudent2ActionPerformed
+
+    private void txtCantStudent3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantStudent3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCantStudent3ActionPerformed
+
+    private void txtCantStudent4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantStudent4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCantStudent4ActionPerformed
+
+    private void btnCourse1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCourse1ActionPerformed
+        // TODO add your handling code here:
+        AdministracionCurso adminCursoWindow = new AdministracionCurso();
+        
+        adminCursoWindow.setVisible(true);
+        adminCursoWindow.setLocationRelativeTo(null);
+      
+    }//GEN-LAST:event_btnCourse1ActionPerformed
+
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        // TODO add your handling code here:
+        btnCourse1.setText(profesorLogged.getCursosProfArray().get(0).getNameCourse());
+        txtCantStudent1.setText(String.valueOf(profesorLogged.getCursosProfArray().get(0).getStudentsArray().size()));
+    }//GEN-LAST:event_btnRefreshActionPerformed
 
     /**
      * @param args the command line arguments
@@ -120,9 +266,18 @@ public class MenuProfesor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCourse1;
+    private javax.swing.JButton btnCourse2;
+    private javax.swing.JButton btnCourse3;
+    private javax.swing.JButton btnCourse4;
+    private javax.swing.JButton btnRefresh;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel3;
     public static javax.swing.JLabel labelSaludar;
+    private javax.swing.JTextField txtCantStudent1;
+    private javax.swing.JTextField txtCantStudent2;
+    private javax.swing.JTextField txtCantStudent3;
+    private javax.swing.JTextField txtCantStudent4;
     // End of variables declaration//GEN-END:variables
 }

@@ -857,6 +857,7 @@ public class Administracion extends javax.swing.JFrame {
         
         FileReader fr = null;
         BufferedReader br = null;
+        Course cursoAssign = null;
         
         try {
             fr = new FileReader(archivo);
@@ -873,6 +874,7 @@ public class Administracion extends javax.swing.JFrame {
                      profesoresArray.get(Integer.parseInt(arreglo[3])));
                     
                 }
+                
             }
             loadTableCursos();
         } catch (Exception e) {

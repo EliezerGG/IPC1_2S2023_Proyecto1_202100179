@@ -1,5 +1,7 @@
 package proyecto1courses;
 
+import java.util.ArrayList;
+
 public class Student {
     
     private String codeStudet;
@@ -8,6 +10,7 @@ public class Student {
     private String emailStudent;
     private String passwordStudent;
     private String gender;
+    private ArrayList<Course> cursosEstudiante = new ArrayList<>();
 
     public Student(){}
     
@@ -18,6 +21,10 @@ public class Student {
         this.emailStudent = emailStudent;
         this.gender = gender;
         this.passwordStudent = password;
+    }
+    
+    public Student(ArrayList cursosEstudiante){
+        this.cursosEstudiante = cursosEstudiante;
     }
 
     public String getCodeStudet() {
@@ -67,7 +74,17 @@ public class Student {
     public void setPasswordStudent(String passwordStudent) {
         this.passwordStudent = passwordStudent;
     }
+
+    public ArrayList<Course> getCursosEstudiante() {
+        return cursosEstudiante;
+    }
+
+    public void setCursosEstudiante(ArrayList<Course> cursosEstudiante) {
+        this.cursosEstudiante = cursosEstudiante;
+    }
     
-    
+    public void addCourseToStudent(Course curso){
+        cursosEstudiante.add(curso);
+    }
     
 }

@@ -11,7 +11,7 @@ public class LogIn extends javax.swing.JFrame {
     
     String admin = "admin";
     String nameProfessor = null;
-
+    public static Professor profesorLogged =null;
 
     public LogIn() {
         initComponents();
@@ -146,6 +146,7 @@ public class LogIn extends javax.swing.JFrame {
          
         for(Professor profesor: profesoresArray){
             if(profesor.getCode().equals(codigo) && profesor.getPassWord().equals(password)){
+                profesorLogged = profesor;
                 isProfessorOnArray = true;
                 nameProfessor = profesor.getName() +" " + profesor.getLastName();
             }

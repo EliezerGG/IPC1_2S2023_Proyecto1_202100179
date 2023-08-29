@@ -196,8 +196,7 @@ public class AddCourse extends javax.swing.JFrame {
             Professor profesor = profesoresArray.get(indexProfesor);
             
             control.addCourse(code, name, credit, profesor);
-            
-                       
+                                   
             for(Course curso: cursosArray){
                 if(curso.getProfesor() == profesoresArray.get(indexProfesor)){
                     cursoAssign = curso;

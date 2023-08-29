@@ -28,6 +28,10 @@ public class Course {
         this.profesor = profesor;
        
     }
+     
+    public Course(ArrayList students){
+        this.studentsArray = students;
+    }
 
     public String getCodeCourse() {
         return codeCourse;
@@ -69,7 +73,13 @@ public class Course {
         this.profesor = profesor;
     }
     
+    public void addStudentsToCourse(Student estudiante){
+        studentsArray.add(estudiante);
+    }
     
+    public void deleteStudentToCourse(Student estudiante){
+        studentsArray.remove(estudiante);
+    }
     
     
 }
