@@ -867,11 +867,23 @@ public class Administracion extends javax.swing.JFrame {
             
             while((line = br.readLine()) != null){
                 String [] arreglo = line.split(",");
+                
                 if (arreglo.length >=3) {
-                    control.addCourse(arreglo[0], 
-                            arreglo[1],
-                      Integer.parseInt(arreglo[2]) ,
-                     profesoresArray.get(Integer.parseInt(arreglo[3])));
+                    
+                    for(Professor profesor : profesoresArray){
+                        if (profesor.getCode().equals(arreglo[3])) {
+                            control.addCourse(arreglo[0], 
+                                    arreglo[1],
+                              Integer.parseInt(arreglo[2]) ,
+                                    profesor);                            
+                            for(Course curso: cursosArray){
+                                if(curso.getProfesor() == profesor){
+                                    cursoAssign = curso;
+                                }
+                            }
+                            profesor.addCoursetoProf(cursoAssign);
+                        }
+                    }
                     
                 }
                 
