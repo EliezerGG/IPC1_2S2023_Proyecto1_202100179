@@ -85,6 +85,7 @@ public class Student {
     
     public void addCourseToStudent(Course curso){
         cursosEstudiante.add(curso);
+        System.out.println("curso agreago al estudiante " + this.nameStudet + " el siguient curso" + curso.getNameCourse());
     }
     
 }

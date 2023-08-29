@@ -2,6 +2,8 @@
 package igu;
 
 import static igu.LogIn.profesorLogged;
+import javax.swing.JButton;
+import proyecto1courses.Course;
 
 
 public class MenuProfesor extends javax.swing.JFrame {
@@ -228,6 +230,14 @@ public class MenuProfesor extends javax.swing.JFrame {
         // TODO add your handling code here:
         btnCourse1.setText(profesorLogged.getCursosProfArray().get(0).getNameCourse());
         txtCantStudent1.setText(String.valueOf(profesorLogged.getCursosProfArray().get(0).getStudentsArray().size()));
+        for(Course curso: profesorLogged.getCursosProfArray()){
+            JButton button = new JButton(curso.getNameCourse());
+            button.setLocation(100, 200);
+            button.setVisible(true);
+            button.setSize(100,200);
+        }
+        
+        
     }//GEN-LAST:event_btnRefreshActionPerformed
 
     /**

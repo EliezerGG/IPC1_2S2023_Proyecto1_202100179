@@ -76,6 +76,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
         txtNameActivity = new javax.swing.JTextField();
         txtDescActivity = new javax.swing.JTextField();
         txtPonderacion = new javax.swing.JTextField();
+        btnExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -206,17 +207,29 @@ public class AdministracionCurso extends javax.swing.JFrame {
         txtPonderacion.setBackground(new java.awt.Color(255, 255, 255));
         txtPonderacion.setForeground(new java.awt.Color(0, 0, 0));
 
+        btnExit.setBackground(new java.awt.Color(23, 107, 135));
+        btnExit.setForeground(new java.awt.Color(255, 255, 255));
+        btnExit.setText("Salir");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnExit)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblNameCourse)
                         .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(labelSaludar1)
                             .addComponent(labelSaludar2)
@@ -310,7 +323,9 @@ public class AdministracionCurso extends javax.swing.JFrame {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(lblAcumulado)))
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(btnExit)
+                .addGap(18, 18, 18))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -366,6 +381,13 @@ public class AdministracionCurso extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnCargaMasivaStudentActionPerformed
 
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        // TODO add your handling code here:
+        
+        dispose();
+        
+    }//GEN-LAST:event_btnExitActionPerformed
+
     public void loadFileStudent(File archivo){
         
         FileReader fr = null;
@@ -385,6 +407,8 @@ public class AdministracionCurso extends javax.swing.JFrame {
                              profesorLogged.getCursosProfArray().get(0).addStudentsToCourse(estudiante);
                              
                              studentsForThisCourse.add(estudiante);
+                             estudiante.addCourseToStudent(profesorLogged.getCursosProfArray().get(0));
+                             
                         }
                     }                            
                 }
@@ -451,6 +475,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddActivity;
     private javax.swing.JButton btnCargaMasivaStudent;
+    private javax.swing.JButton btnExit;
     private javax.swing.JButton btnNotasCSV;
     private javax.swing.JButton btnTopBest;
     private javax.swing.JButton btnTopWrost;

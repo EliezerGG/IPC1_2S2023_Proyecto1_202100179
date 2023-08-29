@@ -87,7 +87,7 @@ public class Professor {
     public void addCoursetoProf(Course curso){
         cursosProfArray.add(curso);
         System.out.println("Curso agregado al array list cuyo nombre es " + curso.getNameCourse());
-        System.out.println("Listado de cursos" + cursosProfArray + cursosProfArray.size());
+        System.out.println("Listado de cursos" + this.cursosProfArray + cursosProfArray.size());
     }
     public void deleteCourseToProf(Course curso){
         cursosProfArray.remove(curso);
