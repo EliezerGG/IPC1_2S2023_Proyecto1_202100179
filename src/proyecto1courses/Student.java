@@ -88,4 +88,14 @@ public class Student {
         System.out.println("curso agreago al estudiante " + this.nameStudet + " el siguient curso" + curso.getNameCourse());
     }
     
+    public void addHomeWorkToStudent(String nameHW, String descripHW, int ponderacionHW, double nota){
+        HomeWork tarea = new HomeWork();
+        
+        tarea.setNameHW(nameHW);
+        tarea.setDescripHW(descripHW);
+        tarea.setPonderacionHW(ponderacionHW);
+        tarea.setNota(nota);
+        
+        
+    }
 }

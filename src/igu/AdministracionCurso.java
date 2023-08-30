@@ -20,13 +20,15 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import proyecto1courses.Controladora;
 import static proyecto1courses.Controladora.estudiantesArray;
+import proyecto1courses.HomeWork;
 import proyecto1courses.Student;
 
 public class AdministracionCurso extends javax.swing.JFrame {
 
     Controladora control = new Controladora();
-    DefaultTableModel modeloStudent = new DefaultTableModel();
     ArrayList<Student> studentsForThisCourse =new ArrayList<>();
+    DefaultTableModel modeloStudent = new DefaultTableModel();
+    DefaultTableModel modeloHomeWork = new DefaultTableModel();
     
     public AdministracionCurso() {
         initComponents();
@@ -38,11 +40,20 @@ public class AdministracionCurso extends javax.swing.JFrame {
             modeloStudent.addColumn("Apellido");
             modeloStudent.addColumn("Acciones");
         }
+        
+        if (modeloHomeWork.getColumnCount() == 0) {
+            modeloHomeWork.addColumn("Nombre");
+            modeloHomeWork.addColumn("Descripcion");
+            modeloHomeWork.addColumn("Ponderacion");
+            modeloHomeWork.addColumn("Promedio");
+        }
+        
         refreshTable();
     }
 
     public void refreshTable(){
         tblStudentsCourse.setModel(modeloStudent);
+        tblHomeWork.setModel(modeloHomeWork);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -66,7 +77,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
         btnTopWrost = new javax.swing.JButton();
         labelSaludar3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblHomeWork = new javax.swing.JTable();
         lblAcumulado = new javax.swing.JLabel();
         labelSaludar5 = new javax.swing.JLabel();
         labelSaludar6 = new javax.swing.JLabel();
@@ -156,7 +167,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
         labelSaludar3.setForeground(new java.awt.Color(255, 255, 255));
         labelSaludar3.setText("Actividades");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblHomeWork.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -167,7 +178,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tblHomeWork);
 
         lblAcumulado.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         lblAcumulado.setForeground(new java.awt.Color(255, 255, 255));
@@ -270,10 +281,10 @@ public class AdministracionCurso extends javax.swing.JFrame {
                                                 .addComponent(labelSaludar3)
                                                 .addGap(300, 300, 300))))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(btnAddActivity, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(btnNotasCSV, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(77, 77, 77)))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(btnNotasCSV, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                                            .addComponent(btnAddActivity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(85, 85, 85)))
                                 .addGap(31, 31, 31))))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -348,8 +359,87 @@ public class AdministracionCurso extends javax.swing.JFrame {
 
     private void btnNotasCSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNotasCSVActionPerformed
         // TODO add your handling code here:
+        JFileChooser javaChooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos csv", "csv");
+        
+        javaChooser.setFileFilter(filter);
+        int select = javaChooser.showOpenDialog(this);
+        
+        javaChooser.setMultiSelectionEnabled(false);
+        
+        if (select == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = javaChooser.getSelectedFile();
+            
+           loadFileTarea(selectedFile);
+        
+        }     
     }//GEN-LAST:event_btnNotasCSVActionPerformed
 
+    public void loadFileTarea(File archivo){
+        
+        FileReader fr = null;
+        BufferedReader br = null;
+        
+        try {
+            fr = new FileReader(archivo);
+            br = new BufferedReader(fr);
+            
+            String line;
+            String nameHW = txtNameActivity.getText();
+            String descripHW = txtDescActivity.getText();
+            int ponderacion = Integer.valueOf(txtPonderacion.getText());
+            double sumaNotas = 0;
+            int cantNotas = 0; 
+            int averegeNotas = 0;
+            ArrayList<Double> notasArray = new ArrayList<>();
+            
+            while((line = br.readLine()) != null){
+                String [] arreglo = line.split(",");
+                if (arreglo.length >=2) {
+                    notasArray.add(Double.valueOf(arreglo[1]));
+
+                }
+            }
+                                cantNotas = notasArray.size();
+                    for(double nota: notasArray){
+                        sumaNotas += nota;
+                    }
+                    averegeNotas = (int) ((sumaNotas) /cantNotas);
+                    
+                    profesorLogged.getCursosProfArray().get(0).addHomeWorkToCourse(nameHW,descripHW,
+                            ponderacion, averegeNotas);
+                    
+                    for(Student estudiante : studentsForThisCourse){
+                        if (estudiante.getCodeStudet().equals(arreglo[0])) {
+                            estudiante.getCursosEstudiante().get(0).addHomeWorkToStudent(nameHW, descripHW,
+                                    ponderacion, Double.valueOf(arreglo[1]));
+                        }
+                    }
+                    
+            loadTableTarea();
+        } catch (Exception e) {
+        }
+    }
+    
+    public void loadTableTarea(){
+        while (modeloHomeWork.getRowCount() > 0) { 
+            modeloHomeWork.removeRow(0);
+        }
+        
+        for (HomeWork tarea: profesorLogged.getCursosProfArray().get(0).getTareasArray()) {
+            if (tarea != null) {
+                Object a[]= new Object[4];
+                a[0] = tarea.getNameHW();
+                a[1] = tarea.getDescripHW();
+                a[2] = tarea.getPonderacionHW();
+                a[3] = tarea.getAverageHW();
+
+                modeloHomeWork.addRow(a);
+            }
+        }
+    
+    }
+    
     private void btnAddActivityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActivityActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAddActivityActionPerformed
@@ -482,7 +572,6 @@ public class AdministracionCurso extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
     public static javax.swing.JLabel labelSaludar1;
     public static javax.swing.JLabel labelSaludar2;
     public static javax.swing.JLabel labelSaludar3;
@@ -493,6 +582,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
     public static javax.swing.JLabel labelSaludar9;
     public static javax.swing.JLabel lblAcumulado;
     public static javax.swing.JLabel lblNameCourse;
+    private javax.swing.JTable tblHomeWork;
     private javax.swing.JTable tblStudentsCourse;
     private javax.swing.JTextField txtDescActivity;
     private javax.swing.JTextField txtNameActivity;
