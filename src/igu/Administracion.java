@@ -209,6 +209,7 @@ public class Administracion extends javax.swing.JFrame {
         );
 
         btnShowGraph.setBackground(new java.awt.Color(23, 107, 135));
+        btnShowGraph.setForeground(new java.awt.Color(255, 255, 255));
         btnShowGraph.setText("Show Graph");
         btnShowGraph.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -217,6 +218,7 @@ public class Administracion extends javax.swing.JFrame {
         });
 
         btnSalir.setBackground(new java.awt.Color(23, 107, 135));
+        btnSalir.setForeground(new java.awt.Color(255, 255, 255));
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

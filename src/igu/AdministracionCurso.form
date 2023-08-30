@@ -36,7 +36,7 @@
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="30" green="1c" red="0" type="rgb"/>
+          <Color blue="87" green="6b" red="17" type="rgb"/>
         </Property>
       </Properties>
 
@@ -238,7 +238,7 @@
         <Component class="javax.swing.JButton" name="btnCargaMasivaStudent">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="87" green="6b" red="17" type="rgb"/>
+              <Color blue="30" green="1c" red="0" type="rgb"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -252,7 +252,7 @@
         <Component class="javax.swing.JButton" name="btnTopBest">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="87" green="6b" red="17" type="rgb"/>
+              <Color blue="30" green="1c" red="0" type="rgb"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -266,7 +266,7 @@
         <Component class="javax.swing.JButton" name="btnAddActivity">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="87" green="6b" red="17" type="rgb"/>
+              <Color blue="30" green="1c" red="0" type="rgb"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -280,7 +280,7 @@
         <Component class="javax.swing.JButton" name="btnNotasCSV">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="87" green="6b" red="17" type="rgb"/>
+              <Color blue="30" green="1c" red="0" type="rgb"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -308,7 +308,7 @@
         <Component class="javax.swing.JButton" name="btnTopWrost">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="87" green="6b" red="17" type="rgb"/>
+              <Color blue="30" green="1c" red="0" type="rgb"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>

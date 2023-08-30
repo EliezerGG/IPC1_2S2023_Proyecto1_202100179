@@ -91,7 +91,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 28, 48));
+        jPanel1.setBackground(new java.awt.Color(23, 107, 135));
 
         lblNameCourse.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         lblNameCourse.setForeground(new java.awt.Color(255, 255, 255));
@@ -114,7 +114,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblStudentsCourse);
 
-        btnCargaMasivaStudent.setBackground(new java.awt.Color(23, 107, 135));
+        btnCargaMasivaStudent.setBackground(new java.awt.Color(0, 28, 48));
         btnCargaMasivaStudent.setForeground(new java.awt.Color(255, 255, 255));
         btnCargaMasivaStudent.setText("Carga Masiva Alumnos");
         btnCargaMasivaStudent.addActionListener(new java.awt.event.ActionListener() {
@@ -123,7 +123,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
             }
         });
 
-        btnTopBest.setBackground(new java.awt.Color(23, 107, 135));
+        btnTopBest.setBackground(new java.awt.Color(0, 28, 48));
         btnTopBest.setForeground(new java.awt.Color(255, 255, 255));
         btnTopBest.setText("Top 5 - Estudiantes con Mejor Rendimiento");
         btnTopBest.addActionListener(new java.awt.event.ActionListener() {
@@ -132,7 +132,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
             }
         });
 
-        btnAddActivity.setBackground(new java.awt.Color(23, 107, 135));
+        btnAddActivity.setBackground(new java.awt.Color(0, 28, 48));
         btnAddActivity.setForeground(new java.awt.Color(255, 255, 255));
         btnAddActivity.setText("Crear Actividad");
         btnAddActivity.addActionListener(new java.awt.event.ActionListener() {
@@ -141,7 +141,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
             }
         });
 
-        btnNotasCSV.setBackground(new java.awt.Color(23, 107, 135));
+        btnNotasCSV.setBackground(new java.awt.Color(0, 28, 48));
         btnNotasCSV.setForeground(new java.awt.Color(255, 255, 255));
         btnNotasCSV.setText("Seleccinar Archivo CSV");
         btnNotasCSV.addActionListener(new java.awt.event.ActionListener() {
@@ -154,7 +154,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
         labelSaludar2.setForeground(new java.awt.Color(255, 255, 255));
         labelSaludar2.setText("Reportes");
 
-        btnTopWrost.setBackground(new java.awt.Color(23, 107, 135));
+        btnTopWrost.setBackground(new java.awt.Color(0, 28, 48));
         btnTopWrost.setForeground(new java.awt.Color(255, 255, 255));
         btnTopWrost.setText("Top 5 - Estudiantes con Peor  Rendimiento");
         btnTopWrost.addActionListener(new java.awt.event.ActionListener() {
@@ -397,25 +397,27 @@ public class AdministracionCurso extends javax.swing.JFrame {
                 String [] arreglo = line.split(",");
                 if (arreglo.length >=2) {
                     notasArray.add(Double.valueOf(arreglo[1]));
-
-                }
-            }
-                                cantNotas = notasArray.size();
-                    for(double nota: notasArray){
-                        sumaNotas += nota;
-                    }
-                    averegeNotas = (int) ((sumaNotas) /cantNotas);
-                    
-                    profesorLogged.getCursosProfArray().get(0).addHomeWorkToCourse(nameHW,descripHW,
-                            ponderacion, averegeNotas);
-                    
                     for(Student estudiante : studentsForThisCourse){
                         if (estudiante.getCodeStudet().equals(arreglo[0])) {
                             estudiante.getCursosEstudiante().get(0).addHomeWorkToStudent(nameHW, descripHW,
                                     ponderacion, Double.valueOf(arreglo[1]));
+                            
+                            System.out.println( profesorLogged.getCursosProfArray().get(0).getTareasArrayProfesor().size());
                         }
                     }
-                    
+                                        
+                }
+            }
+            cantNotas = notasArray.size();
+            for(double nota: notasArray){
+                sumaNotas += nota;
+            }
+            averegeNotas = (int) ((sumaNotas) /cantNotas);
+
+            profesorLogged.getCursosProfArray().get(0).addHomeWorkToCourse(nameHW,descripHW,
+                    ponderacion, averegeNotas);
+            
+            System.out.println( profesorLogged.getCursosProfArray().get(0).getTareasArrayProfesor().size());
             loadTableTarea();
         } catch (Exception e) {
         }
@@ -426,7 +428,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
             modeloHomeWork.removeRow(0);
         }
         
-        for (HomeWork tarea: profesorLogged.getCursosProfArray().get(0).getTareasArray()) {
+        for (HomeWork tarea: profesorLogged.getCursosProfArray().get(0).getTareasArrayProfesor()) {
             if (tarea != null) {
                 Object a[]= new Object[4];
                 a[0] = tarea.getNameHW();

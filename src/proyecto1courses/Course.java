@@ -10,7 +10,8 @@ public class Course {
     private int credits;
     private ArrayList<Student> studentsArray = new ArrayList<>(); 
     private Professor profesor;
-    private ArrayList<HomeWork> tareasArray = new ArrayList<>();
+    private ArrayList<HomeWork> tareasArrayProfesor = new ArrayList<>();
+    private ArrayList<HomeWork> tareasArrayEstudiante = new ArrayList<>();
 
     public Course(){}
 
@@ -84,12 +85,12 @@ public class Course {
         studentsArray.remove(estudiante);
     }
 
-    public ArrayList<HomeWork> getTareasArray() {
-        return tareasArray;
+    public ArrayList<HomeWork> getTareasArrayProfesor() {
+        return tareasArrayProfesor;
     }
 
-    public void setTareasArray(ArrayList<HomeWork> tareasArray) {
-        this.tareasArray = tareasArray;
+    public void setTareasArrayProfesor(ArrayList<HomeWork> tareasArrayProfesor) {
+        this.tareasArrayProfesor = tareasArrayProfesor;
     }
     
     public void addHomeWorkToCourse(String nameHW, String descripHW, int ponderacionHW,int averageHW){
@@ -100,7 +101,7 @@ public class Course {
         tarea.setPonderacionHW(ponderacionHW);
         tarea.setAverageHW(averageHW);
         
-        tareasArray.add(tarea);
+        tareasArrayProfesor.add(tarea);
         System.out.println("se agrego tarea a profesor");
     }
     
@@ -112,7 +113,7 @@ public class Course {
         tarea.setPonderacionHW(ponderacionHW);
         tarea.setNota(nota);
         
-        tareasArray.add(tarea);
+        tareasArrayEstudiante.add(tarea);
         System.out.println("se agrego tarea a estudiante");
     }
     
