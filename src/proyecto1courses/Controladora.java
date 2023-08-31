@@ -1,6 +1,8 @@
 package proyecto1courses;
 
+import java.io.File;
 import java.util.ArrayList;
+import persistencia.ControladoraPersistencia;
 
 public class Controladora {
     
@@ -22,8 +24,7 @@ public class Controladora {
         profesor.setGender(gender);
        
         profesoresArray.add(profesor);
-        
-        
+                
     }
     
     public void addCourseToProfessor(int indexProfesor, int indexCourse){
@@ -86,4 +87,28 @@ public class Controladora {
         estudiantesArray.remove(indexStudent);
                 
     }
+    
+    public void saveData() {
+        ControladoraPersistencia.serializarObjeto("profesores.Dat", profesoresArray);
+        ControladoraPersistencia.serializarObjeto("cursos.Dat", cursosArray);
+        ControladoraPersistencia.serializarObjeto("estudiantes.Dat", estudiantesArray);
+    }
+
+    public void loadData() {
+        File profesoresFile = new File("profesores.Dat");
+        if (profesoresFile.exists()) {
+            profesoresArray = ControladoraPersistencia.deserializarObjeto("profesores.Dat", ArrayList.class);
+        }
+
+        File cursosFile = new File("cursos.Dat");
+        if (cursosFile.exists()) {
+            cursosArray = ControladoraPersistencia.deserializarObjeto("cursos.Dat", ArrayList.class);
+        }
+
+        File estudiantesFile = new File("estudiantes.Dat");
+        if (estudiantesFile.exists()) {
+            estudiantesArray = ControladoraPersistencia.deserializarObjeto("estudiantes.Dat", ArrayList.class);
+        }
+    }
+
 }

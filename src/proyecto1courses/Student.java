@@ -1,9 +1,10 @@
 package proyecto1courses;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Student {
+public class Student implements Serializable{
     
     private String codeStudet;
     private String nameStudet;

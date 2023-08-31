@@ -1,7 +1,9 @@
 package proyecto1courses;
 
+import java.io.Serializable;
 
-public class HomeWork {
+
+public class HomeWork implements Serializable{
     private String nameHW;
     private String descripHW;
     private int ponderacionHW;

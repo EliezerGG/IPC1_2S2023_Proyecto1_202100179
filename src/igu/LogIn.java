@@ -3,6 +3,7 @@ package igu;
 import static igu.MenuProfesor.labelSaludar;
 import static igu.MenuStudent.labelSaludarStudent;
 import javax.swing.JOptionPane;
+import proyecto1courses.Controladora;
 import static proyecto1courses.Controladora.estudiantesArray;
 import static proyecto1courses.Controladora.profesoresArray;
 import proyecto1courses.Professor;
@@ -15,8 +16,12 @@ public class LogIn extends javax.swing.JFrame {
     String nameStudent = null;
     public static Professor profesorLogged =null;
     public static Student studentLogged = null;
+    Controladora control = new Controladora();
+    
     public LogIn() {
         initComponents();
+        control.loadData(); 
+        
     }
 
    

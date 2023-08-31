@@ -1,8 +1,9 @@
 package proyecto1courses;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Professor {
+public class Professor implements Serializable{
     
     private String code;
     private String name;
