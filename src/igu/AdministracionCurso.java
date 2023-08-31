@@ -1,5 +1,9 @@
 package igu;
 
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
@@ -354,7 +358,54 @@ public class AdministracionCurso extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTopWrostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTopWrostActionPerformed
-        // TODO add your handling code here:
+     // TODO add your handling code here:
+        try {
+           File file = new File("Peores 5 estudiantes.pdf");
+           PdfWriter pdfWriter = new PdfWriter(file);          
+           
+           PdfDocument pdfDocument = new PdfDocument(pdfWriter);
+           
+           Document document = new Document(pdfDocument);
+           
+            int i = 1;
+            Table table = new Table(6);  // 5 columnas para code, name, lastName, email y gender
+            table.addCell("Posicion");
+            table.addCell("Codigo");
+            table.addCell("Nombre");
+            table.addCell("Apellido");
+            table.addCell("Correo");
+            table.addCell("Nota Acumulada");
+            
+            List<Student> bestStudents = studentsForThisCourse.stream()
+                    .sorted(Comparator.comparingDouble((Student estudiante) -> estudiante.obtenerNota(profesorLogged.getCursosProfArray().get(0)))).limit(5).collect(Collectors.toList());
+                               
+                              
+                        
+           for (Student estudiante: bestStudents){
+                table.addCell(String.valueOf(i));
+                table.addCell(estudiante.getCodeStudet());
+                table.addCell(estudiante.getNameStudet());
+                table.addCell(estudiante.getLastNameStudent());
+                table.addCell(estudiante.getEmailStudent());
+               table.addCell(String.valueOf(estudiante.obtenerNota(profesorLogged.getCursosProfArray().get(0))));
+                i++;
+           }
+          
+          document.add(table);
+          document.close();
+          
+          pdfWriter.close();
+          
+            System.out.println("PDF Creado");
+            JOptionPane.showMessageDialog(null, "PDF Creado");
+            
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        } catch(IOException ex){
+            System.out.println(ex.getMessage());
+        }
+        
+        
     }//GEN-LAST:event_btnTopWrostActionPerformed
 
     private void btnNotasCSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNotasCSVActionPerformed
@@ -391,6 +442,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
             double sumaNotas = 0;
             int cantNotas = 0; 
             int averegeNotas = 0;
+            
             ArrayList<Double> notasArray = new ArrayList<>();
             
             while((line = br.readLine()) != null){
@@ -399,10 +451,12 @@ public class AdministracionCurso extends javax.swing.JFrame {
                     notasArray.add(Double.valueOf(arreglo[1]));
                     for(Student estudiante : studentsForThisCourse){
                         if (estudiante.getCodeStudet().equals(arreglo[0])) {
+                            
                             estudiante.getCursosEstudiante().get(0).addHomeWorkToStudent(nameHW, descripHW,
                                     ponderacion, Double.valueOf(arreglo[1]));
                             
-                            System.out.println( profesorLogged.getCursosProfArray().get(0).getTareasArrayProfesor().size());
+                System.out.println( profesorLogged.getCursosProfArray().get(0).getTareasArrayProfesor().size());
+                estudiante.addCourseAndNote(profesorLogged.getCursosProfArray().get(0), Double.valueOf(arreglo[1]));
                         }
                     }
                                         
@@ -448,6 +502,53 @@ public class AdministracionCurso extends javax.swing.JFrame {
 
     private void btnTopBestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTopBestActionPerformed
         // TODO add your handling code here:
+        try {
+           File file = new File("Mejores 5 estudiantes.pdf");
+           PdfWriter pdfWriter = new PdfWriter(file);          
+           
+           PdfDocument pdfDocument = new PdfDocument(pdfWriter);
+           
+           Document document = new Document(pdfDocument);
+           
+           int i = 1;
+            Table table = new Table(6);  // 5 columnas para code, name, lastName, email y gender
+            table.addCell("Posicion");
+            table.addCell("Codigo");
+            table.addCell("Nombre");
+            table.addCell("Apellido");
+            table.addCell("Correo");
+            table.addCell("Nota Acumulada");
+            
+            List<Student> bestStudents = studentsForThisCourse.stream()
+                    .sorted(Comparator.comparingDouble((Student estudiante) -> estudiante.obtenerNota(profesorLogged.getCursosProfArray().get(0))).reversed()).limit(5).collect(Collectors.toList());
+                               
+                              
+                        
+           for (Student estudiante: bestStudents){
+                table.addCell(String.valueOf(i));
+                table.addCell(estudiante.getCodeStudet());
+                table.addCell(estudiante.getNameStudet());
+                table.addCell(estudiante.getLastNameStudent());
+                table.addCell(estudiante.getEmailStudent());
+               table.addCell(String.valueOf(estudiante.obtenerNota(profesorLogged.getCursosProfArray().get(0))));
+                i++;
+           }
+          
+          document.add(table);
+          document.close();
+          
+          pdfWriter.close();
+          
+            System.out.println("PDF Creado");
+            JOptionPane.showMessageDialog(null, "PDF Creado");
+            
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        } catch(IOException ex){
+            System.out.println(ex.getMessage());
+        }
+        
+        
     }//GEN-LAST:event_btnTopBestActionPerformed
 
     private void txtNameActivityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActivityActionPerformed

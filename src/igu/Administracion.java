@@ -632,11 +632,11 @@ public class Administracion extends javax.swing.JFrame {
            Document document = new Document(pdfDocument);
            
             Table table = new Table(5);  // 5 columnas para code, name, lastName, email y gender
-            table.addCell("Code");
-            table.addCell("Name");
-            table.addCell("Last Name");
+            table.addCell("Codigo");
+            table.addCell("Nombre");
+            table.addCell("Apellido");
             table.addCell("Email");
-            table.addCell("Gender");
+            table.addCell("Genero");
 
            for (Professor profesor: profesoresArray){
                 table.addCell(profesor.getCode());

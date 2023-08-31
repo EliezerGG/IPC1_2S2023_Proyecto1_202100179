@@ -12,6 +12,7 @@ public class Course {
     private Professor profesor;
     private ArrayList<HomeWork> tareasArrayProfesor = new ArrayList<>();
     private ArrayList<HomeWork> tareasArrayEstudiante = new ArrayList<>();
+    private double notaAcumuladaStudent;
 
     public Course(){}
 
@@ -116,5 +117,17 @@ public class Course {
         tareasArrayEstudiante.add(tarea);
         System.out.println("se agrego tarea a estudiante");
     }
+
+    public double getNotaAcumuladaStudent() {
+        return notaAcumuladaStudent;
+    }
+
+    public void setNotaAcumuladaStudent(double notaAcumuladaStudent) {
+        this.notaAcumuladaStudent = notaAcumuladaStudent;
+    }
     
+    public void sumarNotas(double nota){
+        this.notaAcumuladaStudent += nota;
+        System.out.println("Se agrego suma de la nota" + this.notaAcumuladaStudent);
+    }
 }

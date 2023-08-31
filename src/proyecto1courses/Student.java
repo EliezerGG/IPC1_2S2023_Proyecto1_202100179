@@ -1,6 +1,7 @@
 package proyecto1courses;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Student {
     
@@ -11,6 +12,7 @@ public class Student {
     private String passwordStudent;
     private String gender;
     private ArrayList<Course> cursosEstudiante = new ArrayList<>();
+    private HashMap<Course, Double> cursoNotas = new HashMap<>();
 
     public Student(){}
     
@@ -25,6 +27,7 @@ public class Student {
     
     public Student(ArrayList cursosEstudiante){
         this.cursosEstudiante = cursosEstudiante;
+        
     }
 
     public String getCodeStudet() {
@@ -95,7 +98,24 @@ public class Student {
         tarea.setDescripHW(descripHW);
         tarea.setPonderacionHW(ponderacionHW);
         tarea.setNota(nota);
-        
-        
+               
     }
+    
+   public void addCourseAndNote(Course curso, double nota) {
+    if (cursoNotas.containsKey(curso)) {
+        double oldNota = cursoNotas.get(curso);
+        double newNota = oldNota + nota;
+        cursoNotas.put(curso, newNota);
+        System.out.println("Se agregó curso y nota " + curso.getNameCourse() + ": " + newNota);
+    } else {
+        cursoNotas.put(curso, nota);
+        System.out.println("Se agregó curso y nota " + curso.getNameCourse() + ": " + nota);
+    }
+}
+    
+    public double obtenerNota(Course curso){
+        return cursoNotas.getOrDefault(curso,-1.0);
+    }
+    
+  
 }
