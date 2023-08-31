@@ -1,6 +1,7 @@
 package igu;
 
 import static igu.MenuProfesor.labelSaludar;
+import static igu.MenuStudent.labelSaludarStudent;
 import javax.swing.JOptionPane;
 import static proyecto1courses.Controladora.estudiantesArray;
 import static proyecto1courses.Controladora.profesoresArray;
@@ -11,8 +12,9 @@ public class LogIn extends javax.swing.JFrame {
     
     String admin = "admin";
     String nameProfessor = null;
+    String nameStudent = null;
     public static Professor profesorLogged =null;
-
+    public static Student studentLogged = null;
     public LogIn() {
         initComponents();
     }
@@ -131,6 +133,7 @@ public class LogIn extends javax.swing.JFrame {
       
         Administracion adminWindow = new Administracion();
         MenuProfesor profesorWindow = new MenuProfesor();
+        MenuStudent estudianteWindow = new MenuStudent();
         
         String codigo = txtCode.getText();
         String password = new String(txtPassWord.getPassword());
@@ -140,7 +143,9 @@ public class LogIn extends javax.swing.JFrame {
       
          for(Student estudiante : estudiantesArray){
             if(estudiante.getCodeStudet().equals(codigo) && estudiante.getPasswordStudent().equals(password)){
+                studentLogged = estudiante;
                 isStudentOnArray = true;
+                nameStudent = estudiante.getNameStudet() +" " + estudiante.getLastNameStudent();
             }
         }
          
@@ -162,6 +167,11 @@ public class LogIn extends javax.swing.JFrame {
             
             saludarProfesor(nameProfessor);
             
+        }else if(isStudentOnArray){
+            estudianteWindow.setVisible(true);
+            estudianteWindow.setLocationRelativeTo(null);
+            
+            saludarStudent(nameStudent);
         }else{
             JOptionPane.showMessageDialog(null, "Ingresar datos correctos");
         }
@@ -169,9 +179,12 @@ public class LogIn extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLogInActionPerformed
 
     public void saludarProfesor(String name){
-        labelSaludar.setText("Welcome Professor"+name);
+        labelSaludar.setText("Welcome Professor "+name);
     }
     
+    public void saludarStudent(String name){
+        labelSaludarStudent.setText("Welcome Student " + name);
+    }
     private void txtPassWordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassWordActionPerformed
         // TODO add your handling code here:
         

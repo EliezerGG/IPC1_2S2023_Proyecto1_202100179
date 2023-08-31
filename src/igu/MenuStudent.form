@@ -46,36 +46,36 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="labelSaludar" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="labelSaludarStudent" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="102" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
                                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="btnUpdateProfesor" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnUpdateSutdent" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="txtCantStudent3" alignment="0" max="32767" attributes="0"/>
+                                      <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="txtNameProfesor3" alignment="0" max="32767" attributes="0"/>
                                           <Component id="btnCourse3" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
                                       </Group>
-                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="txtCantStudent1" alignment="0" pref="160" max="32767" attributes="0"/>
+                                      <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="txtNameProfesor" alignment="0" pref="160" max="32767" attributes="0"/>
                                           <Component id="btnCourse1" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace pref="161" max="32767" attributes="0"/>
+                                  <EmptySpace pref="125" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="txtCantStudent2" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="txtNameProfesor2" alignment="0" max="32767" attributes="0"/>
                                           <Component id="btnCourse2" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="txtCantStudent4" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="txtNameProfesor4" alignment="0" max="32767" attributes="0"/>
                                           <Component id="btnCourse4" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -83,10 +83,10 @@
                           </Group>
                           <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="btnRefresh" max="32767" attributes="0"/>
-                              <Component id="btnExit" max="32767" attributes="0"/>
+                              <Component id="btnRefresh" alignment="0" max="32767" attributes="0"/>
+                              <Component id="btnExit" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
@@ -99,42 +99,42 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnUpdateProfesor" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel6" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnUpdateSutdent" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="labelSaludar" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="labelSaludarStudent" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="btnCourse1" min="-2" pref="49" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtCantStudent1" min="-2" pref="33" max="-2" attributes="0"/>
+                          <Component id="txtNameProfesor" min="-2" pref="33" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
                           <Component id="btnCourse2" min="-2" pref="49" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtCantStudent2" min="-2" pref="33" max="-2" attributes="0"/>
+                          <Component id="txtNameProfesor2" min="-2" pref="33" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
                           <Component id="btnCourse3" min="-2" pref="49" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtCantStudent3" min="-2" pref="33" max="-2" attributes="0"/>
+                          <Component id="txtNameProfesor3" min="-2" pref="33" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
                           <Component id="btnCourse4" min="-2" pref="49" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtCantStudent4" min="-2" pref="33" max="-2" attributes="0"/>
+                          <Component id="txtNameProfesor4" min="-2" pref="33" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   <Component id="btnRefresh" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnExit" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="12" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -151,7 +151,7 @@
             <Property name="text" type="java.lang.String" value="Cursos Asignados"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnUpdateProfesor">
+        <Component class="javax.swing.JButton" name="btnUpdateSutdent">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="30" green="1c" red="0" type="rgb"/>
@@ -162,10 +162,10 @@
             <Property name="text" type="java.lang.String" value="Actualizar Datos"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUpdateProfesorActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUpdateSutdentActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="labelSaludar">
+        <Component class="javax.swing.JLabel" name="labelSaludarStudent">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Verdana" size="18" style="1"/>
@@ -173,7 +173,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="insertar nombre profesor"/>
+            <Property name="text" type="java.lang.String" value="insertar nombre estudiante"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -193,7 +193,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCourse1ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtCantStudent1">
+        <Component class="javax.swing.JTextField" name="txtNameProfesor">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="c5" green="cc" red="64" type="rgb"/>
@@ -204,7 +204,7 @@
             <Property name="text" type="java.lang.String" value="Cant. Students"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCantStudent1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNameProfesorActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnCourse2">
@@ -218,7 +218,7 @@
             <Property name="text" type="java.lang.String" value="Curso 2"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtCantStudent2">
+        <Component class="javax.swing.JTextField" name="txtNameProfesor2">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="c5" green="cc" red="64" type="rgb"/>
@@ -229,7 +229,7 @@
             <Property name="text" type="java.lang.String" value="Cant. Students"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCantStudent2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNameProfesor2ActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnCourse3">
@@ -243,7 +243,7 @@
             <Property name="text" type="java.lang.String" value="Curso 3"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtCantStudent3">
+        <Component class="javax.swing.JTextField" name="txtNameProfesor3">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="c5" green="cc" red="64" type="rgb"/>
@@ -254,7 +254,7 @@
             <Property name="text" type="java.lang.String" value="Cant. Students"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCantStudent3ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNameProfesor3ActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnCourse4">
@@ -268,7 +268,7 @@
             <Property name="text" type="java.lang.String" value="Curso 4"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtCantStudent4">
+        <Component class="javax.swing.JTextField" name="txtNameProfesor4">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="c5" green="cc" red="64" type="rgb"/>
@@ -279,7 +279,7 @@
             <Property name="text" type="java.lang.String" value="Cant. Students"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCantStudent4ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNameProfesor4ActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnRefresh">
@@ -306,9 +306,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Salir"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExitActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>
