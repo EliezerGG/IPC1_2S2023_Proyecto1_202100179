@@ -274,6 +274,9 @@ public class MenuProfesor extends javax.swing.JFrame {
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // TODO add your handling code here:
         dispose();
+        LogIn logInWindow = new LogIn();
+        logInWindow.setVisible(true);
+        logInWindow.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnExitActionPerformed
 
     /**

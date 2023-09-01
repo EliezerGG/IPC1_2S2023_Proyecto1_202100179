@@ -23,7 +23,9 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import proyecto1courses.Controladora;
+import static proyecto1courses.Controladora.cursosArray;
 import static proyecto1courses.Controladora.estudiantesArray;
+import proyecto1courses.Course;
 import proyecto1courses.HomeWork;
 import proyecto1courses.Student;
 
@@ -33,10 +35,17 @@ public class AdministracionCurso extends javax.swing.JFrame {
     ArrayList<Student> studentsForThisCourse =new ArrayList<>();
     DefaultTableModel modeloStudent = new DefaultTableModel();
     DefaultTableModel modeloHomeWork = new DefaultTableModel();
+    Course cursoFind= null;
     
     public AdministracionCurso() {
         initComponents();
 //        lblNameCourse.setText(profesorLogged.getCursosProfArray().get(0).getNameCourse());
+
+        for(Course curso :cursosArray){
+            if (curso == profesorLogged.getCursosProfArray().get(0)) {
+                cursoFind = curso;
+            }
+        }
         
         if (modeloStudent.getColumnCount() == 0) {
             modeloStudent.addColumn("Codigo");
@@ -456,10 +465,12 @@ public class AdministracionCurso extends javax.swing.JFrame {
                         if (estudiante.getCodeStudet().equals(arreglo[0])) {
                             
                             estudiante.getCursosEstudiante().get(0).addHomeWorkToStudent(nameHW, descripHW,
-                                    ponderacion, Double.valueOf(arreglo[1]));
+                                    ponderacion, Double.valueOf(arreglo[1]), estudiante);
                             
                 System.out.println( profesorLogged.getCursosProfArray().get(0).getTareasArrayProfesor().size());
                 estudiante.addCourseAndNote(profesorLogged.getCursosProfArray().get(0), Double.valueOf(arreglo[1]));
+                
+               
                         }
                     }
                                         
@@ -512,7 +523,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
            PdfDocument pdfDocument = new PdfDocument(pdfWriter);
            
            Document document = new Document(pdfDocument);
-           
+          
            int i = 1;
             Table table = new Table(6);  // 5 columnas para code, name, lastName, email y gender
             table.addCell("Posicion");
@@ -594,7 +605,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
         
         FileReader fr = null;
         BufferedReader br = null;
-        
+                 
         try {
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
@@ -610,8 +621,15 @@ public class AdministracionCurso extends javax.swing.JFrame {
                              
                              studentsForThisCourse.add(estudiante);
                              estudiante.addCourseToStudent(profesorLogged.getCursosProfArray().get(0));
-                             
+                             System.out.println( profesorLogged.getCursosProfArray().get(0).getStudentCount());
+
+                            for(Course curso : cursosArray){
+                                if (profesorLogged.getCursosProfArray().get(0).getCodeCourse().equals(curso.getCodeCourse())) {
+                                     curso.addStudentsToCourse(estudiante);                                    
+                                }
+                            }
                         }
+                        
                     }                            
                 }
             }

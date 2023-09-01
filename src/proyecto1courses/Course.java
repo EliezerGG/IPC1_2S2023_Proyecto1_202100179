@@ -107,17 +107,19 @@ public class Course implements Serializable{
         System.out.println("se agrego tarea a profesor");
     }
     
-    public void addHomeWorkToStudent(String nameHW, String descripHW, int ponderacionHW,double nota){
+    public void addHomeWorkToStudent(String nameHW, String descripHW, int ponderacionHW,double nota,Student estudiante){
         HomeWork tarea = new HomeWork();
         
         tarea.setNameHW(nameHW);
         tarea.setDescripHW(descripHW);
         tarea.setPonderacionHW(ponderacionHW);
         tarea.setNota(nota);
-        
+        tarea.addStudentAndNote(estudiante, nota);
+        tarea.setEstudiante(estudiante);
         tareasArrayEstudiante.add(tarea);
         System.out.println("se agrego tarea a estudiante");
     }
+    
 
     public double getNotaAcumuladaStudent() {
         return notaAcumuladaStudent;
@@ -131,4 +133,17 @@ public class Course implements Serializable{
         this.notaAcumuladaStudent += nota;
         System.out.println("Se agrego suma de la nota" + this.notaAcumuladaStudent);
     }
+
+    public ArrayList<HomeWork> getTareasArrayEstudiante() {
+        return tareasArrayEstudiante;
+    }
+
+    public void setTareasArrayEstudiante(ArrayList<HomeWork> tareasArrayEstudiante) {
+        this.tareasArrayEstudiante = tareasArrayEstudiante;
+    }
+    
+    public int getStudentCount(){
+        return studentsArray.size();
+    }
+    
 }

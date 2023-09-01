@@ -20,6 +20,9 @@ import java.awt.Dimension;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -28,6 +31,8 @@ import javax.swing.table.DefaultTableModel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 import proyecto1courses.Controladora;
 import static proyecto1courses.Controladora.cursosArray;
@@ -112,6 +117,8 @@ public class Administracion extends javax.swing.JFrame {
         btnExportCoursePDF = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblCursos = new javax.swing.JTable();
+        panelGraficoCursos = new javax.swing.JPanel();
+        btnShowGraphCourse = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         btnCargaMasivaStudent = new javax.swing.JButton();
@@ -248,7 +255,7 @@ public class Administracion extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 75, Short.MAX_VALUE))
+                                .addGap(0, 133, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -294,7 +301,7 @@ public class Administracion extends javax.swing.JFrame {
                         .addComponent(btnExportPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
                         .addComponent(panelGrafico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Profesores", jPanel1);
@@ -363,6 +370,28 @@ public class Administracion extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tblCursos);
 
+        panelGraficoCursos.setBackground(new java.awt.Color(218, 255, 251));
+
+        javax.swing.GroupLayout panelGraficoCursosLayout = new javax.swing.GroupLayout(panelGraficoCursos);
+        panelGraficoCursos.setLayout(panelGraficoCursosLayout);
+        panelGraficoCursosLayout.setHorizontalGroup(
+            panelGraficoCursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 404, Short.MAX_VALUE)
+        );
+        panelGraficoCursosLayout.setVerticalGroup(
+            panelGraficoCursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 315, Short.MAX_VALUE)
+        );
+
+        btnShowGraphCourse.setBackground(new java.awt.Color(23, 107, 135));
+        btnShowGraphCourse.setForeground(new java.awt.Color(255, 255, 255));
+        btnShowGraphCourse.setText("Show Graph");
+        btnShowGraphCourse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnShowGraphCourseActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -371,21 +400,29 @@ public class Administracion extends javax.swing.JFrame {
                 .addGap(48, 48, 48)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(btnUpdateCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnDeleteCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(btnAddCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnCargaMasivaCursos))
-                            .addComponent(btnExportCoursePDF, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGap(6, 6, 6)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(43, 43, 43))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(btnShowGraphCourse)
+                                .addGap(18, 18, 18)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(panelGraficoCursos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(btnExportCoursePDF, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(btnUpdateCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnDeleteCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(btnAddCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnCargaMasivaCursos))))))
                     .addComponent(jLabel4))
-                .addContainerGap(135, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -394,18 +431,23 @@ public class Administracion extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnAddCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCargaMasivaCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnCargaMasivaCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAddCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnDeleteCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnUpdateCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnExportCoursePDF, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(153, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnExportCoursePDF, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(panelGraficoCursos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 70, 70)
+                        .addComponent(btnShowGraphCourse)))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Cursos", jPanel2);
@@ -483,7 +525,7 @@ public class Administracion extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(btnShowGraphicAlumnos)
@@ -515,7 +557,7 @@ public class Administracion extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnShowGraphicAlumnos)))
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addContainerGap(107, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Alumnos", jPanel3);
@@ -914,7 +956,7 @@ public class Administracion extends javax.swing.JFrame {
                 a[0] = curso.getCodeCourse();
                 a[1] = curso.getNameCourse();
                 a[2] = curso.getCredits();
-                a[3] = curso.getStudentsArray().size();
+                a[3] = curso.getStudentCount();
                 a[4] = curso.getProfesor().getName() + " " + curso.getProfesor().getLastName();
 
                 modeloCourse.addRow(a);
@@ -1034,6 +1076,56 @@ public class Administracion extends javax.swing.JFrame {
         loadTableEstudiante();
     }//GEN-LAST:event_formWindowOpened
 
+    private void btnShowGraphCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowGraphCourseActionPerformed
+        // TODO add your handling code here:
+        panelGraficoCursos.removeAll();
+        panelGraficoCursos.revalidate();
+        
+        List<Course> biggestCourse;
+        biggestCourse = cursosArray.stream()
+                .sorted(Comparator.comparingInt((Course curso) -> curso.getStudentCount()).reversed())
+                .limit(3)
+                .collect(Collectors.toList());
+          
+        for(Course curso: biggestCourse){
+            System.out.println(curso.getNameCourse() +" numero de estudiantes "+ curso.getStudentCount());
+        }
+        
+        for(Course curso: cursosArray){
+            System.out.println(curso.getNameCourse() +" numero de estudiantes "+ curso.getStudentCount());
+        }
+        
+        DefaultCategoryDataset datos = new DefaultCategoryDataset();
+        
+        datos.setValue(biggestCourse.get(0).getStudentCount(),"1", biggestCourse.get(0).getNameCourse());
+        datos.setValue(biggestCourse.get(1).getStudentCount(),"2", biggestCourse.get(1).getNameCourse());
+        datos.setValue(biggestCourse.get(2).getStudentCount(),"3", biggestCourse.get(2).getNameCourse());
+       
+        
+        JFreeChart graficoBarras = ChartFactory.createBarChart3D(
+                "Cursos con mas estudiantes",
+                "Cursos",
+                "Cantidad",
+                datos,
+                PlotOrientation.VERTICAL,
+                true,
+                true,
+                false
+        );
+        
+        ChartPanel panel = new ChartPanel(graficoBarras);
+        panel.setMouseWheelEnabled(true);
+        panel.setPreferredSize(new Dimension(400,300));
+        
+        panelGraficoCursos.setLayout(new BorderLayout());
+        panelGraficoCursos.add(panel,BorderLayout.NORTH);
+        
+        pack();
+        repaint();
+        
+        
+    }//GEN-LAST:event_btnShowGraphCourseActionPerformed
+
     public void showGraphicPie(){
         panelGrafico.removeAll();
         panelGrafico.revalidate();
@@ -1121,6 +1213,7 @@ public class Administracion extends javax.swing.JFrame {
     private javax.swing.JButton btnExportStudentPDF;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnShowGraph;
+    private javax.swing.JButton btnShowGraphCourse;
     private javax.swing.JButton btnShowGraphicAlumnos;
     private javax.swing.JButton btnUpdateCourse;
     private javax.swing.JButton btnUpdateProf;
@@ -1135,6 +1228,7 @@ public class Administracion extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel panelGrafico;
+    private javax.swing.JPanel panelGraficoCursos;
     private javax.swing.JPanel panelGraficoStudent;
     public static javax.swing.JTable tblCursos;
     public static javax.swing.JTable tblProfesores;

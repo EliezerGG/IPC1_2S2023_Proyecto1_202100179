@@ -225,10 +225,10 @@ public class MenuStudent extends javax.swing.JFrame {
 
     private void btnCourse1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCourse1ActionPerformed
         // TODO add your handling code here:
-        AdministracionCurso adminCursoWindow = new AdministracionCurso();
+        ModuleStudentCourse studentCourseWindow = new ModuleStudentCourse();
 
-        adminCursoWindow.setVisible(true);
-        adminCursoWindow.setLocationRelativeTo(null);
+        studentCourseWindow.setVisible(true);
+        studentCourseWindow.setLocationRelativeTo(null);
 
     }//GEN-LAST:event_btnCourse1ActionPerformed
 

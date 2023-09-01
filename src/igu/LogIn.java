@@ -171,12 +171,14 @@ public class LogIn extends javax.swing.JFrame {
             profesorWindow.setLocationRelativeTo(null);
             
             saludarProfesor(nameProfessor);
+            dispose();
             
         }else if(isStudentOnArray){
             estudianteWindow.setVisible(true);
             estudianteWindow.setLocationRelativeTo(null);
             
             saludarStudent(nameStudent);
+            dispose();
         }else{
             JOptionPane.showMessageDialog(null, "Ingresar datos correctos");
         }

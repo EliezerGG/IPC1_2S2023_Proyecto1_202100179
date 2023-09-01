@@ -1,6 +1,7 @@
 package proyecto1courses;
 
 import java.io.Serializable;
+import java.util.HashMap;
 
 
 public class HomeWork implements Serializable{
@@ -9,7 +10,9 @@ public class HomeWork implements Serializable{
     private int ponderacionHW;
     private int averageHW;
     private double nota;
-
+    private Student estudiante; 
+    private HashMap<Student, Double> notaEstudiante = new HashMap<>();
+    
     public HomeWork(){}
     
     public HomeWork(String nameHW, String descripHW, int ponderacionHW, double nota) {
@@ -61,6 +64,23 @@ public class HomeWork implements Serializable{
 
     public void setNota(double nota) {
         this.nota = nota;
+    }
+    
+    public void addStudentAndNote(Student estudiante, double nota){
+        notaEstudiante.put(estudiante, nota);
+        System.out.println("Se agrego nota al estudiante" + estudiante.getNameStudet() + nota);
+    }
+    
+    public double getNotaTarea(Student estudiante){
+        return notaEstudiante.getOrDefault(estudiante,-1.0);
+    }
+
+    public Student getEstudiante() {
+        return estudiante;
+    }
+
+    public void setEstudiante(Student estudiante) {
+        this.estudiante = estudiante;
     }
     
     
