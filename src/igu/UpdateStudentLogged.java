@@ -1,17 +1,22 @@
+
 package igu;
 
-import static igu.Administracion.index;
-import static igu.Administracion.modelo;
+import static igu.LogIn.studentLogged;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import proyecto1courses.Controladora;
-//import static proyecto1courses.Controladora.profesores;
-import static proyecto1courses.Controladora.profesoresArray;
-import proyecto1courses.Professor;
+import static proyecto1courses.Controladora.estudiantesArray;
+import proyecto1courses.Student;
 
 
-public class UpdateProfessor extends javax.swing.JFrame {
+public class UpdateStudentLogged extends javax.swing.JFrame {
 
-    Controladora control = new Controladora();
-    public UpdateProfessor() {
+   ImageIcon fotoTemporal;
+   Controladora control = new Controladora();
+    public UpdateStudentLogged() {
         initComponents();
     }
 
@@ -26,12 +31,10 @@ public class UpdateProfessor extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        txtCodeUpdateProf = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
@@ -39,6 +42,8 @@ public class UpdateProfessor extends javax.swing.JFrame {
         txtLastName = new javax.swing.JTextField();
         cboGender = new javax.swing.JComboBox<>();
         btnUpdateProfessor = new javax.swing.JButton();
+        imagenLabel = new javax.swing.JLabel();
+        btnImage = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,11 +51,7 @@ public class UpdateProfessor extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Actualizar datos Profesor");
-
-        jLabel4.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Código:");
+        jLabel3.setText("Actualizar datos Estudiante");
 
         jLabel5.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -67,16 +68,6 @@ public class UpdateProfessor extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Contraseña:");
-
-        txtCodeUpdateProf.setEditable(false);
-        txtCodeUpdateProf.setBackground(new java.awt.Color(255, 255, 255));
-        txtCodeUpdateProf.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        txtCodeUpdateProf.setForeground(new java.awt.Color(0, 0, 0));
-        txtCodeUpdateProf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCodeUpdateProfActionPerformed(evt);
-            }
-        });
 
         jLabel9.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -120,10 +111,23 @@ public class UpdateProfessor extends javax.swing.JFrame {
 
         cboGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino" }));
 
+        btnUpdateProfessor.setBackground(new java.awt.Color(23, 107, 135));
+        btnUpdateProfessor.setForeground(new java.awt.Color(255, 255, 255));
         btnUpdateProfessor.setText("Actualizar");
         btnUpdateProfessor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateProfessorActionPerformed(evt);
+            }
+        });
+
+        imagenLabel.setText("Insertar Foto");
+
+        btnImage.setBackground(new java.awt.Color(23, 107, 135));
+        btnImage.setForeground(new java.awt.Color(255, 255, 255));
+        btnImage.setText("Cambiar");
+        btnImage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImageActionPerformed(evt);
             }
         });
 
@@ -132,60 +136,70 @@ public class UpdateProfessor extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(89, 89, 89)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(164, 164, 164)
+                        .addComponent(jLabel3))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9))
-                        .addGap(6, 6, 6)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnUpdateProfessor, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                            .addComponent(txtCodeUpdateProf, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtName, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                            .addComponent(txtLastName)
-                            .addComponent(txtEmail)
-                            .addComponent(txtPassword)
-                            .addComponent(cboGender, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(130, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnImage, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(182, 182, 182)
+                                .addComponent(btnUpdateProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(imagenLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel9))
+                                .addGap(6, 6, 6)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtName)
+                                    .addComponent(txtLastName)
+                                    .addComponent(txtEmail)
+                                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cboGender, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(10, 10, 10)))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(52, 52, 52)
+                .addGap(28, 28, 28)
                 .addComponent(jLabel3)
-                .addGap(32, 32, 32)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtCodeUpdateProf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(33, 33, 33)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(cboGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                .addComponent(btnUpdateProfessor)
-                .addGap(26, 26, 26))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(imagenLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnImage))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addGap(33, 33, 33)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(cboGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnUpdateProfessor)))
+                .addGap(275, 275, 275))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -196,15 +210,13 @@ public class UpdateProfessor extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 6, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtCodeUpdateProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodeUpdateProfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCodeUpdateProfActionPerformed
 
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         // TODO add your handling code here:
@@ -229,38 +241,58 @@ public class UpdateProfessor extends javax.swing.JFrame {
         String email = txtEmail.getText();
         String password = txtPassword.getText();
         String gender = cboGender.getSelectedItem().toString();
-        
-        profesoresArray.get(index).setName(name);
-        profesoresArray.get(index).setLastName(lastName);
-        profesoresArray.get(index).setEmail(email);
-        profesoresArray.get(index).setPassWord(password);
-        profesoresArray.get(index).setGender(gender);
-        
-        control.saveData();
-        refreshTable();
-        dispose();
-    }//GEN-LAST:event_btnUpdateProfessorActionPerformed
 
-    
-    public void refreshTable(){
-        while (modelo.getRowCount() > 0) { 
-            modelo.removeRow(0);
-        }
-        
-        for (Professor profesor: profesoresArray) {
-            if (profesor != null) {
-                Object a[]= new Object[5];
-                a[0] = profesor.getCode();
-                a[1] = profesor.getName();
-                a[2] = profesor.getLastName();
-                a[3] = profesor.getEmail();
-                a[4] = profesor.getGender();
-
-                modelo.addRow(a);
+       
+        for(Student estudiante: estudiantesArray){
+            if(studentLogged.getCodeStudet().equals(estudiante.getCodeStudet()) && fotoTemporal != null){ 
+                try {
+                    estudiante.setNameStudet(name);
+                    estudiante.setLastNameStudent(lastName);
+                    estudiante.setEmailStudent(email);
+                    estudiante.setPasswordStudent(password);
+                    estudiante.setGender(gender);
+                    estudiante.setPhotoStudent(fotoTemporal); 
+                    
+                    studentLogged.setNameStudet(name);
+                    studentLogged.setLastNameStudent(lastName);
+                    studentLogged.setEmailStudent(email);
+                    studentLogged.setPasswordStudent(password);
+                    studentLogged.setGender(gender);
+                    studentLogged.setPhotoStudent(fotoTemporal); 
+                    
+                    JOptionPane.showMessageDialog(null, "se guardo");  
+                    
+                    control.saveData();
+                    dispose();
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "no se guardo");
+                }
+                          
             }
         }
-    
-    }
+                
+        
+    }//GEN-LAST:event_btnUpdateProfessorActionPerformed
+
+    private void btnImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImageActionPerformed
+        // TODO add your handling code here:
+      String ruta = "";
+        JFileChooser jFileChooser = new JFileChooser(); //Ventana para escojer nuestro archivo
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG,PNG", "jpg", "png");
+        jFileChooser.setFileFilter(filter);
+        
+        int respuestaFileChooser = jFileChooser.showOpenDialog(this);
+        
+        if(respuestaFileChooser == JFileChooser.APPROVE_OPTION){
+            ruta = jFileChooser.getSelectedFile().getPath();
+            Image imagen = new ImageIcon(ruta).getImage();
+            ImageIcon icono = new ImageIcon(imagen.getScaledInstance(imagenLabel.getWidth(), imagenLabel.getHeight(), Image.SCALE_SMOOTH));
+            fotoTemporal = icono;
+            imagenLabel.setIcon(icono);
+        }  
+        
+    }//GEN-LAST:event_btnImageActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -278,37 +310,36 @@ public class UpdateProfessor extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UpdateProfessor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateStudentLogged.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UpdateProfessor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateStudentLogged.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UpdateProfessor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateStudentLogged.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UpdateProfessor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateStudentLogged.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UpdateProfessor().setVisible(true);
+                new UpdateStudentLogged().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnImage;
     private javax.swing.JButton btnUpdateProfessor;
     private javax.swing.JComboBox<String> cboGender;
+    private javax.swing.JLabel imagenLabel;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    public static javax.swing.JTextField txtCodeUpdateProf;
     public static javax.swing.JTextField txtEmail;
     public static javax.swing.JTextField txtLastName;
     public static javax.swing.JTextField txtName;

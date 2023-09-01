@@ -3,6 +3,7 @@ package igu;
 
 import static igu.Administracion.index;
 import static igu.Administracion.modeloCourse;
+import proyecto1courses.Controladora;
 import static proyecto1courses.Controladora.cursosArray;
 import static proyecto1courses.Controladora.profesoresArray;
 import proyecto1courses.Course;
@@ -11,9 +12,7 @@ import proyecto1courses.Professor;
 
 public class UpdateCourse extends javax.swing.JFrame {
 
-    /**
-     * Creates new form UpdateCourse
-     */
+   Controladora control = new Controladora();
     public UpdateCourse() {
         initComponents();
     }
@@ -197,9 +196,8 @@ public class UpdateCourse extends javax.swing.JFrame {
         cursosArray.get(index).setCredits(credit);
         cursosArray.get(index).setProfesor(profesor);
         
-       
-        
-        
+   
+        control.saveData();
         refreshTable();
         dispose();
         

@@ -3,6 +3,7 @@ package proyecto1courses;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import javax.swing.ImageIcon;
 
 public class Student implements Serializable{
     
@@ -12,6 +13,7 @@ public class Student implements Serializable{
     private String emailStudent;
     private String passwordStudent;
     private String gender;
+    private ImageIcon photoStudent;
     private ArrayList<Course> cursosEstudiante = new ArrayList<>();
     private HashMap<Course, Double> cursoNotas = new HashMap<>();
 
@@ -117,6 +119,14 @@ public class Student implements Serializable{
     public double obtenerNota(Course curso){
         return cursoNotas.getOrDefault(curso,-1.0);
     }
+
+    public ImageIcon getPhotoStudent() {
+        return photoStudent;
+    }
+
+    public void setPhotoStudent(ImageIcon photoStudent) {
+        this.photoStudent = photoStudent;
+    }
     
-  
+    
 }

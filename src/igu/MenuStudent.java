@@ -32,10 +32,14 @@ public class MenuStudent extends javax.swing.JFrame {
         txtNameProfesor3 = new javax.swing.JTextField();
         btnCourse4 = new javax.swing.JButton();
         txtNameProfesor4 = new javax.swing.JTextField();
-        btnRefresh = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel3.setBackground(new java.awt.Color(23, 107, 135));
 
@@ -113,15 +117,6 @@ public class MenuStudent extends javax.swing.JFrame {
             }
         });
 
-        btnRefresh.setBackground(new java.awt.Color(23, 107, 135));
-        btnRefresh.setForeground(new java.awt.Color(255, 255, 255));
-        btnRefresh.setText("Refrescar");
-        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRefreshActionPerformed(evt);
-            }
-        });
-
         btnExit.setBackground(new java.awt.Color(23, 107, 135));
         btnExit.setForeground(new java.awt.Color(255, 255, 255));
         btnExit.setText("Salir");
@@ -165,9 +160,7 @@ public class MenuStudent extends javax.swing.JFrame {
                                         .addComponent(btnCourse4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(80, 80, 80))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnRefresh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
@@ -199,11 +192,9 @@ public class MenuStudent extends javax.swing.JFrame {
                         .addComponent(btnCourse4, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtNameProfesor4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(35, 35, 35)
-                .addComponent(btnRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(btnExit)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -222,10 +213,12 @@ public class MenuStudent extends javax.swing.JFrame {
 
     private void btnUpdateSutdentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateSutdentActionPerformed
         // TODO add your handling code here:
-        UpdateProfessorLogged updateThisProfessor = new UpdateProfessorLogged();
-        updateThisProfessor.setVisible(true);
-        updateThisProfessor.setLocationRelativeTo(null);
 
+          UpdateStudentLogged updateThisStudent = new UpdateStudentLogged();
+          updateThisStudent.setVisible(true);
+          updateThisStudent.setLocationRelativeTo(null);
+
+            
     }//GEN-LAST:event_btnUpdateSutdentActionPerformed
 
     private void btnCourse1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCourse1ActionPerformed
@@ -253,16 +246,6 @@ public class MenuStudent extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNameProfesor4ActionPerformed
 
-    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
-        // TODO add your handling code here:
-        btnCourse1.setText(studentLogged.getCursosEstudiante().get(0).getNameCourse());
-        txtNameProfesor.setText(studentLogged.getCursosEstudiante().get(0).getProfesor().getName() + 
-                " "+ studentLogged.getCursosEstudiante().get(0).getProfesor().getLastName());
-        
-        
-
-    }//GEN-LAST:event_btnRefreshActionPerformed
-
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // TODO add your handling code here:
         dispose();
@@ -270,6 +253,15 @@ public class MenuStudent extends javax.swing.JFrame {
         logInWindow.setVisible(true);
         logInWindow.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        btnCourse1.setText(studentLogged.getCursosEstudiante().get(0).getNameCourse());
+        txtNameProfesor.setText(studentLogged.getCursosEstudiante().get(0).getProfesor().getName() + 
+                " "+ studentLogged.getCursosEstudiante().get(0).getProfesor().getLastName());
+        
+        
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -312,7 +304,6 @@ public class MenuStudent extends javax.swing.JFrame {
     private javax.swing.JButton btnCourse3;
     private javax.swing.JButton btnCourse4;
     private javax.swing.JButton btnExit;
-    private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnUpdateSutdent;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel3;

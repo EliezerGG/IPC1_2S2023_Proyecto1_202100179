@@ -2,10 +2,11 @@ package igu;
 
 import static igu.LogIn.profesorLogged;
 import javax.swing.JOptionPane;
+import proyecto1courses.Controladora;
 
 public class UpdateProfessorLogged extends javax.swing.JFrame {
 
-    
+    Controladora control = new Controladora();
     public UpdateProfessorLogged() {
         initComponents();
     }
@@ -232,6 +233,7 @@ public class UpdateProfessorLogged extends javax.swing.JFrame {
         profesorLogged.setPassWord(password);
         profesorLogged.setGender(gender);
        
+        control.saveData();
         dispose();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "no se actualizo vea si estan los datos correctos");
