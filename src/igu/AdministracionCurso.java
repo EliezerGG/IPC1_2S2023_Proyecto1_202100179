@@ -36,16 +36,13 @@ public class AdministracionCurso extends javax.swing.JFrame {
     DefaultTableModel modeloStudent = new DefaultTableModel();
     DefaultTableModel modeloHomeWork = new DefaultTableModel();
     Course cursoFind= null;
+    int totalPonderacion = 0;
     
     public AdministracionCurso() {
         initComponents();
 //        lblNameCourse.setText(profesorLogged.getCursosProfArray().get(0).getNameCourse());
 
-        for(Course curso :cursosArray){
-            if (curso == profesorLogged.getCursosProfArray().get(0)) {
-                cursoFind = curso;
-            }
-        }
+
         
         if (modeloStudent.getColumnCount() == 0) {
             modeloStudent.addColumn("Codigo");
@@ -443,7 +440,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
         FileReader fr = null;
         BufferedReader br = null;
         
-        try {
+       try {
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
             
@@ -454,8 +451,14 @@ public class AdministracionCurso extends javax.swing.JFrame {
             double sumaNotas = 0;
             int cantNotas = 0; 
             int averegeNotas = 0;
-            
             ArrayList<Double> notasArray = new ArrayList<>();
+            
+            totalPonderacion = ponderacion + totalPonderacion;
+            
+        if (totalPonderacion >100) {
+            JOptionPane.showMessageDialog(null, "No se puede agregar mas tarea, total excedido");
+
+        }else{
             
             while((line = br.readLine()) != null){
                 String [] arreglo = line.split(",");
@@ -476,19 +479,25 @@ public class AdministracionCurso extends javax.swing.JFrame {
                                         
                 }
             }
-            cantNotas = notasArray.size();
-            for(double nota: notasArray){
-                sumaNotas += nota;
-            }
-            averegeNotas = (int) ((sumaNotas) /cantNotas);
-
-            profesorLogged.getCursosProfArray().get(0).addHomeWorkToCourse(nameHW,descripHW,
-                    ponderacion, averegeNotas);
-            
-            System.out.println( profesorLogged.getCursosProfArray().get(0).getTareasArrayProfesor().size());
-            loadTableTarea();
-        } catch (Exception e) {
+        lblAcumulado.setText(totalPonderacion+"/100");      
+        cantNotas = notasArray.size();
+        for(double nota: notasArray){
+            sumaNotas += nota;
         }
+        averegeNotas = (int) ((sumaNotas) /cantNotas);
+
+        profesorLogged.getCursosProfArray().get(0).addHomeWorkToCourse(nameHW,descripHW,
+                ponderacion, averegeNotas);
+
+        System.out.println( profesorLogged.getCursosProfArray().get(0).getTareasArrayProfesor().size());
+        loadTableTarea();    
+            
+        }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No se puede agregar mas tarea, total excedido");
+        }
+
     }
     
     public void loadTableTarea(){
@@ -512,6 +521,12 @@ public class AdministracionCurso extends javax.swing.JFrame {
     
     private void btnAddActivityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActivityActionPerformed
         // TODO add your handling code here:
+        int ponderacion =Integer.valueOf(txtPonderacion.getText()) ;
+        
+        
+        totalPonderacion = ponderacion + totalPonderacion;
+        lblAcumulado.setText(totalPonderacion+"/100");
+        
     }//GEN-LAST:event_btnAddActivityActionPerformed
 
     private void btnTopBestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTopBestActionPerformed
@@ -585,7 +600,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
            loadFileStudent(selectedFile);
         
         } 
-
+        control.saveData();
     }//GEN-LAST:event_btnCargaMasivaStudentActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
@@ -597,6 +612,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
+
         loadTableStudent();
         loadTableTarea();
     }//GEN-LAST:event_formWindowOpened
