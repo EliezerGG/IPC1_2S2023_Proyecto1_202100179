@@ -659,7 +659,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
             modeloStudent.removeRow(0);
         }
         
-        for (Student estudianteCurso: studentsForThisCourse) {
+        for (Student estudianteCurso: profesorLogged.getCursosProfArray().get(0).getStudentsArray()) {
             if (estudianteCurso != null) {
                 Object a[]= new Object[4];
                 a[0] = estudianteCurso.getCodeStudet();
