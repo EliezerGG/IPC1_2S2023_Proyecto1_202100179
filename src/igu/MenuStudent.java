@@ -2,6 +2,7 @@
 package igu;
 
 import static igu.LogIn.studentLogged;
+import proyecto1courses.Course;
 
 
 public class MenuStudent extends javax.swing.JFrame {
@@ -25,15 +26,9 @@ public class MenuStudent extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         btnUpdateSutdent = new javax.swing.JButton();
         labelSaludarStudent = new javax.swing.JLabel();
-        btnCourse1 = new javax.swing.JButton();
-        txtNameProfesor = new javax.swing.JTextField();
-        btnCourse2 = new javax.swing.JButton();
-        txtNameProfesor2 = new javax.swing.JTextField();
-        btnCourse3 = new javax.swing.JButton();
-        txtNameProfesor3 = new javax.swing.JTextField();
-        btnCourse4 = new javax.swing.JButton();
-        txtNameProfesor4 = new javax.swing.JTextField();
         btnExit = new javax.swing.JButton();
+        cboCursosEstudiante = new javax.swing.JComboBox<>();
+        btnGoToCourseStudent = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -61,84 +56,21 @@ public class MenuStudent extends javax.swing.JFrame {
         labelSaludarStudent.setForeground(new java.awt.Color(255, 255, 255));
         labelSaludarStudent.setText("insertar nombre estudiante");
 
-        btnCourse1.setBackground(new java.awt.Color(0, 28, 48));
-        btnCourse1.setForeground(new java.awt.Color(255, 255, 255));
-        btnCourse1.setText("Curso 1");
-        btnCourse1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCourse1ActionPerformed(evt);
-            }
-        });
-
-        txtNameProfesor.setBackground(new java.awt.Color(100, 204, 197));
-        txtNameProfesor.setForeground(new java.awt.Color(0, 0, 0));
-        txtNameProfesor.setText("name prof");
-        txtNameProfesor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNameProfesorActionPerformed(evt);
-            }
-        });
-
-        btnCourse2.setBackground(new java.awt.Color(0, 28, 48));
-        btnCourse2.setForeground(new java.awt.Color(255, 255, 255));
-        btnCourse2.setText("Curso 2");
-        btnCourse2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCourse2ActionPerformed(evt);
-            }
-        });
-
-        txtNameProfesor2.setBackground(new java.awt.Color(100, 204, 197));
-        txtNameProfesor2.setForeground(new java.awt.Color(0, 0, 0));
-        txtNameProfesor2.setText("name prof");
-        txtNameProfesor2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNameProfesor2ActionPerformed(evt);
-            }
-        });
-
-        btnCourse3.setBackground(new java.awt.Color(0, 28, 48));
-        btnCourse3.setForeground(new java.awt.Color(255, 255, 255));
-        btnCourse3.setText("Curso 3");
-        btnCourse3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCourse3ActionPerformed(evt);
-            }
-        });
-
-        txtNameProfesor3.setBackground(new java.awt.Color(100, 204, 197));
-        txtNameProfesor3.setForeground(new java.awt.Color(0, 0, 0));
-        txtNameProfesor3.setText("name prof");
-        txtNameProfesor3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNameProfesor3ActionPerformed(evt);
-            }
-        });
-
-        btnCourse4.setBackground(new java.awt.Color(0, 28, 48));
-        btnCourse4.setForeground(new java.awt.Color(255, 255, 255));
-        btnCourse4.setText("Curso 4");
-        btnCourse4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCourse4ActionPerformed(evt);
-            }
-        });
-
-        txtNameProfesor4.setBackground(new java.awt.Color(100, 204, 197));
-        txtNameProfesor4.setForeground(new java.awt.Color(0, 0, 0));
-        txtNameProfesor4.setText("name prof");
-        txtNameProfesor4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNameProfesor4ActionPerformed(evt);
-            }
-        });
-
         btnExit.setBackground(new java.awt.Color(23, 107, 135));
         btnExit.setForeground(new java.awt.Color(255, 255, 255));
         btnExit.setText("Salir");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExitActionPerformed(evt);
+            }
+        });
+
+        btnGoToCourseStudent.setBackground(new java.awt.Color(0, 28, 48));
+        btnGoToCourseStudent.setForeground(new java.awt.Color(255, 255, 255));
+        btnGoToCourseStudent.setText("Ir a Curso");
+        btnGoToCourseStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGoToCourseStudentActionPerformed(evt);
             }
         });
 
@@ -153,64 +85,38 @@ public class MenuStudent extends javax.swing.JFrame {
                         .addComponent(labelSaludarStudent)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnUpdateSutdent))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(txtNameProfesor3, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(btnCourse3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(txtNameProfesor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                                        .addComponent(btnCourse1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(txtNameProfesor2, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(btnCourse2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(txtNameProfesor4, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(btnCourse4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(80, 80, 80))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(jLabel6)
+                        .addGap(80, 345, Short.MAX_VALUE))))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnUpdateSutdent)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addGap(145, 145, 145)
+                            .addComponent(cboCursosEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnGoToCourseStudent))
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addGap(25, 25, 25)
+                            .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(44, 44, 44)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(btnUpdateSutdent))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(labelSaludarStudent)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCourse1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNameProfesor, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(btnCourse2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNameProfesor2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(43, 43, 43)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(btnCourse3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNameProfesor3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(btnCourse4, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNameProfesor4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                .addComponent(labelSaludarStudent)
+                .addGap(83, 83, 83)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cboCursosEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGoToCourseStudent))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                 .addComponent(btnExit)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addGap(92, 92, 92))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -237,33 +143,6 @@ public class MenuStudent extends javax.swing.JFrame {
             
     }//GEN-LAST:event_btnUpdateSutdentActionPerformed
 
-    private void btnCourse1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCourse1ActionPerformed
-        // TODO add your handling code here:
-        fCindex =0;
-        
-        ModuleStudentCourse studentCourseWindow = new ModuleStudentCourse();
-
-        studentCourseWindow.setVisible(true);
-        studentCourseWindow.setLocationRelativeTo(null);
-        
-    }//GEN-LAST:event_btnCourse1ActionPerformed
-
-    private void txtNameProfesorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameProfesorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNameProfesorActionPerformed
-
-    private void txtNameProfesor2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameProfesor2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNameProfesor2ActionPerformed
-
-    private void txtNameProfesor3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameProfesor3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNameProfesor3ActionPerformed
-
-    private void txtNameProfesor4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameProfesor4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNameProfesor4ActionPerformed
-
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // TODO add your handling code here:
         dispose();
@@ -274,49 +153,27 @@ public class MenuStudent extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        btnCourse1.setText(studentLogged.getCursosEstudiante().get(0).getNameCourse());
-        txtNameProfesor.setText(studentLogged.getCursosEstudiante().get(0).getProfesor().getName() + 
-                " "+ studentLogged.getCursosEstudiante().get(0).getProfesor().getLastName());
+        for(Course curso: studentLogged.getCursosEstudiante()){
+            cboCursosEstudiante.addItem(curso.getNameCourse() +" "+ 
+                    curso.getProfesor().getName()+ " "+ 
+                    curso.getProfesor().getLastName());
+        }
+
         
-        btnCourse2.setText(studentLogged.getCursosEstudiante().get(1).getNameCourse());
-        txtNameProfesor2.setText(studentLogged.getCursosEstudiante().get(1).getProfesor().getName() + 
-                " "+ studentLogged.getCursosEstudiante().get(1).getProfesor().getLastName());
         
-        btnCourse3.setText(studentLogged.getCursosEstudiante().get(2).getNameCourse());
-        txtNameProfesor3.setText(studentLogged.getCursosEstudiante().get(2).getProfesor().getName() + 
-                " "+ studentLogged.getCursosEstudiante().get(2).getProfesor().getLastName());
         
-        btnCourse4.setText(studentLogged.getCursosEstudiante().get(3).getNameCourse());
-        txtNameProfesor4.setText(studentLogged.getCursosEstudiante().get(3).getProfesor().getName() + 
-                " "+ studentLogged.getCursosEstudiante().get(3).getProfesor().getLastName());
     }//GEN-LAST:event_formWindowOpened
 
-    private void btnCourse2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCourse2ActionPerformed
+    private void btnGoToCourseStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoToCourseStudentActionPerformed
         // TODO add your handling code here:
-        fCindex = 1;
         ModuleStudentCourse studentCourseWindow = new ModuleStudentCourse();
 
         studentCourseWindow.setVisible(true);
         studentCourseWindow.setLocationRelativeTo(null);
-    }//GEN-LAST:event_btnCourse2ActionPerformed
-
-    private void btnCourse3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCourse3ActionPerformed
-        // TODO add your handling code here:
-        fCindex =2;
-        ModuleStudentCourse studentCourseWindow = new ModuleStudentCourse();
-
-        studentCourseWindow.setVisible(true);
-        studentCourseWindow.setLocationRelativeTo(null);
-    }//GEN-LAST:event_btnCourse3ActionPerformed
-
-    private void btnCourse4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCourse4ActionPerformed
-        // TODO add your handling code here:
-        fCindex =3;
-        ModuleStudentCourse studentCourseWindow = new ModuleStudentCourse();
-
-        studentCourseWindow.setVisible(true);
-        studentCourseWindow.setLocationRelativeTo(null);
-    }//GEN-LAST:event_btnCourse4ActionPerformed
+        
+        fCindex = cboCursosEstudiante.getSelectedIndex();
+        
+    }//GEN-LAST:event_btnGoToCourseStudentActionPerformed
 
     /**
      * @param args the command line arguments
@@ -354,18 +211,12 @@ public class MenuStudent extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCourse1;
-    private javax.swing.JButton btnCourse2;
-    private javax.swing.JButton btnCourse3;
-    private javax.swing.JButton btnCourse4;
     private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnGoToCourseStudent;
     private javax.swing.JButton btnUpdateSutdent;
+    private javax.swing.JComboBox<String> cboCursosEstudiante;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel3;
     public static javax.swing.JLabel labelSaludarStudent;
-    private javax.swing.JTextField txtNameProfesor;
-    private javax.swing.JTextField txtNameProfesor2;
-    private javax.swing.JTextField txtNameProfesor3;
-    private javax.swing.JTextField txtNameProfesor4;
     // End of variables declaration//GEN-END:variables
 }

@@ -17,6 +17,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 import static igu.LogIn.profesorLogged;
+import static igu.MenuProfesor.fcPindex;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -35,12 +36,12 @@ public class AdministracionCurso extends javax.swing.JFrame {
     ArrayList<Student> studentsForThisCourse =new ArrayList<>();
     DefaultTableModel modeloStudent = new DefaultTableModel();
     DefaultTableModel modeloHomeWork = new DefaultTableModel();
-    Course cursoFind= null;
+    
     int totalPonderacion = 0;
     
     public AdministracionCurso() {
         initComponents();
-//        lblNameCourse.setText(profesorLogged.getCursosProfArray().get(0).getNameCourse());
+
 
 
         
@@ -386,7 +387,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
             table.addCell("Nota Acumulada");
             
             List<Student> bestStudents = studentsForThisCourse.stream()
-                    .sorted(Comparator.comparingDouble((Student estudiante) -> estudiante.obtenerNota(profesorLogged.getCursosProfArray().get(0)))).limit(5).collect(Collectors.toList());
+                    .sorted(Comparator.comparingDouble((Student estudiante) -> estudiante.obtenerNota(profesorLogged.getCursosProfArray().get(fcPindex)))).limit(5).collect(Collectors.toList());
                                
                               
                         
@@ -396,7 +397,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
                 table.addCell(estudiante.getNameStudet());
                 table.addCell(estudiante.getLastNameStudent());
                 table.addCell(estudiante.getEmailStudent());
-               table.addCell(String.valueOf(estudiante.obtenerNota(profesorLogged.getCursosProfArray().get(0))));
+               table.addCell(String.valueOf(estudiante.obtenerNota(profesorLogged.getCursosProfArray().get(fcPindex))));
                 i++;
            }
           
@@ -407,7 +408,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
           
             System.out.println("PDF Creado");
             JOptionPane.showMessageDialog(null, "PDF Creado");
-            
+             
         } catch (FileNotFoundException ex) {
             System.out.println(ex.getMessage());
         } catch(IOException ex){
@@ -470,11 +471,11 @@ public class AdministracionCurso extends javax.swing.JFrame {
 //                            estudiante.getCursosEstudiante().get(0).addHomeWorkToStudent(nameHW, descripHW,
 //                                    ponderacion, Double.valueOf(arreglo[1]), estudiante);
                             
-                System.out.println( profesorLogged.getCursosProfArray().get(0).getTareasArrayProfesor().size());
-                estudiante.addCourseAndNote(profesorLogged.getCursosProfArray().get(0), Double.valueOf(arreglo[1]));
+                System.out.println( profesorLogged.getCursosProfArray().get(fcPindex).getTareasArrayProfesor().size());
+                estudiante.addCourseAndNote(profesorLogged.getCursosProfArray().get(fcPindex), Double.valueOf(arreglo[1]));
                             
         for (Course curso : estudiante.getCursosEstudiante()) {
-            if (curso == profesorLogged.getCursosProfArray().get(0)) {
+            if (curso == profesorLogged.getCursosProfArray().get(fcPindex)) {
                 curso.addHomeWorkToStudent(nameHW, descripHW, ponderacion, Double.valueOf(arreglo[1]), estudiante);
             }
         }
@@ -491,10 +492,10 @@ public class AdministracionCurso extends javax.swing.JFrame {
         }
         averegeNotas = (int) ((sumaNotas) /cantNotas);
 
-        profesorLogged.getCursosProfArray().get(0).addHomeWorkToCourse(nameHW,descripHW,
+        profesorLogged.getCursosProfArray().get(fcPindex).addHomeWorkToCourse(nameHW,descripHW,
                 ponderacion, averegeNotas);
 
-        System.out.println( profesorLogged.getCursosProfArray().get(0).getTareasArrayProfesor().size());
+        System.out.println( profesorLogged.getCursosProfArray().get(fcPindex).getTareasArrayProfesor().size());
         loadTableTarea();    
             
         }
@@ -510,7 +511,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
             modeloHomeWork.removeRow(0);
         }
         
-        for (HomeWork tarea: profesorLogged.getCursosProfArray().get(0).getTareasArrayProfesor()) {
+        for (HomeWork tarea: profesorLogged.getCursosProfArray().get(fcPindex).getTareasArrayProfesor()) {
             if (tarea != null) {
                 Object a[]= new Object[4];
                 a[0] = tarea.getNameHW();
@@ -554,7 +555,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
             table.addCell("Nota Acumulada");
             
             List<Student> bestStudents = studentsForThisCourse.stream()
-                    .sorted(Comparator.comparingDouble((Student estudiante) -> estudiante.obtenerNota(profesorLogged.getCursosProfArray().get(0))).reversed()).limit(5).collect(Collectors.toList());
+                    .sorted(Comparator.comparingDouble((Student estudiante) -> estudiante.obtenerNota(profesorLogged.getCursosProfArray().get(fcPindex))).reversed()).limit(5).collect(Collectors.toList());
                                
                               
                         
@@ -564,7 +565,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
                 table.addCell(estudiante.getNameStudet());
                 table.addCell(estudiante.getLastNameStudent());
                 table.addCell(estudiante.getEmailStudent());
-               table.addCell(String.valueOf(estudiante.obtenerNota(profesorLogged.getCursosProfArray().get(0))));
+               table.addCell(String.valueOf(estudiante.obtenerNota(profesorLogged.getCursosProfArray().get(fcPindex))));
                 i++;
            }
           
@@ -617,7 +618,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-
+        lblNameCourse.setText(profesorLogged.getCursosProfArray().get(fcPindex).getNameCourse());
         loadTableStudent();
         loadTableTarea();
     }//GEN-LAST:event_formWindowOpened
@@ -638,14 +639,14 @@ public class AdministracionCurso extends javax.swing.JFrame {
                 if (arreglo.length >=1) {                                
                     for(Student estudiante: estudiantesArray){
                         if (estudiante.getCodeStudet().equals(arreglo[0])) {
-                             profesorLogged.getCursosProfArray().get(0).addStudentsToCourse(estudiante);
+                             profesorLogged.getCursosProfArray().get(fcPindex).addStudentsToCourse(estudiante);
                              
                              studentsForThisCourse.add(estudiante);
-                             estudiante.addCourseToStudent(profesorLogged.getCursosProfArray().get(0));
-                             System.out.println( profesorLogged.getCursosProfArray().get(0).getStudentCount());
+                             estudiante.addCourseToStudent(profesorLogged.getCursosProfArray().get(fcPindex));
+                             System.out.println( profesorLogged.getCursosProfArray().get(fcPindex).getStudentCount());
 
                             for(Course curso : cursosArray){
-                                if (profesorLogged.getCursosProfArray().get(0).getCodeCourse().equals(curso.getCodeCourse())) {
+                                if (profesorLogged.getCursosProfArray().get(fcPindex).getCodeCourse().equals(curso.getCodeCourse())) {
                                      curso.addStudentsToCourse(estudiante);                                    
                                 }
                             }
@@ -664,7 +665,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
             modeloStudent.removeRow(0);
         }
         
-        for (Student estudianteCurso: profesorLogged.getCursosProfArray().get(0).getStudentsArray()) {
+        for (Student estudianteCurso: profesorLogged.getCursosProfArray().get(fcPindex).getStudentsArray()) {
             if (estudianteCurso != null) {
                 Object a[]= new Object[4];
                 a[0] = estudianteCurso.getCodeStudet();
