@@ -29,7 +29,6 @@ public class MenuProfesor extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         btnUpdateProfesor = new javax.swing.JButton();
         labelSaludar = new javax.swing.JLabel();
-        btnRefresh = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
         cboCursosDeProfesor = new javax.swing.JComboBox<>();
         btnGoToCourse = new javax.swing.JButton();
@@ -60,15 +59,6 @@ public class MenuProfesor extends javax.swing.JFrame {
         labelSaludar.setForeground(new java.awt.Color(255, 255, 255));
         labelSaludar.setText("insertar nombre profesor");
 
-        btnRefresh.setBackground(new java.awt.Color(23, 107, 135));
-        btnRefresh.setForeground(new java.awt.Color(255, 255, 255));
-        btnRefresh.setText("Refrescar");
-        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRefreshActionPerformed(evt);
-            }
-        });
-
         btnExit.setBackground(new java.awt.Color(23, 107, 135));
         btnExit.setForeground(new java.awt.Color(255, 255, 255));
         btnExit.setText("Salir");
@@ -97,31 +87,25 @@ public class MenuProfesor extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(labelSaludar)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnRefresh))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
+                                .addGap(205, 205, 205)
                                 .addComponent(btnUpdateProfesor))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(cboCursosDeProfesor, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(34, 34, 34)
-                                .addComponent(btnGoToCourse)))
-                        .addGap(80, 80, 80))))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(btnGoToCourse)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 86, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(44, 44, 44)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(btnUpdateProfesor))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -129,12 +113,9 @@ public class MenuProfesor extends javax.swing.JFrame {
                 .addGap(89, 89, 89)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cboCursosDeProfesor, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGoToCourse))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnRefresh)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-                .addComponent(btnExit)
-                .addGap(103, 103, 103))
+                    .addComponent(btnGoToCourse)
+                    .addComponent(btnExit))
+                .addContainerGap(193, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -150,16 +131,6 @@ public class MenuProfesor extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
-        // TODO add your handling code here:
- 
-        for(Course curso: profesorLogged.getCursosProfArray()){
-            cboCursosDeProfesor.addItem(curso.getNameCourse());
-        }
-        
-        
-    }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void btnUpdateProfesorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateProfesorActionPerformed
         // TODO add your handling code here:
@@ -238,7 +209,6 @@ public class MenuProfesor extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnGoToCourse;
-    private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnUpdateProfesor;
     private javax.swing.JComboBox<String> cboCursosDeProfesor;
     private javax.swing.JLabel jLabel6;

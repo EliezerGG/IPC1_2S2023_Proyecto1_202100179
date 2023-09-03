@@ -38,6 +38,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
     DefaultTableModel modeloHomeWork = new DefaultTableModel();
     
     int totalPonderacion = 0;
+    int fStudentProf = 0;
     
     public AdministracionCurso() {
         initComponents();
@@ -99,6 +100,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
         txtDescActivity = new javax.swing.JTextField();
         txtPonderacion = new javax.swing.JTextField();
         btnExit = new javax.swing.JButton();
+        btnShowInfoStudent = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -243,6 +245,15 @@ public class AdministracionCurso extends javax.swing.JFrame {
             }
         });
 
+        btnShowInfoStudent.setBackground(new java.awt.Color(100, 204, 197));
+        btnShowInfoStudent.setForeground(new java.awt.Color(255, 255, 255));
+        btnShowInfoStudent.setText("Ver info Estudiante");
+        btnShowInfoStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnShowInfoStudentActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -263,7 +274,8 @@ public class AdministracionCurso extends javax.swing.JFrame {
                             .addComponent(btnTopBest, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
                             .addComponent(btnCargaMasivaStudent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(btnTopWrost, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnTopWrost, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnShowInfoStudent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -336,7 +348,9 @@ public class AdministracionCurso extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnCargaMasivaStudent)
-                        .addGap(44, 44, 44)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnShowInfoStudent)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(labelSaludar2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnTopBest, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -623,6 +637,22 @@ public class AdministracionCurso extends javax.swing.JFrame {
         loadTableTarea();
     }//GEN-LAST:event_formWindowOpened
 
+    private void btnShowInfoStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowInfoStudentActionPerformed
+        // TODO add your handling code here:
+        ShowInformation infoStudent = new ShowInformation();
+        infoStudent.setVisible(true);
+        infoStudent.setLocationRelativeTo(null);
+        
+        int selectedRowStudent = tblStudentsCourse.getSelectedRow();
+        
+        if (selectedRowStudent != 1) {
+            
+            fStudentProf = selectedRowStudent;
+        }else{
+            JOptionPane.showMessageDialog(null, "Seleccione una fila");
+        }
+    }//GEN-LAST:event_btnShowInfoStudentActionPerformed
+
     public void loadFileStudent(File archivo){
         
         FileReader fr = null;
@@ -646,7 +676,8 @@ public class AdministracionCurso extends javax.swing.JFrame {
                              System.out.println( profesorLogged.getCursosProfArray().get(fcPindex).getStudentCount());
 
                             for(Course curso : cursosArray){
-                                if (profesorLogged.getCursosProfArray().get(fcPindex).getCodeCourse().equals(curso.getCodeCourse())) {
+                                if (profesorLogged.getCursosProfArray().get(fcPindex).getCodeCourse()
+                                        .equals(curso.getCodeCourse())) {
                                      curso.addStudentsToCourse(estudiante);                                    
                                 }
                             }
@@ -719,6 +750,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
     private javax.swing.JButton btnCargaMasivaStudent;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnNotasCSV;
+    private javax.swing.JButton btnShowInfoStudent;
     private javax.swing.JButton btnTopBest;
     private javax.swing.JButton btnTopWrost;
     private javax.swing.JPanel jPanel1;
