@@ -1,12 +1,22 @@
 package igu;
 
+import static igu.AdministracionCurso.fStudentProf;
+import static igu.AdministracionCurso.modeloStudent;
+import static igu.LogIn.profesorLogged;
+import static igu.MenuProfesor.fcPindex;
+import java.util.Iterator;
+import javax.swing.Icon;
+import proyecto1courses.Controladora;
+import static proyecto1courses.Controladora.estudiantesArray;
+import proyecto1courses.Course;
+import proyecto1courses.Student;
+
 public class ShowInformation extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ShowInformation
-     */
+  Controladora control = new Controladora();
     public ShowInformation() {
         initComponents();
+
     }
 
     /**
@@ -31,11 +41,16 @@ public class ShowInformation extends javax.swing.JFrame {
         txtLastName = new javax.swing.JTextField();
         imagenLabel = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        txtPassword1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        txtGenero = new javax.swing.JTextField();
+        btnDeleteStudent = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 28, 48));
 
@@ -63,6 +78,7 @@ public class ShowInformation extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Género:");
 
+        txtPassword.setEditable(false);
         txtPassword.setBackground(new java.awt.Color(255, 255, 255));
         txtPassword.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtPassword.setForeground(new java.awt.Color(0, 0, 0));
@@ -72,6 +88,7 @@ public class ShowInformation extends javax.swing.JFrame {
             }
         });
 
+        txtEmail.setEditable(false);
         txtEmail.setBackground(new java.awt.Color(255, 255, 255));
         txtEmail.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtEmail.setForeground(new java.awt.Color(0, 0, 0));
@@ -81,6 +98,7 @@ public class ShowInformation extends javax.swing.JFrame {
             }
         });
 
+        txtName.setEditable(false);
         txtName.setBackground(new java.awt.Color(255, 255, 255));
         txtName.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtName.setForeground(new java.awt.Color(0, 0, 0));
@@ -90,6 +108,7 @@ public class ShowInformation extends javax.swing.JFrame {
             }
         });
 
+        txtLastName.setEditable(false);
         txtLastName.setBackground(new java.awt.Color(255, 255, 255));
         txtLastName.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtLastName.setForeground(new java.awt.Color(0, 0, 0));
@@ -106,22 +125,33 @@ public class ShowInformation extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Foto");
 
-        txtPassword1.setBackground(new java.awt.Color(255, 255, 255));
-        txtPassword1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        txtPassword1.setForeground(new java.awt.Color(0, 0, 0));
-        txtPassword1.addActionListener(new java.awt.event.ActionListener() {
+        txtGenero.setEditable(false);
+        txtGenero.setBackground(new java.awt.Color(255, 255, 255));
+        txtGenero.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        txtGenero.setForeground(new java.awt.Color(0, 0, 0));
+        txtGenero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPassword1ActionPerformed(evt);
+                txtGeneroActionPerformed(evt);
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(144, 12, 63));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Elimnar del Curso");
+        btnDeleteStudent.setBackground(new java.awt.Color(144, 12, 63));
+        btnDeleteStudent.setForeground(new java.awt.Color(255, 255, 255));
+        btnDeleteStudent.setText("Elimnar del Curso");
+        btnDeleteStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteStudentActionPerformed(evt);
+            }
+        });
 
-        jButton2.setBackground(new java.awt.Color(23, 107, 135));
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Salir");
+        btnSalir.setBackground(new java.awt.Color(23, 107, 135));
+        btnSalir.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -133,7 +163,7 @@ public class ShowInformation extends javax.swing.JFrame {
                     .addComponent(jLabel10)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1)
+                            .addComponent(btnDeleteStudent)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(imagenLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(34, 34, 34)
@@ -150,8 +180,8 @@ public class ShowInformation extends javax.swing.JFrame {
                                 .addComponent(txtLastName)
                                 .addComponent(txtEmail)
                                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtPassword1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel3))
                 .addGap(10, 10, 10))
         );
@@ -185,11 +215,11 @@ public class ShowInformation extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(txtPassword1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnDeleteStudent)
+                    .addComponent(btnSalir))
                 .addGap(245, 245, 245))
         );
 
@@ -223,9 +253,74 @@ public class ShowInformation extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtLastNameActionPerformed
 
-    private void txtPassword1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassword1ActionPerformed
+    private void txtGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGeneroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPassword1ActionPerformed
+    }//GEN-LAST:event_txtGeneroActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        // TODO add your handling code here:
+        control.saveData();
+        dispose();
+        
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+       
+        Icon icon = profesorLogged.getCursosProfArray().get(fcPindex)
+        .getStudentsArray().get(fStudentProf).getPhotoStudent();
+
+        if (icon != null) {
+            imagenLabel.setIcon(icon);
+        } else {
+           
+            System.out.println("No image found");
+        }
+
+
+       txtName.setText(profesorLogged.getCursosProfArray().get(fcPindex)
+               .getStudentsArray().get(fStudentProf).getNameStudet());
+        
+        txtLastName.setText(profesorLogged.getCursosProfArray().get(fcPindex)
+               .getStudentsArray().get(fStudentProf).getLastNameStudent());
+        
+        txtEmail.setText(profesorLogged.getCursosProfArray().get(fcPindex)
+               .getStudentsArray().get(fStudentProf).getEmailStudent());
+        
+        txtPassword.setText(profesorLogged.getCursosProfArray().get(fcPindex)
+               .getStudentsArray().get(fStudentProf).getPasswordStudent());
+        
+        txtGenero.setText(profesorLogged.getCursosProfArray().get(fcPindex)
+               .getStudentsArray().get(fStudentProf).getGender());
+        
+    }//GEN-LAST:event_formWindowOpened
+
+    private void btnDeleteStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteStudentActionPerformed
+        // TODO add your handling code here:
+        
+        
+        for (Student estudiante : estudiantesArray) {
+             if (estudiante.getCodeStudet().equals(profesorLogged.getCursosProfArray().get(fcPindex)
+                     .getStudentsArray().get(fStudentProf).getCodeStudet())) {
+
+                 Iterator<Course> cursoIterator = estudiante.getCursosEstudiante().iterator();
+
+                 while (cursoIterator.hasNext()) {
+                     Course curso = cursoIterator.next();
+                     if (curso.getCodeCourse().equals(profesorLogged.getCursosProfArray().get(fcPindex).getCodeCourse())) {
+                         cursoIterator.remove(); // Elimina el curso del estudiante
+                     }
+                 }
+             }
+         }
+
+        profesorLogged.getCursosProfArray().get(fcPindex)
+                 .getStudentsArray().remove(fStudentProf);
+
+        modeloStudent.removeRow(fStudentProf);
+        control.saveData();
+        dispose();
+    }//GEN-LAST:event_btnDeleteStudentActionPerformed
 
     /**
      * @param args the command line arguments
@@ -263,9 +358,9 @@ public class ShowInformation extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDeleteStudent;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JLabel imagenLabel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
@@ -275,9 +370,9 @@ public class ShowInformation extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     public static javax.swing.JTextField txtEmail;
+    public static javax.swing.JTextField txtGenero;
     public static javax.swing.JTextField txtLastName;
     public static javax.swing.JTextField txtName;
     public static javax.swing.JTextField txtPassword;
-    public static javax.swing.JTextField txtPassword1;
     // End of variables declaration//GEN-END:variables
 }

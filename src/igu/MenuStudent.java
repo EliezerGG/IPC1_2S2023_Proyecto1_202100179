@@ -2,6 +2,7 @@
 package igu;
 
 import static igu.LogIn.studentLogged;
+import javax.swing.JOptionPane;
 import proyecto1courses.Course;
 
 
@@ -163,11 +164,15 @@ public class MenuStudent extends javax.swing.JFrame {
     private void btnGoToCourseStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoToCourseStudentActionPerformed
         // TODO add your handling code here:
         ModuleStudentCourse studentCourseWindow = new ModuleStudentCourse();
-
+        
+        if (cboCursosEstudiante.getSelectedIndex() != -1) {
         studentCourseWindow.setVisible(true);
         studentCourseWindow.setLocationRelativeTo(null);
         
-        fCindex = cboCursosEstudiante.getSelectedIndex();
+        fCindex = cboCursosEstudiante.getSelectedIndex();           
+        }else{
+            JOptionPane.showMessageDialog(null, "seleccione un curso");
+        }
         
     }//GEN-LAST:event_btnGoToCourseStudentActionPerformed
 

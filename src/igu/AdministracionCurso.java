@@ -34,11 +34,11 @@ public class AdministracionCurso extends javax.swing.JFrame {
 
     Controladora control = new Controladora();
     ArrayList<Student> studentsForThisCourse =new ArrayList<>();
-    DefaultTableModel modeloStudent = new DefaultTableModel();
+    public static DefaultTableModel modeloStudent = new DefaultTableModel();
     DefaultTableModel modeloHomeWork = new DefaultTableModel();
     
     int totalPonderacion = 0;
-    int fStudentProf = 0;
+    public static int fStudentProf = 0;
     
     public AdministracionCurso() {
         initComponents();
@@ -639,14 +639,14 @@ public class AdministracionCurso extends javax.swing.JFrame {
 
     private void btnShowInfoStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowInfoStudentActionPerformed
         // TODO add your handling code here:
-        ShowInformation infoStudent = new ShowInformation();
-        infoStudent.setVisible(true);
-        infoStudent.setLocationRelativeTo(null);
         
         int selectedRowStudent = tblStudentsCourse.getSelectedRow();
         
-        if (selectedRowStudent != 1) {
-            
+        if (selectedRowStudent != -1) {
+            ShowInformation infoStudent = new ShowInformation();
+ 
+            infoStudent.setVisible(true);
+            infoStudent.setLocationRelativeTo(null);
             fStudentProf = selectedRowStudent;
         }else{
             JOptionPane.showMessageDialog(null, "Seleccione una fila");
@@ -767,7 +767,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
     public static javax.swing.JLabel lblAcumulado;
     public static javax.swing.JLabel lblNameCourse;
     private javax.swing.JTable tblHomeWork;
-    private javax.swing.JTable tblStudentsCourse;
+    public static javax.swing.JTable tblStudentsCourse;
     private javax.swing.JTextField txtDescActivity;
     private javax.swing.JTextField txtNameActivity;
     private javax.swing.JTextField txtPonderacion;
