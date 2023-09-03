@@ -467,12 +467,17 @@ public class AdministracionCurso extends javax.swing.JFrame {
                     for(Student estudiante : studentsForThisCourse){
                         if (estudiante.getCodeStudet().equals(arreglo[0])) {
                             
-                            estudiante.getCursosEstudiante().get(0).addHomeWorkToStudent(nameHW, descripHW,
-                                    ponderacion, Double.valueOf(arreglo[1]), estudiante);
+//                            estudiante.getCursosEstudiante().get(0).addHomeWorkToStudent(nameHW, descripHW,
+//                                    ponderacion, Double.valueOf(arreglo[1]), estudiante);
                             
                 System.out.println( profesorLogged.getCursosProfArray().get(0).getTareasArrayProfesor().size());
                 estudiante.addCourseAndNote(profesorLogged.getCursosProfArray().get(0), Double.valueOf(arreglo[1]));
-                
+                            
+        for (Course curso : estudiante.getCursosEstudiante()) {
+            if (curso == profesorLogged.getCursosProfArray().get(0)) {
+                curso.addHomeWorkToStudent(nameHW, descripHW, ponderacion, Double.valueOf(arreglo[1]), estudiante);
+            }
+        }
                
                         }
                     }

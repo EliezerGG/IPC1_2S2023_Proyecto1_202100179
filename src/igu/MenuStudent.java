@@ -5,7 +5,8 @@ import static igu.LogIn.studentLogged;
 
 
 public class MenuStudent extends javax.swing.JFrame {
-
+    
+    public static int fCindex = 0; //Find Course Index
     
     public MenuStudent() {
         initComponents();
@@ -71,7 +72,7 @@ public class MenuStudent extends javax.swing.JFrame {
 
         txtNameProfesor.setBackground(new java.awt.Color(100, 204, 197));
         txtNameProfesor.setForeground(new java.awt.Color(0, 0, 0));
-        txtNameProfesor.setText("Cant. Students");
+        txtNameProfesor.setText("name prof");
         txtNameProfesor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNameProfesorActionPerformed(evt);
@@ -81,10 +82,15 @@ public class MenuStudent extends javax.swing.JFrame {
         btnCourse2.setBackground(new java.awt.Color(0, 28, 48));
         btnCourse2.setForeground(new java.awt.Color(255, 255, 255));
         btnCourse2.setText("Curso 2");
+        btnCourse2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCourse2ActionPerformed(evt);
+            }
+        });
 
         txtNameProfesor2.setBackground(new java.awt.Color(100, 204, 197));
         txtNameProfesor2.setForeground(new java.awt.Color(0, 0, 0));
-        txtNameProfesor2.setText("Cant. Students");
+        txtNameProfesor2.setText("name prof");
         txtNameProfesor2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNameProfesor2ActionPerformed(evt);
@@ -94,10 +100,15 @@ public class MenuStudent extends javax.swing.JFrame {
         btnCourse3.setBackground(new java.awt.Color(0, 28, 48));
         btnCourse3.setForeground(new java.awt.Color(255, 255, 255));
         btnCourse3.setText("Curso 3");
+        btnCourse3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCourse3ActionPerformed(evt);
+            }
+        });
 
         txtNameProfesor3.setBackground(new java.awt.Color(100, 204, 197));
         txtNameProfesor3.setForeground(new java.awt.Color(0, 0, 0));
-        txtNameProfesor3.setText("Cant. Students");
+        txtNameProfesor3.setText("name prof");
         txtNameProfesor3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNameProfesor3ActionPerformed(evt);
@@ -107,10 +118,15 @@ public class MenuStudent extends javax.swing.JFrame {
         btnCourse4.setBackground(new java.awt.Color(0, 28, 48));
         btnCourse4.setForeground(new java.awt.Color(255, 255, 255));
         btnCourse4.setText("Curso 4");
+        btnCourse4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCourse4ActionPerformed(evt);
+            }
+        });
 
         txtNameProfesor4.setBackground(new java.awt.Color(100, 204, 197));
         txtNameProfesor4.setForeground(new java.awt.Color(0, 0, 0));
-        txtNameProfesor4.setText("Cant. Students");
+        txtNameProfesor4.setText("name prof");
         txtNameProfesor4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNameProfesor4ActionPerformed(evt);
@@ -223,11 +239,13 @@ public class MenuStudent extends javax.swing.JFrame {
 
     private void btnCourse1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCourse1ActionPerformed
         // TODO add your handling code here:
+        fCindex =0;
+        
         ModuleStudentCourse studentCourseWindow = new ModuleStudentCourse();
 
         studentCourseWindow.setVisible(true);
         studentCourseWindow.setLocationRelativeTo(null);
-
+        
     }//GEN-LAST:event_btnCourse1ActionPerformed
 
     private void txtNameProfesorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameProfesorActionPerformed
@@ -260,8 +278,45 @@ public class MenuStudent extends javax.swing.JFrame {
         txtNameProfesor.setText(studentLogged.getCursosEstudiante().get(0).getProfesor().getName() + 
                 " "+ studentLogged.getCursosEstudiante().get(0).getProfesor().getLastName());
         
+        btnCourse2.setText(studentLogged.getCursosEstudiante().get(1).getNameCourse());
+        txtNameProfesor2.setText(studentLogged.getCursosEstudiante().get(1).getProfesor().getName() + 
+                " "+ studentLogged.getCursosEstudiante().get(1).getProfesor().getLastName());
         
+        btnCourse3.setText(studentLogged.getCursosEstudiante().get(2).getNameCourse());
+        txtNameProfesor3.setText(studentLogged.getCursosEstudiante().get(2).getProfesor().getName() + 
+                " "+ studentLogged.getCursosEstudiante().get(2).getProfesor().getLastName());
+        
+        btnCourse4.setText(studentLogged.getCursosEstudiante().get(3).getNameCourse());
+        txtNameProfesor4.setText(studentLogged.getCursosEstudiante().get(3).getProfesor().getName() + 
+                " "+ studentLogged.getCursosEstudiante().get(3).getProfesor().getLastName());
     }//GEN-LAST:event_formWindowOpened
+
+    private void btnCourse2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCourse2ActionPerformed
+        // TODO add your handling code here:
+        fCindex = 1;
+        ModuleStudentCourse studentCourseWindow = new ModuleStudentCourse();
+
+        studentCourseWindow.setVisible(true);
+        studentCourseWindow.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btnCourse2ActionPerformed
+
+    private void btnCourse3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCourse3ActionPerformed
+        // TODO add your handling code here:
+        fCindex =2;
+        ModuleStudentCourse studentCourseWindow = new ModuleStudentCourse();
+
+        studentCourseWindow.setVisible(true);
+        studentCourseWindow.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btnCourse3ActionPerformed
+
+    private void btnCourse4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCourse4ActionPerformed
+        // TODO add your handling code here:
+        fCindex =3;
+        ModuleStudentCourse studentCourseWindow = new ModuleStudentCourse();
+
+        studentCourseWindow.setVisible(true);
+        studentCourseWindow.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btnCourse4ActionPerformed
 
     /**
      * @param args the command line arguments

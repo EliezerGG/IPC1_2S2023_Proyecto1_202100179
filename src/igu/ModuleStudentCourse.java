@@ -1,6 +1,7 @@
 package igu;
 
 import static igu.LogIn.studentLogged;
+import static igu.MenuStudent.fCindex;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.table.DefaultTableModel;
@@ -168,7 +169,7 @@ public class ModuleStudentCourse extends javax.swing.JFrame {
         
         DefaultCategoryDataset datos = new DefaultCategoryDataset();
         
-        for (HomeWork tarea: studentLogged.getCursosEstudiante().get(0).getTareasArrayEstudiante()) {
+        for (HomeWork tarea: studentLogged.getCursosEstudiante().get(fCindex).getTareasArrayEstudiante()) {
             if (tarea.getEstudiante() == studentLogged) {
                 datos.setValue(tarea.getNotaTarea(studentLogged), tarea.getNameHW(), tarea.getNameHW());
             }
@@ -201,7 +202,7 @@ public class ModuleStudentCourse extends javax.swing.JFrame {
             modeloTarea.removeRow(0);
         }
         
-        for (HomeWork tarea: studentLogged.getCursosEstudiante().get(0).getTareasArrayEstudiante()) {
+        for (HomeWork tarea: studentLogged.getCursosEstudiante().get(fCindex).getTareasArrayEstudiante()) {
             if (tarea != null & tarea.getEstudiante() == studentLogged) {
                 Object a[]= new Object[4];
                 a[0] = tarea.getNameHW();
