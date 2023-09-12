@@ -244,11 +244,17 @@ public class AddProfessor extends javax.swing.JFrame {
         String email = txtEmailProf.getText();
         String passWord = txtPassWProf.getText();
         String gender = cboGender.getSelectedItem().toString();    
-
-        control.addProfessor(code, name, lastName, email, passWord, gender);
         
-        refreshTable();
-        dispose();
+        for(Professor profesor : profesoresArray){
+            if (!profesor.getCode().equals(code)) {
+                control.addProfessor(code, name, lastName, email, passWord, gender);
+
+                refreshTable();
+                dispose();                
+            }else{
+                JOptionPane.showMessageDialog(null, "Codigo ya existente");
+            }
+        }
             
             
         } catch (Exception e) {

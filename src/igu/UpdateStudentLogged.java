@@ -3,12 +3,17 @@ package igu;
 
 import static igu.LogIn.studentLogged;
 import java.awt.Image;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import proyecto1courses.Controladora;
+import static proyecto1courses.Controladora.cursosArray;
 import static proyecto1courses.Controladora.estudiantesArray;
+import static proyecto1courses.Controladora.profesoresArray;
+import proyecto1courses.Course;
+import proyecto1courses.Professor;
 import proyecto1courses.Student;
 
 
@@ -44,8 +49,14 @@ public class UpdateStudentLogged extends javax.swing.JFrame {
         btnUpdateProfessor = new javax.swing.JButton();
         imagenLabel = new javax.swing.JLabel();
         btnImage = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 28, 48));
 
@@ -132,6 +143,15 @@ public class UpdateStudentLogged extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(0, 28, 48));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Salir");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -144,10 +164,7 @@ public class UpdateStudentLogged extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnImage, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(182, 182, 182)
-                                .addComponent(btnUpdateProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnImage, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(imagenLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(34, 34, 34)
@@ -156,23 +173,26 @@ public class UpdateStudentLogged extends javax.swing.JFrame {
                                     .addComponent(jLabel6)
                                     .addComponent(jLabel7)
                                     .addComponent(jLabel8)
-                                    .addComponent(jLabel9))
+                                    .addComponent(jLabel9)
+                                    .addComponent(jButton1))
                                 .addGap(6, 6, 6)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtName)
-                                    .addComponent(txtLastName)
-                                    .addComponent(txtEmail)
-                                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cboGender, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(10, 10, 10)))
-                .addContainerGap(48, Short.MAX_VALUE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnUpdateProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtName)
+                                        .addComponent(txtLastName)
+                                        .addComponent(txtEmail)
+                                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(cboGender, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(53, 53, 53)))
+                .addContainerGap(5, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(imagenLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -198,9 +218,12 @@ public class UpdateStudentLogged extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
                             .addComponent(cboGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnUpdateProfessor)))
-                .addGap(275, 275, 275))
+                        .addGap(32, 32, 32)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnUpdateProfessor)
+                    .addComponent(jButton1))
+                .addGap(28, 28, 28))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -211,9 +234,7 @@ public class UpdateStudentLogged extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -243,7 +264,38 @@ public class UpdateStudentLogged extends javax.swing.JFrame {
         String password = txtPassword.getText();
         String gender = cboGender.getSelectedItem().toString();
 
-       
+        for(Professor profesor : profesoresArray){
+            for(Course curso : profesor.getCursosProfArray()){
+                for(Student estudiante: curso.getStudentsArray()){
+                    if(studentLogged.getCodeStudet().equals(estudiante.getCodeStudet()) && fotoTemporal != null){ 
+                        try {
+                            estudiante.setNameStudet(name);
+                            estudiante.setLastNameStudent(lastName);
+                            estudiante.setEmailStudent(email);
+                            estudiante.setPasswordStudent(password);
+                            estudiante.setGender(gender);
+                            estudiante.setPhotoStudent(fotoTemporal); 
+
+                            studentLogged.setNameStudet(name);
+                            studentLogged.setLastNameStudent(lastName);
+                            studentLogged.setEmailStudent(email);
+                            studentLogged.setPasswordStudent(password);
+                            studentLogged.setGender(gender);
+                            studentLogged.setPhotoStudent(fotoTemporal); 
+
+                            System.out.println("se actualizaron los datos");
+
+                            control.saveData();
+
+                        } catch (Exception e) {
+                            System.out.println("No se actualizaron los datos");
+                        }
+                          
+                    }
+                }
+            }
+        }
+        
         for(Student estudiante: estudiantesArray){
             if(studentLogged.getCodeStudet().equals(estudiante.getCodeStudet()) && fotoTemporal != null){ 
                 try {
@@ -270,8 +322,9 @@ public class UpdateStudentLogged extends javax.swing.JFrame {
                 }
                           
             }
+            
         }
-                
+       
         
     }//GEN-LAST:event_btnUpdateProfessorActionPerformed
 
@@ -293,6 +346,35 @@ public class UpdateStudentLogged extends javax.swing.JFrame {
         }  
         
     }//GEN-LAST:event_btnImageActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        
+         Icon icon = studentLogged.getPhotoStudent();
+
+        if (icon != null) {
+            imagenLabel.setIcon(icon);
+        } else {
+           
+            System.out.println("No image found");
+        }
+
+
+       txtName.setText(studentLogged.getNameStudet());
+        
+       txtLastName.setText(studentLogged.getLastNameStudent());
+        
+       txtEmail.setText(studentLogged.getEmailStudent());
+        
+       txtPassword.setText(studentLogged.getPasswordStudent());
+        
+        
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -334,6 +416,7 @@ public class UpdateStudentLogged extends javax.swing.JFrame {
     private javax.swing.JButton btnUpdateProfessor;
     private javax.swing.JComboBox<String> cboGender;
     private javax.swing.JLabel imagenLabel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

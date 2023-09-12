@@ -2,6 +2,7 @@ package proyecto1courses;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 
 public class Course implements Serializable{
@@ -80,7 +81,12 @@ public class Course implements Serializable{
     }
     
     public void addStudentsToCourse(Student estudiante){
-        studentsArray.add(estudiante);
+        if (studentsArray.size() < 50) {
+            studentsArray.add(estudiante);
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Exceso de estudiantes");
+        }
     }
     
     public void deleteStudentToCourse(Student estudiante){

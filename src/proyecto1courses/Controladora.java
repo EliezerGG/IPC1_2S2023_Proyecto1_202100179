@@ -2,6 +2,7 @@ package proyecto1courses;
 
 import java.io.File;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import persistencia.ControladoraPersistencia;
 
 public class Controladora {
@@ -14,16 +15,22 @@ public class Controladora {
 
     public void addProfessor(String code, String name, String lastName, String email, String passWord, String gender) {
         
-        Professor profesor = new Professor();
- 
-        profesor.setCode(code);
-        profesor.setName(name);
-        profesor.setLastName(lastName);
-        profesor.setEmail(email);
-        profesor.setPassWord(passWord);
-        profesor.setGender(gender);
-       
-        profesoresArray.add(profesor);
+         Professor profesor = new Professor();
+        if (profesoresArray.size() <50) {
+
+            profesor.setCode(code);
+            profesor.setName(name);
+            profesor.setLastName(lastName);
+            profesor.setEmail(email);
+            profesor.setPassWord(passWord);
+            profesor.setGender(gender);
+
+            profesoresArray.add(profesor);
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Se ha excedido de limete de profesores");
+        }
+        
                 
     }
     
@@ -72,14 +79,19 @@ public class Controladora {
     public void addStudent(String code, String name, String lastName, String email, String gender, String password){
         Student estudiante = new Student();
         
-        estudiante.setCodeStudet(code);
-        estudiante.setNameStudet(name);
-        estudiante.setLastNameStudent(lastName);
-        estudiante.setEmailStudent(email);
-        estudiante.setGender(gender);
-        estudiante.setPasswordStudent(password);
-        
-        estudiantesArray.add(estudiante);
+        if (estudiantesArray.size() <300) {
+            estudiante.setCodeStudet(code);
+            estudiante.setNameStudet(name);
+            estudiante.setLastNameStudent(lastName);
+            estudiante.setEmailStudent(email);
+            estudiante.setGender(gender);
+            estudiante.setPasswordStudent(password);
+
+            estudiantesArray.add(estudiante);
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Se ha excedido el limite de alumnos");
+        }
     }
     
     public void deleteStudent(int indexStudent){

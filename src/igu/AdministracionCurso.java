@@ -50,7 +50,6 @@ public class AdministracionCurso extends javax.swing.JFrame {
             modeloStudent.addColumn("Codigo");
             modeloStudent.addColumn("Nombre");
             modeloStudent.addColumn("Apellido");
-            modeloStudent.addColumn("Acciones");
         }
         
         if (modeloHomeWork.getColumnCount() == 0) {
@@ -246,7 +245,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
         });
 
         btnShowInfoStudent.setBackground(new java.awt.Color(100, 204, 197));
-        btnShowInfoStudent.setForeground(new java.awt.Color(255, 255, 255));
+        btnShowInfoStudent.setForeground(new java.awt.Color(0, 28, 48));
         btnShowInfoStudent.setText("Ver info Estudiante");
         btnShowInfoStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -573,15 +572,15 @@ public class AdministracionCurso extends javax.swing.JFrame {
                                
                               
                         
-           for (Student estudiante: bestStudents){
-                table.addCell(String.valueOf(i));
-                table.addCell(estudiante.getCodeStudet());
-                table.addCell(estudiante.getNameStudet());
-                table.addCell(estudiante.getLastNameStudent());
-                table.addCell(estudiante.getEmailStudent());
-               table.addCell(String.valueOf(estudiante.obtenerNota(profesorLogged.getCursosProfArray().get(fcPindex))));
-                i++;
-           }
+    for (Student estudiante: bestStudents){
+         table.addCell(String.valueOf(i));
+         table.addCell(estudiante.getCodeStudet());
+         table.addCell(estudiante.getNameStudet());
+         table.addCell(estudiante.getLastNameStudent());
+         table.addCell(estudiante.getEmailStudent());
+        table.addCell(String.valueOf(estudiante.obtenerNota(profesorLogged.getCursosProfArray().get(fcPindex))));
+         i++;
+    }
           
           document.add(table);
           document.close();
@@ -698,11 +697,10 @@ public class AdministracionCurso extends javax.swing.JFrame {
         
         for (Student estudianteCurso: profesorLogged.getCursosProfArray().get(fcPindex).getStudentsArray()) {
             if (estudianteCurso != null) {
-                Object a[]= new Object[4];
+                Object a[]= new Object[3];
                 a[0] = estudianteCurso.getCodeStudet();
                 a[1] = estudianteCurso.getNameStudet();
                 a[2] = estudianteCurso.getLastNameStudent();
-                a[3] = "Ver mas informacion";
 
                 modeloStudent.addRow(a);
             }

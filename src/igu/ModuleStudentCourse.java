@@ -15,6 +15,8 @@ import proyecto1courses.HomeWork;
 public class ModuleStudentCourse extends javax.swing.JFrame {
 
     DefaultTableModel modeloTarea = new DefaultTableModel();
+    int totalNotas = 0;
+    int totalCurso = 0;
     
     public ModuleStudentCourse() {
         initComponents();
@@ -44,6 +46,10 @@ public class ModuleStudentCourse extends javax.swing.JFrame {
         tblHomeWork = new javax.swing.JTable();
         btnSalir = new javax.swing.JButton();
         panelGraficoTarea = new javax.swing.JPanel();
+        labelPonderacionCourse = new javax.swing.JLabel();
+        labelTotalNotas = new javax.swing.JLabel();
+        label = new javax.swing.JLabel();
+        label2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -97,6 +103,22 @@ public class ModuleStudentCourse extends javax.swing.JFrame {
             .addGap(0, 315, Short.MAX_VALUE)
         );
 
+        labelPonderacionCourse.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        labelPonderacionCourse.setForeground(new java.awt.Color(255, 255, 255));
+        labelPonderacionCourse.setText("Ponderacion");
+
+        labelTotalNotas.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        labelTotalNotas.setForeground(new java.awt.Color(255, 255, 255));
+        labelTotalNotas.setText("totalnotas");
+
+        label.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        label.setForeground(new java.awt.Color(255, 255, 255));
+        label.setText("Tu nota:");
+
+        label2.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        label2.setForeground(new java.awt.Color(255, 255, 255));
+        label2.setText("Curso: ");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -105,20 +127,23 @@ public class ModuleStudentCourse extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(37, 37, 37)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(labelNameCourse)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnSalir)
-                                .addGap(73, 73, 73)
-                                .addComponent(panelGraficoTarea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addComponent(panelGraficoTarea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(labelNameCourse))
-                                .addGap(416, 416, 416))))
+                                    .addComponent(labelTotalNotas)
+                                    .addComponent(labelPonderacionCourse)
+                                    .addComponent(label2)
+                                    .addComponent(label)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(75, 75, 75)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,12 +154,23 @@ public class ModuleStudentCourse extends javax.swing.JFrame {
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(btnSalir))
-                    .addComponent(panelGraficoTarea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(44, 44, 44)
+                                .addComponent(btnSalir))
+                            .addComponent(panelGraficoTarea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(label2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelPonderacionCourse)
+                        .addGap(60, 60, 60)
+                        .addComponent(label)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelTotalNotas)))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
@@ -162,6 +198,22 @@ public class ModuleStudentCourse extends javax.swing.JFrame {
         showGraph();
         loadTableStudent();
         labelNameCourse.setText(studentLogged.getCursosEstudiante().get(fCindex).getNameCourse());
+        
+//        labelPonderacionCourse.setText(studentLogged.getCursosEstudiante().get(fCindex).get);
+        int sumaNotas = 0;
+        int sumaPonderacion = 0;
+        for(HomeWork tarea: studentLogged.getCursosEstudiante().get(fCindex).getTareasArrayEstudiante()){
+            sumaNotas += (int) (tarea.getPonderacionHW() * (tarea.getNotaTarea(studentLogged)/100));
+            if (tarea.getEstudiante() == studentLogged) {
+                sumaPonderacion += tarea.getPonderacionHW();               
+            }
+        }
+        totalNotas += sumaNotas;
+        totalCurso += sumaPonderacion;
+        
+        labelTotalNotas.setText(String.valueOf(totalNotas));
+        labelPonderacionCourse.setText(String.valueOf(totalCurso));
+
     }//GEN-LAST:event_formWindowOpened
     
     public void showGraph(){
@@ -257,7 +309,11 @@ public class ModuleStudentCourse extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel label;
+    private javax.swing.JLabel label2;
     private javax.swing.JLabel labelNameCourse;
+    private javax.swing.JLabel labelPonderacionCourse;
+    private javax.swing.JLabel labelTotalNotas;
     private javax.swing.JPanel panelGraficoTarea;
     private javax.swing.JTable tblHomeWork;
     // End of variables declaration//GEN-END:variables
