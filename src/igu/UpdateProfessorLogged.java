@@ -3,6 +3,8 @@ package igu;
 import static igu.LogIn.profesorLogged;
 import javax.swing.JOptionPane;
 import proyecto1courses.Controladora;
+import static proyecto1courses.Controladora.cursosArray;
+import proyecto1courses.Course;
 
 public class UpdateProfessorLogged extends javax.swing.JFrame {
 
@@ -37,6 +39,11 @@ public class UpdateProfessorLogged extends javax.swing.JFrame {
         btnUpdateProfessor = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 28, 48));
 
@@ -233,12 +240,31 @@ public class UpdateProfessorLogged extends javax.swing.JFrame {
         profesorLogged.setPassWord(password);
         profesorLogged.setGender(gender);
        
+        for(Course curso : cursosArray){
+            if(curso.getProfesor().getCode().equals(profesorLogged.getCode())){
+                
+                curso.getProfesor().setName(name);
+                curso.getProfesor().setLastName(lastName);
+                curso.getProfesor().setEmail(email);
+                curso.getProfesor().setPassWord(password);
+                curso.getProfesor().setGender(gender);
+            }
+        }
         control.saveData();
         dispose();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "no se actualizo vea si estan los datos correctos");
         }
     }//GEN-LAST:event_btnUpdateProfessorActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        txtCodeUpdateProf.setText(profesorLogged.getCode());
+        txtName.setText(profesorLogged.getName());
+        txtLastName.setText(profesorLogged.getLastName());
+        txtEmail.setText(profesorLogged.getEmail());
+        txtPassword.setText(profesorLogged.getPassWord());
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
